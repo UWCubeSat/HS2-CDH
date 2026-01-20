@@ -18,9 +18,8 @@ pip install fprime-tools fprime-gds
 ## Getting Started
 Clone the repository:
 
-`git clone https://github.com/UWCubeSat/HS2-CDH.git`
-
-`cd HS2-CDH`
+```git clone https://github.com/UWCubeSat/HS2-CDH.git
+cd HS2-CDH
 
 Initialize the F Prime submodule:
 
