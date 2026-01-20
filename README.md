@@ -23,35 +23,35 @@ Required tools:
 - Python 3.9 or newer
 
 F Prime tools:
-
+```bash
 pip install fprime-tools fprime-gds
-
+```
 ## Getting Started
 
 Clone the repository:
-
+```bash
 git clone https://github.com/UWCubeSat/HS2-CDH.git
 cd HS2-CDH
-
+```
 Initialize the F Prime submodule:
-
+```bash
 git submodule update --init --recursive
-
+```
 (Optional) Create and activate a Python virtual environment:
-
+```bash
 python3 -m venv fprime-venv
 source fprime-venv/bin/activate
 pip install -r lib/fprime/requirements.txt
 pip install fprime-tools fprime-gds
-
+```
 Generate build files:
-
+```bash
 fprime-util generate
-
+```
 Build the project:
-
+```bash
 fprime-util build
-
+```
 ## Development
 
 Software development follows standard F Prime practices:
@@ -68,14 +68,15 @@ The F Prime commands and workflow used in this repository are based on the HS2-S
 ## Adding Components
 
 New components can be created using:
-
+```bash
 fprime-util new --component <ComponentName>
-
+```
 ## Testing
 
 Tests can be run with:
 ```bash
-fprime-util check```
+fprime-util check
+```
 
 ## Contributing
 
