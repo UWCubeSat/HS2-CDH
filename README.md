@@ -51,6 +51,3 @@ fprime-util check
 ## Contributing
 Do not push directly to the main branch.
 Create a feature branch, commit your changes, and open a pull request for review.
-## License
-This project is licensed under the MIT License.  
-See the LICENSE file for details.
