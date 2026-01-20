@@ -24,10 +24,13 @@ Initialize the F Prime submodule:
 `git submodule update --init --recursive`
 
 (Optional) Create and activate a Python virtual environment:
-`python3 -m venv fprime-venv
-source fprime-venv/bin/activate
-pip install -r lib/fprime/requirements.txt
-pip install fprime-tools fprime-gds`
+`python3 -m venv fprime-venv`
+
+`source fprime-venv/bin/activate`
+
+`pip install -r lib/fprime/requirements.txt`
+
+`pip install fprime-tools fprime-gds`
 
 Generate build files:
 `fprime-util generate`
