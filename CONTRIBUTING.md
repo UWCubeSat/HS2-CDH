@@ -16,7 +16,7 @@ Pull Requests should be focused and limited in scope. Unrelated changes should b
 
 All Pull Requests are merged using a squash merge.
 
-A squash merge combines all commits in a Pull Request into a single commit on the `main` branch. This keeps the commit history clean, readable, and easy to audit. Each merged commit should represent one logical change. The squash commit message should clearly describe what was changed and why.
+A squash merge combines all commits in a Pull Request into a single commit on the main branch. This keeps the commit history clean, readable, and easy to audit. Each merged commit should represent one logical change. The squash commit message should clearly describe what was changed and why.
 
 The main branch must always represent a stable, buildable state.
 
