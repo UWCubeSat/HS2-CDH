@@ -1,15 +1,6 @@
-module FlightComputer {
-    @ The Event Scheduler used on HS-2
-    active component EventScheduler {
-
-        struct TmtcRadioPacket {
-        preamble: [10] U8,
-        sync_word: [4] U8,
-        payload_length: [1] U8, # Length of payload plus length and address bytes
-        address: [1] U8, # Address of radio  (Tx: 0x33, Rx: 0x32) 
-        payload: [240] U8, # 0 - 240
-        crc32: [4] U8 # CRC-32 algorithm, polynomial = Polynomial: 0x04C11DB7, seed = 0xFFFFFFFF (configurable)
-    } default {preamble = 0xAA}
+module Tmtc {
+    @ Manages Endurosat radio communications
+    active component TmtcRadioManager {
 
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
@@ -21,19 +12,19 @@ module FlightComputer {
         ##############################################################################
 
         # @ Example async command
-        async command COMMAND_NAME(param_name: U32)
+        # async command COMMAND_NAME(param_name: U32)
 
         # @ Example telemetry counter
-         telemetry ExampleCounter: U64
+        # telemetry ExampleCounter: U64
 
         # @ Example event
-         event ExampleStateEvent(example_state: Fw.On) severity activity high id 0 format "State set to {}"
+        # event ExampleStateEvent(example_state: Fw.On) severity activity high id 0 format "State set to {}"
 
         # @ Example port: receiving calls from the rate group
-         sync input port run: Svc.Sched
+        # sync input port run: Svc.Sched
 
         # @ Example parameter
-         param PARAMETER_NAME: U32
+        # param PARAMETER_NAME: U32
 
         ###############################################################################
         # Standard AC Ports: Required for Channels, Events, Commands, and Parameters  #
