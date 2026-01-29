@@ -8,7 +8,7 @@
 #define Tmtc_TmtcRadioManager_HPP
 
 #include "FlightComputer/Components/TmtcRadioManager/TmtcRadioManagerComponentAc.hpp"
-#include "FlightComputer/Types/TmtcRadioPacketSerializableAc.hpp"
+#include "FlightComputer/Types/TmtcRadioTypes/TmtcRadioPacketSerializableAc.hpp"
 
 namespace Tmtc {
 
