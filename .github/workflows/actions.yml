@@ -1,0 +1,47 @@
+# actions.yml
+
+on: [push, pull_request]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v5
+          - run: pip install fprime-tools fprime-gds
+            shell: bash
+          - run: python3 -m venv fprime-venv
+            shell: bash
+          - run: source fprime-venv/bin/activate
+            shell: bash
+          - run: pip install -r lib/fprime/requirements.txt
+            shell: bash
+          - run: pip install fprime-tools fprime-gds
+            shell: bash
+          - run: fprime-util generate
+            shell: bash
+          - run: fprime-util build
+            shell: bash
+    
+    test:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v5
+          - uses: actions/checkout@v5
+          - run: pip install fprime-tools fprime-gds
+            shell: bash
+          - run: python3 -m venv fprime-venv
+            shell: bash
+          - run: source fprime-venv/bin/activate
+            shell: bash
+          - run: pip install -r lib/fprime/requirements.txt
+            shell: bash
+          - run: pip install fprime-tools fprime-gds
+            shell: bash
+          - run: fprime-util generate
+            shell: bash
+          - run: fprime-util build --ut # Build unit tests
+            shell: bash
+          - run: fprime-util check --coverage # Run unit tests and generate HTML files in coverage/ folder
+            shell: bash
+    
+    # TODO: Cross-compile step!
