@@ -38,7 +38,7 @@ jobs:
             shell: bash
           - run: pip install -r lib/fprime/requirements.txt
             shell: bash
-          - run: fprime-util generate
+          - run: fprime-util generate --ut
             shell: bash
           - run: fprime-util build --ut # Build unit tests
             shell: bash
