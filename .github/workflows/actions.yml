@@ -26,7 +26,8 @@ jobs:
         runs-on: ubuntu-latest
         steps:
           - uses: actions/checkout@v5
-          - uses: actions/checkout@v5
+          - run: git submodule update --init --recursive
+            shell: bash
           - run: pip install fprime-tools fprime-gds
             shell: bash
           - run: python3 -m venv fprime-venv
@@ -34,8 +35,6 @@ jobs:
           - run: source fprime-venv/bin/activate
             shell: bash
           - run: pip install -r lib/fprime/requirements.txt
-            shell: bash
-          - run: pip install fprime-tools fprime-gds
             shell: bash
           - run: fprime-util generate
             shell: bash
