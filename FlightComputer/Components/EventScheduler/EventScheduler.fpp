@@ -1,34 +1,27 @@
+include "../../Types/EventSchedulerTypes/EventSchedulerTypes.fpp"
+
 module FlightComputer {
-    @ The Event Scheduler used on HS-2
+
     active component EventScheduler {
 
-        # One async command/port is required for active components
-        # This should be overridden by the developers with a useful command/port
-        @ TODO
-        async command TODO opcode 0
+        # Input Ports
 
-        ##############################################################################
-        #### Uncomment the following examples to start customizing your component ####
-        ##############################################################################
+        @ Receive event scheduling requests from other components
+        async input port SchedRequestIn: SchedRequest 
 
-        # @ Example async command
-        # async command COMMAND_NAME(param_name: U32)
+        @ Receive results from subsystem processing
+        async input port SubsystemResultIn: SubsystemResultPort 
 
-        # @ Example telemetry counter
-         telemetry ExampleCounter: U64
+        # Output Ports
 
-        # @ Example event
-        # event ExampleStateEvent(example_state: Fw.On) severity activity high id 0 format "State set to {}"
+        @ Send event triggers to subsystem managers
+        output port SubsystemTriggerOut: SubsystemTrigger
 
-        # @ Example port: receiving calls from the rate group
-        # sync input port run: Svc.Sched
+        @ Send structured event data to storage/logging system
+        output port StorageOut: SubsystemResultPort
 
-        # @ Example parameter
-        # param PARAMETER_NAME: U32
+        # Standard Ports
 
-        ###############################################################################
-        # Standard AC Ports: Required for Channels, Events, Commands, and Parameters  #
-        ###############################################################################
         @ Port for requesting the current time
         time get port timeCaller
 
@@ -44,8 +37,7 @@ module FlightComputer {
         @ Port to return the value of a parameter
         param get port prmGetOut
 
-        @Port to set the value of a parameter
+        @ Port to set the value of a parameter
         param set port prmSetOut
-
     }
 }

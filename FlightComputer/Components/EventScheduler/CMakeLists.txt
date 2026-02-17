@@ -14,23 +14,28 @@
 # root when not specifically overridden by the developer, i.e. the module defined by
 # `MyProj/Some/Path/CMakeLists.txt` will be named `MyProj_Some_Path`.
 
-register_fprime_library(
-    AUTOCODER_INPUTS
-        "${CMAKE_CURRENT_LIST_DIR}/EventScheduler.fpp"
-    SOURCES
-        "${CMAKE_CURRENT_LIST_DIR}/EventScheduler.cpp"
-#   DEPENDS
-#       MyPackage_MyOtherModule
+set(SOURCE_FILES
+    "${CMAKE_CURRENT_LIST_DIR}/EventScheduler.fpp"
+    "${CMAKE_CURRENT_LIST_DIR}/EventScheduler.cpp"
 )
 
-### Unit Tests ###
-register_fprime_ut(
-    AUTOCODER_INPUTS
-        "${CMAKE_CURRENT_LIST_DIR}/EventScheduler.fpp"
-    SOURCES
-        "${CMAKE_CURRENT_LIST_DIR}/test/ut/EventSchedulerTestMain.cpp"
-        "${CMAKE_CURRENT_LIST_DIR}/test/ut/EventSchedulerTester.cpp"
-    DEPENDS
-        STest # For rules-based testing
-    UT_AUTO_HELPERS
+set(DEPENDENCIES
+    FlightComputer_Types_EventSchedulerTypes
+    Fw_Comp
+    Fw_Ports
+    Fw_Types
 )
+
+register_fprime_module()
+
+### Unit Tests ###
+# register_fprime_ut(
+#     AUTOCODER_INPUTS
+#         "${CMAKE_CURRENT_LIST_DIR}/EventScheduler.fpp"
+#     SOURCES
+#         "${CMAKE_CURRENT_LIST_DIR}/test/ut/EventSchedulerTestMain.cpp"
+#         "${CMAKE_CURRENT_LIST_DIR}/test/ut/EventSchedulerTester.cpp"
+#     DEPENDS
+#         STest # For rules-based testing
+#     UT_AUTO_HELPERS
+# )
