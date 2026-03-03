@@ -19,8 +19,8 @@ register_fprime_library(
         "${CMAKE_CURRENT_LIST_DIR}/TmtcRadioManager.fpp"
     SOURCES
         "${CMAKE_CURRENT_LIST_DIR}/TmtcRadioManager.cpp"
-  DEPENDS
-        FlightComputer_Types_TmtcRadioTypes
+    DEPENDS
+            FlightComputer_Types_TmtcRadioTypes
 )
 
 ### Unit Tests ###
