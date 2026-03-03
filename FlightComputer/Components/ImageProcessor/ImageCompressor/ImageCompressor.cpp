@@ -8,6 +8,8 @@
 
 #include <string>
 
+std::int64_t ImageProcessor::ImageCompressor::s_imageSampleBuf[ImageProcessor::ImageCompressor::kImageSampleBufElems] = {};
+
 #include "Fw/Time/Time.hpp"
 #include "Os/FileSystem.hpp"
 

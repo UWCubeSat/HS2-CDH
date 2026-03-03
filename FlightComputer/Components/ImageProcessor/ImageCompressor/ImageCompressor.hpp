@@ -50,7 +50,7 @@ class ImageCompressor final : public ImageCompressorComponentBase {
   private:
     static constexpr std::size_t kImageSampleBufBytes = 2U * 1024U * 1024U;
     static constexpr std::size_t kImageSampleBufElems = kImageSampleBufBytes / sizeof(std::int64_t);
-    inline static std::int64_t s_imageSampleBuf[kImageSampleBufElems] = {};
+    static std::int64_t s_imageSampleBuf[kImageSampleBufElems];
 };
 
 }  // namespace ImageProcessor
