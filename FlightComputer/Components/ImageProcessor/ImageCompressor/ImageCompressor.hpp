@@ -29,6 +29,13 @@ class ImageCompressor final : public ImageCompressorComponentBase {
 
   private:
     // ----------------------------------------------------------------------
+    // Handler implementations for ports
+    // ----------------------------------------------------------------------
+
+    //! Handler for the timeCaller port
+    void timeGetPort_handler(FwIndexType portNum, Fw::Time& time) override;
+
+    // ----------------------------------------------------------------------
     // Handler implementations for commands
     // ----------------------------------------------------------------------
 

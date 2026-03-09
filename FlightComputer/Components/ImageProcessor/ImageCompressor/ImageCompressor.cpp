@@ -57,6 +57,14 @@ ImageCompressor ::ImageCompressor(const char* const compName) : ImageCompressorC
 ImageCompressor ::~ImageCompressor() {}
 
 // ----------------------------------------------------------------------
+// Handler implementations for ports
+// ----------------------------------------------------------------------
+
+void ImageCompressor::timeGetPort_handler(FwIndexType portNum, Fw::Time &time) {
+    // nothing to do
+}
+
+// ----------------------------------------------------------------------
 // Handler implementations for commands
 // ----------------------------------------------------------------------
 

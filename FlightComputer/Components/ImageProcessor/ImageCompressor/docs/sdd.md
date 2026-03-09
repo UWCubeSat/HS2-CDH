@@ -10,7 +10,7 @@ Example command usage:
 
 Command:
 
-`COMPRESS_IMAGE /data/cam/frame001.raw /data/cam/compressed 1 1024 1024 1 u16 1048576`
+`COMPRESS_IMAGE /data/cam/hi_im_an_image.raw /data/cam/compressed 1 1024 1024 1 u8be 1048576`
 
 ### Diagrams
 
