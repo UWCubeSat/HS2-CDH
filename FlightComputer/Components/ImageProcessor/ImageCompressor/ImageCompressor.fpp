@@ -14,7 +14,7 @@ module ImageProcessor {
             override_z: I32 @< Override image Z dimension
             override_dtype: string size 16 @< Override data type (e.g., u16)
             image_sample_len: U64 @< Number of samples available in the buffer
-        )
+        ) opcode 0x0100
 
         @ Compression runtime in milliseconds
         telemetry CompressionTimeMs: U32
@@ -71,6 +71,9 @@ module ImageProcessor {
         ###############################################################################
         @ Port for requesting the current time
         time get port timeCaller
+
+        # Time port requires the time interface
+        import Svc.Time
 
         @ Enables command handling
         import Fw.Command

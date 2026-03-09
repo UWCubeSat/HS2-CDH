@@ -32,6 +32,9 @@ module FlightComputer {
         @ Port for requesting the current time
         time get port timeCaller
 
+        # import the time interface for the time port
+        import Svc.Time
+
         @ Enables command handling
         import Fw.Command
 

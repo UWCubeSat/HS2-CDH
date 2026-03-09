@@ -41,3 +41,4 @@ endif()
 
 # This includes project-wide objects
 add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/FlightComputer")
+add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/FlightComputer/Deployment")
