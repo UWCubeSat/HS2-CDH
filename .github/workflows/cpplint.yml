@@ -2,12 +2,8 @@ name: "Code Scan: Cpplint"
 
 on:
   push:
-    branches: [ main, develop ]
   pull_request:
-    branches: [ main, develop ]
-    paths-ignore:
-      - 'docs/**'
-      - '**.md'
+    branches: [ main ]
 
 # Cancel in-progress runs if a newer run is started on a given PR
 concurrency:
@@ -21,7 +17,9 @@ jobs:
 
     steps:
       - name: "Checkout Repository"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -29,9 +27,37 @@ jobs:
           python-version: '3.10'
 
       - name: Install cpplint
-        run: pip install cpplint
+        run: pip install cpplint==2.0.0
 
       - name: Run cpplint
+        shell: bash
         run: |
-          cpplint --counting=detailed --recursive --exclude=build-fprime-* --exclude=build-artifacts --exclude=lib . || true
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            diff_base="${{ github.event.pull_request.base.sha }}"
+            diff_head="${{ github.event.pull_request.head.sha }}"
+          else
+            diff_base="${{ github.event.before }}"
+            diff_head="${{ github.sha }}"
+          fi
+
+          if [ -z "$diff_base" ] || [ "$diff_base" = "0000000000000000000000000000000000000000" ]; then
+            diff_base="$(git merge-base "origin/${{ github.event.repository.default_branch }}" "$diff_head" || true)"
+          fi
+
+          if [ -z "$diff_base" ]; then
+            diff_base="$(git hash-object -t tree /dev/null)"
+          fi
+
+          mapfile -t changed_files < <(
+            git diff --name-only --diff-filter=ACMR "$diff_base" "$diff_head" -- '*.c' '*.cc' '*.cpp' '*.h' '*.hh' '*.hpp' |
+            { grep -Ev '^(build-artifacts/|build-fprime-[^/]+/|lib/)' || true; }
+          )
+
+          if [ "${#changed_files[@]}" -eq 0 ]; then
+            echo "No changed C/C++ files to lint."
+            exit 0
+          fi
+
+          printf 'Linting files:\n%s\n' "${changed_files[@]}"
+          cpplint --counting=detailed "${changed_files[@]}"
           echo "Cpplint scan completed. Review output above for style issues."
