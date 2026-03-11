@@ -57,6 +57,10 @@ class ImageCompressor final : public ImageCompressorComponentBase {
   private:
     static constexpr std::size_t kImageSampleBufBytes = 2U * 1024U * 1024U;
     static constexpr std::size_t kImageSampleBufElems = kImageSampleBufBytes / sizeof(std::int64_t);
+    /** @def Number of milliseconds (ms) per second (s) */
+    static constexpr U64 MSEC_PER_SEC = 1000U;
+    /** @def Number of microseconds (μs) per millisecond (ms) */
+    static constexpr U64 USEC_PER_MSEC = 1000U;
     static std::int64_t s_imageSampleBuf[kImageSampleBufElems];
 };
 

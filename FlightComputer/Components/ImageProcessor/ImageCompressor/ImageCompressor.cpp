@@ -123,7 +123,7 @@ void ImageCompressor ::COMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
 
     const Fw::Time start_time = this->getTime();
     const U64 start_ms =
-        static_cast<U64>(start_time.getSeconds() * 1000U + start_time.getUSeconds() / 1000U);
+        static_cast<U64>(start_time.getSeconds() * MSEC_PER_SEC + start_time.getUSeconds() / USEC_PER_MSEC);
 
     const int result = ccsds123_compress_with_buffer(input_path,
                                                      output_path,
@@ -137,7 +137,7 @@ void ImageCompressor ::COMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
 
     const Fw::Time end_time = this->getTime();
     const U64 end_ms =
-        static_cast<U64>(end_time.getSeconds() * 1000U + end_time.getUSeconds() / 1000U);
+        static_cast<U64>(end_time.getSeconds() * MSEC_PER_SEC + end_time.getUSeconds() / USEC_PER_MSEC);
 
     if (end_ms >= start_ms) {
         this->tlmWrite_CompressionTimeMs(static_cast<U32>(end_ms - start_ms));
