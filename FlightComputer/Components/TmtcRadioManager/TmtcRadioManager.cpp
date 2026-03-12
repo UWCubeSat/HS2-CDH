@@ -17,6 +17,14 @@ TmtcRadioManager ::TmtcRadioManager(const char* const compName) : TmtcRadioManag
 TmtcRadioManager ::~TmtcRadioManager() {}
 
 // ----------------------------------------------------------------------
+// Handler implementations for ports
+// ----------------------------------------------------------------------
+
+void TmtcRadioManager::timeGetPort_handler(FwIndexType portNum, Fw::Time &time) {
+    // unused
+}
+
+// ----------------------------------------------------------------------
 // Handler implementations for commands
 // ----------------------------------------------------------------------
 

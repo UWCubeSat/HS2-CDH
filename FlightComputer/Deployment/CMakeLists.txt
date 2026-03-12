@@ -1,0 +1,11 @@
+register_fprime_deployment(
+    FlightComputer
+    AUTOCODER_INPUTS
+        Topology.fpp
+    SOURCES
+        main.cpp
+    DEPENDS
+        FlightComputer_Components_ImageProcessor_ImageCompressor
+        FlightComputer_Components_EventScheduler
+        FlightComputer_Components_TmtcRadioManager
+)
