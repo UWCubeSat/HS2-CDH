@@ -32,19 +32,24 @@ jobs:
       - name: Run cpplint
         shell: bash
         run: |
+          default_branch="${{ github.event.repository.default_branch }}"
+          diff_head="${{ github.sha }}"
+          diff_base=""
+
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            diff_base="${{ github.event.pull_request.base.sha }}"
             diff_head="${{ github.event.pull_request.head.sha }}"
-          else
+            # PRs should lint only changes introduced against the base branch.
+            diff_base="$(git merge-base "origin/$default_branch" "$diff_head" || true)"
+          elif [ "${{ github.ref_name }}" = "$default_branch" ]; then
+            # On default-branch pushes, lint only what this push introduced.
             diff_base="${{ github.event.before }}"
-            diff_head="${{ github.sha }}"
+          else
+            # On feature-branch pushes, ignore merge-from-main noise and lint
+            # only changes unique to the branch when compared to default branch.
+            diff_base="$(git merge-base "origin/$default_branch" "$diff_head" || true)"
           fi
 
           if [ -z "$diff_base" ] || [ "$diff_base" = "0000000000000000000000000000000000000000" ]; then
-            diff_base="$(git merge-base "origin/${{ github.event.repository.default_branch }}" "$diff_head" || true)"
-          fi
-
-          if [ -z "$diff_base" ]; then
             diff_base="$(git hash-object -t tree /dev/null)"
           fi
 
