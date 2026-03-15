@@ -16,21 +16,21 @@
 
 register_fprime_library(
     AUTOCODER_INPUTS
-        "${CMAKE_CURRENT_LIST_DIR}/TmtcRadioManager.fpp"
+        "${CMAKE_CURRENT_LIST_DIR}/ImageCompressor.fpp"
     SOURCES
-        "${CMAKE_CURRENT_LIST_DIR}/TmtcRadioManager.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/ImageCompressor.cpp"
     DEPENDS
-        FlightComputer_Types_TmtcRadioTypes
+        hc-compress-lib
 )
 
 ### Unit Tests ###
-# register_fprime_ut(
-#     AUTOCODER_INPUTS
-#         "${CMAKE_CURRENT_LIST_DIR}/TmtcRadioManager.fpp"
-#     SOURCES
-#         "${CMAKE_CURRENT_LIST_DIR}/test/ut/TmtcRadioManagerTestMain.cpp"
-#         "${CMAKE_CURRENT_LIST_DIR}/test/ut/TmtcRadioManagerTester.cpp"
-#     DEPENDS
-#         STest # For rules-based testing
-#     UT_AUTO_HELPERS
-# )
+register_fprime_ut(
+    AUTOCODER_INPUTS
+        "${CMAKE_CURRENT_LIST_DIR}/ImageCompressor.fpp"
+    SOURCES
+        "${CMAKE_CURRENT_LIST_DIR}/test/ut/ImageCompressorTestMain.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/test/ut/ImageCompressorTester.cpp"
+    DEPENDS
+        STest # For rules-based testing
+    UT_AUTO_HELPERS
+)

@@ -32,6 +32,9 @@ module Tmtc {
         @ Port for requesting the current time
         time get port timeCaller
 
+        # Time port requires the time interface
+        import Svc.Time
+
         @ Enables command handling
         import Fw.Command
 

@@ -17,6 +17,14 @@ EventScheduler ::EventScheduler(const char* const compName) : EventSchedulerComp
 EventScheduler ::~EventScheduler() {}
 
 // ----------------------------------------------------------------------
+// Handler implementations for ports
+// ----------------------------------------------------------------------
+
+void EventScheduler::timeGetPort_handler(FwIndexType portNum, Fw::Time &time) {
+    // not used; provided to satisfy abstract base class
+}
+
+// ----------------------------------------------------------------------
 // Handler implementations for commands
 // ----------------------------------------------------------------------
 
