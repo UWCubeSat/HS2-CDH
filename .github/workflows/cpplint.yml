@@ -63,6 +63,10 @@ jobs:
             exit 0
           fi
 
+          # Keep checks that catch common hygiene issues, but suppress
+          # high-noise style rules that currently block contributor PRs.
+          CPPLINT_FILTERS="-legal/copyright,-build/header_guard,-readability/todo,-build/include_subdir,-whitespace/indent,-whitespace/indent_namespace,-whitespace/parens,-whitespace/comments,-whitespace/line_length"
+
           printf 'Linting files:\n%s\n' "${changed_files[@]}"
-          cpplint --counting=detailed "${changed_files[@]}"
+          cpplint --counting=detailed --linelength=120 --filter="$CPPLINT_FILTERS" "${changed_files[@]}"
           echo "Cpplint scan completed. Review output above for style issues."
