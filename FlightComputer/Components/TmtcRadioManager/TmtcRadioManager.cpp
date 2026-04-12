@@ -17,19 +17,21 @@ TmtcRadioManager ::TmtcRadioManager(const char* const compName) : TmtcRadioManag
 TmtcRadioManager ::~TmtcRadioManager() {}
 
 // ----------------------------------------------------------------------
-// Handler implementations for ports
+// Handler implementations for typed input ports
 // ----------------------------------------------------------------------
 
-void TmtcRadioManager::timeGetPort_handler(FwIndexType portNum, Fw::Time &time) {
-    // unused
+void TmtcRadioManager ::timeGetPort_handler(FwIndexType portNum, Fw::Time& time) {
+    // TODO
 }
 
 // ----------------------------------------------------------------------
 // Handler implementations for commands
 // ----------------------------------------------------------------------
 
-void TmtcRadioManager ::TODO_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
-    // TODO
+void TmtcRadioManager ::NO_OP_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
+    this->log_COMMAND_NoOpEvent();
+
+    this->m_noopCount += 1;
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
 }
 

@@ -2,23 +2,21 @@ module Tmtc {
     @ Manages Endurosat radio communications
     active component TmtcRadioManager {
 
-        # One async command/port is required for active components
-        # This should be overridden by the developers with a useful command/port
-        @ TODO
-        async command TODO opcode 0
-
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####
         ##############################################################################
 
-        # @ Example async command
-        # async command COMMAND_NAME(param_name: U32)
+        # @ Command NO_OP (TODO: Hook or drop??)
+        async command NO_OP opcode 0x0
 
-        # @ Example telemetry counter
-        # telemetry ExampleCounter: U64
+        # @ Telemetry CmdCounter
+        telemetry CmdCounter: U32
 
         # @ Example event
         # event ExampleStateEvent(example_state: Fw.On) severity activity high id 0 format "State set to {}"
+
+        # @ NO_OP command receive event
+        event NoOpEvent severity command format "NO_OP command received"
 
         # @ Example port: receiving calls from the rate group
         # sync input port run: Svc.Sched

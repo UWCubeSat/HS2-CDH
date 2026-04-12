@@ -8,7 +8,6 @@
 #define Tmtc_TmtcRadioManager_HPP
 
 #include "FlightComputer/Components/TmtcRadioManager/TmtcRadioManagerComponentAc.hpp"
-#include "FlightComputer/Types/TmtcRadioTypes/TmtcRadioPacketSerializableAc.hpp"
 
 namespace Tmtc {
 
@@ -27,22 +26,27 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
 
   private:
     // ----------------------------------------------------------------------
-    // Handler implementations for ports
+    // Handler implementations for typed input ports
     // ----------------------------------------------------------------------
 
-    //! Handler for the timeCaller port
-    void timeGetPort_handler(FwIndexType portNum, Fw::Time& time) override;
+    //! Handler implementation for timeGetPort
+    //!
+    //! Port to retrieve time
+    void timeGetPort_handler(FwIndexType portNum,  //!< The port number
+                             Fw::Time& time        //!< Reference to Time object
+                             ) override;
 
+  private:
     // ----------------------------------------------------------------------
     // Handler implementations for commands
     // ----------------------------------------------------------------------
 
-    //! Handler implementation for command TODO
-    //!
-    //! TODO
-    void TODO_cmdHandler(FwOpcodeType opCode,  //!< The opcode
-                         U32 cmdSeq            //!< The command sequence number
-                         ) override;
+    //! Handler implementation for command NO_OP
+    void NO_OP_cmdHandler(FwOpcodeType opCode,  //!< The opcode
+                          U32 cmdSeq            //!< The command sequence number
+                          ) override;
+
+    U32 m_noopCount = 0;
 };
 
 }  // namespace Tmtc
