@@ -36,7 +36,6 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
                              Fw::Time& time        //!< Reference to Time object
                              ) override;
 
-  private:
     // ----------------------------------------------------------------------
     // Handler implementations for commands
     // ----------------------------------------------------------------------
@@ -46,7 +45,17 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
                           U32 cmdSeq            //!< The command sequence number
                           ) override;
 
-    U32 m_noopCount = 0;
+    U32 m_cmdCounter = 0;
+
+    // ------------------- 
+    // Helper methods
+    // -------------------
+
+    /**
+     * @brief Icnrements command counter, should be used as part of every command to ensure command tracking
+     * @returns New command counter value
+     */
+    U32 incrementCommandCount();
 };
 
 }  // namespace Tmtc

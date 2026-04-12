@@ -30,9 +30,13 @@ void TmtcRadioManager ::timeGetPort_handler(FwIndexType portNum, Fw::Time& time)
 
 void TmtcRadioManager ::NO_OP_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
     this->log_COMMAND_NoOpEvent();
-
-    this->m_noopCount += 1;
+    this->tlmWrite_CmdCounter(incrementCommandCount());
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+}
+
+U32 TmtcRadioManager ::incrementCommandCount() {
+    this->m_cmdCounter += 1;
+    return this->m_cmdCounter;
 }
 
 }  // namespace Tmtc
