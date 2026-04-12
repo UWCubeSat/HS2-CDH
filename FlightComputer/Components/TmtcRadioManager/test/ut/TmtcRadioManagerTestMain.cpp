@@ -6,7 +6,7 @@
 
 #include "TmtcRadioManagerTester.hpp"
 
-TEST(Nominal, TestNoOpCommand) {
+TEST(Nominal, TestNoOpCommandSuccess) {
     Tmtc::TmtcRadioManagerTester tester;
     tester.testNoOp();
 }
