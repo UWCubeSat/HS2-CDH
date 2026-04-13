@@ -23,7 +23,7 @@ namespace ImageProcessor {
 namespace {
 
 std::string buildOutputFilePath(const char* input_path, const char* output_dir) {
-    if ((input_path == nullptr) || (output_dir == nullptr)) {
+    if (!input_path || !output_dir) {
         return std::string();
     }
 
@@ -77,7 +77,7 @@ void ImageDecompressor::DECOMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
     const char* input_path = input_file.toChar();
     const char* output_path = output_dir.toChar();
 
-    if ((input_path == nullptr) || (output_path == nullptr)) {
+    if (!input_path || !output_path) {
         this->log_WARNING_HI_DecompressionFailed(input_file, -1);
         this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::EXECUTION_ERROR);
         return;
