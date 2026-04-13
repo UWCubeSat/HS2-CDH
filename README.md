@@ -78,6 +78,17 @@ Tests can be run with:
 fprime-util check
 ```
 
+Coverage for project components (recommended):
+```bash
+fprime-util check --coverage --path FlightComputer/Components --recursive
+```
+
+Coverage for a single component (example with ImageDecompressor component):
+```bash
+fprime-util check --coverage --path FlightComputer/Components/ImageProcessor/ImageDecompressor
+```
+
+
 ## Contributing
 
 Do not push directly to the main branch.  

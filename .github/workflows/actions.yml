@@ -45,7 +45,7 @@ jobs:
             shell: bash
           - run: fprime-util build --ut # Build unit tests
             shell: bash
-          - run: fprime-util check --coverage # Run unit tests and generate HTML files in coverage/ folder
+          - run: fprime-util check --coverage --path FlightComputer/Components --recursive
             shell: bash
     
     # TODO: Cross-compile step!

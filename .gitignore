@@ -17,3 +17,7 @@ build-fprime-*
 
 # Doxygen docs
 docs/
+
+# Code coverage artifacts
+coverage/
+
