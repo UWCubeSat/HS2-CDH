@@ -2,6 +2,9 @@
 
 on: [push, pull_request]
 
+permissions:
+  contents: write
+
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -46,3 +49,43 @@ jobs:
             shell: bash
     
     # TODO: Cross-compile step!
+
+    documentation:
+        if: github.event_name == 'push'
+        runs-on: ubuntu-latest
+        container: huskysat/found:latest
+
+        steps:
+          - uses: actions/checkout@v5
+
+          - name: Install Doxygen and rsync
+            run: |
+              apt-get update
+              apt-get install -y doxygen rsync
+            shell: bash
+
+          - name: Generate Documentation
+            run: |
+              if [ ! -f Doxyfile ]; then
+                echo "Doxyfile not found at repository root"
+                exit 1
+              fi
+              doxygen Doxyfile
+            shell: bash
+
+          - name: Set Target Folder in documentation
+            id: set-folder
+            run: |
+              if [ "${{ github.ref_name }}" = "main" ]; then
+                echo "target_folder=." >> "$GITHUB_OUTPUT"
+              else
+                echo "target_folder=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+              fi
+            shell: bash
+
+          - name: Upload Pages Artifact
+            uses: JamesIves/github-pages-deploy-action@v4
+            with:
+              branch: documentation
+              folder: docs/documentation/
+              target-folder: ${{ steps.set-folder.outputs.target_folder }}

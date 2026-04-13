@@ -1,8 +1,8 @@
-// ======================================================================
-// \title  EventSchedulerTestMain.cpp
-// \author ojeet
-// \brief  cpp file for EventScheduler component test main function
-// ======================================================================
+/**
+ * @file FlightComputer/Components/EventScheduler/test/ut/EventSchedulerTestMain.cpp
+ * @author ojeet
+ * @brief cpp file for EventScheduler component test main function
+ */
 
 #include "EventSchedulerTester.hpp"
 

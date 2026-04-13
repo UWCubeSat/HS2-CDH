@@ -1,6 +1,7 @@
-// ----------------------------------------------------------------------
-// TestMain.cpp
-// ----------------------------------------------------------------------
+/**
+ * @file FlightComputer/Components/ImageProcessor/ImageCompressor/test/ut/ImageCompressorTestMain.cpp
+ * @brief Test main for ImageCompressor unit tests.
+ */
 
 #include "ImageCompressorTester.hpp"
 

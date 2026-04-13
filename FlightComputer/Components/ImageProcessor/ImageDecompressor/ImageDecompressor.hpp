@@ -1,8 +1,8 @@
-// ======================================================================
-// \title  ImageDecompressor.hpp
-// \author mahiremran
-// \brief  hpp file for ImageDecompressor component implementation class
-// ======================================================================
+/**
+ * @file FlightComputer/Components/ImageProcessor/ImageDecompressor/ImageDecompressor.hpp
+ * @author mahiremran
+ * @brief hpp file for ImageDecompressor component implementation class
+ */
 
 #ifndef ImageProcessor_ImageDecompressor_HPP
 #define ImageProcessor_ImageDecompressor_HPP
@@ -16,44 +16,68 @@ namespace ImageProcessor {
 
 class ImageDecompressor final : public ImageDecompressorComponentBase {
   public:
-    // ----------------------------------------------------------------------
-    // Component construction and destruction
-    // ----------------------------------------------------------------------
+    /**
+     * @brief Component construction and destruction.
+     */
 
-    //! Construct ImageDecompressor object
-    ImageDecompressor(const char* const compName  //!< The component name
-    );
+    /**
+     * @brief Construct an ImageDecompressor component instance.
+     * @param[in] compName Component instance name.
+     * @pre compName is not null.
+     * @post Component instance is constructed and ready for initialization.
+     */
+    ImageDecompressor(const char* const compName);
 
-    //! Destroy ImageDecompressor object
+    /**
+     * @brief Destroy the ImageDecompressor component instance.
+     * @post Resources owned by this instance are released.
+     */
     ~ImageDecompressor();
 
   private:
-    // ----------------------------------------------------------------------
-    // Handler implementations for ports
-    // ----------------------------------------------------------------------
+    /**
+     * @brief Handler implementations for ports.
+     */
 
-    //! Handler for the timeCaller port
+    /**
+     * @brief Handle a request for the current time.
+     * @param[in] portNum Port index that invoked the handler.
+     * @param[out] time Time object to populate with the current value.
+     * @pre time references a valid object.
+     * @post time contains the current time value from the configured source.
+     */
     void timeGetPort_handler(FwIndexType portNum, Fw::Time& time) override;
 
-    // ----------------------------------------------------------------------
-    // Handler implementations for commands
-    // ----------------------------------------------------------------------
+    /**
+     * @brief Handler implementations for commands.
+     */
 
-    //! Handler implementation for command DECOMPRESS_IMAGE
-    //!
-    //! Command to decompress a specific bitstream file
-    void DECOMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,                //!< The opcode
-                                     U32 cmdSeq,                         //!< The command sequence number
-                                     const Fw::CmdStringArg& input_file, //!< Path to input .bin file
-                                     const Fw::CmdStringArg& output_dir, //!< Output directory for .raw file
-                                     U64 image_sample_len                //!< Number of bytes available in the buffer
-                                     ) override;
+    /**
+     * @brief Decompress an image bitstream into raw image data.
+     * @param[in] opCode Opcode associated with this command invocation.
+     * @param[in] cmdSeq Command sequence number for this invocation.
+     * @param[in] input_file Path to the input .bin bitstream file.
+     * @param[in] output_dir Directory where the output .raw file is written.
+     * @param[in] image_sample_len Number of bytes available in the component input buffer.
+     * @pre input_file and output_dir are valid command arguments.
+     * @pre image_sample_len is less than or equal to kBitstreamBufBytes.
+     * @post A command response is emitted indicating success or failure.
+     */
+    void DECOMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
+                     U32 cmdSeq,
+                     const Fw::CmdStringArg& input_file,
+                     const Fw::CmdStringArg& output_dir,
+                     U64 image_sample_len) override;
 
   private:
     static constexpr std::size_t kBitstreamBufBytes = 2U * 1024U * 1024U;
-    /** @def Number of milliseconds (ms) per second (s) */
+    /**
+     * @brief Number of milliseconds (ms) per second (s).
+     */
     static constexpr U64 MSEC_PER_SEC = 1000U;
-    /** @def Number of microseconds (us) per millisecond (ms) */
+    /**
+     * @brief Number of microseconds (us) per millisecond (ms).
+     */
     static constexpr U64 USEC_PER_MSEC = 1000U;
     static std::uint8_t s_bitstreamBuf[kBitstreamBufBytes];
 };

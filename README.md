@@ -19,7 +19,7 @@ Supported platforms:
 Required tools:
 
 - CMake 3.16 or newer
-- GCC or Clang with C++11 support
+- GCC or Clang with C++14 support
 - Python 3.9 or newer
 
 F Prime tools:

@@ -1,6 +1,7 @@
-// ----------------------------------------------------------------------
-// TestMain.cpp
-// ----------------------------------------------------------------------
+/**
+ * @file FlightComputer/Components/ImageProcessor/ImageDecompressor/test/ut/ImageDecompressorTestMain.cpp
+ * @brief Test main for ImageDecompressor unit tests.
+ */
 
 #include "ImageDecompressorTester.hpp"
 

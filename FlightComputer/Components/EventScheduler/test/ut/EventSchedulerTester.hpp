@@ -1,8 +1,8 @@
-// ======================================================================
-// \title  EventSchedulerTester.hpp
-// \author ojeet
-// \brief  hpp file for EventScheduler component test harness implementation class
-// ======================================================================
+/**
+ * @file FlightComputer/Components/EventScheduler/test/ut/EventSchedulerTester.hpp
+ * @author ojeet
+ * @brief hpp file for EventScheduler component test harness implementation class
+ */
 
 #ifndef FlightComputer_EventSchedulerTester_HPP
 #define FlightComputer_EventSchedulerTester_HPP
@@ -14,55 +14,80 @@ namespace FlightComputer {
 
 class EventSchedulerTester final : public EventSchedulerGTestBase {
   public:
-    // ----------------------------------------------------------------------
-    // Constants
-    // ----------------------------------------------------------------------
+    /**
+     * @brief Constants.
+     */
 
-    // Maximum size of histories storing events, telemetry, and port outputs
+    /**
+     * @brief Maximum size of histories storing events, telemetry, and port outputs.
+     */
     static const FwSizeType MAX_HISTORY_SIZE = 10;
 
-    // Instance ID supplied to the component instance under test
+    /**
+     * @brief Instance ID supplied to the component instance under test.
+     */
     static const FwEnumStoreType TEST_INSTANCE_ID = 0;
 
-    // Queue depth supplied to the component instance under test
+    /**
+     * @brief Queue depth supplied to the component instance under test.
+     */
     static const FwSizeType TEST_INSTANCE_QUEUE_DEPTH = 10;
 
   public:
-    // ----------------------------------------------------------------------
-    // Construction and destruction
-    // ----------------------------------------------------------------------
+    /**
+     * @brief Construction and destruction.
+     */
 
-    //! Construct object EventSchedulerTester
+    /**
+     * @brief Construct the EventScheduler test harness.
+     * @post Test harness and test component instances are constructed.
+     */
     EventSchedulerTester();
 
-    //! Destroy object EventSchedulerTester
+    /**
+     * @brief Destroy the EventScheduler test harness.
+     * @post Resources owned by the test harness are released.
+     */
     ~EventSchedulerTester();
 
   public:
-    // ----------------------------------------------------------------------
-    // Tests
-    // ----------------------------------------------------------------------
+    /**
+     * @brief Tests.
+     */
 
-    //! To do
+    /**
+     * @brief Placeholder test entry point.
+     * @post Placeholder test flow is executed.
+     */
     void toDo();
 
   private:
-    // ----------------------------------------------------------------------
-    // Helper functions
-    // ----------------------------------------------------------------------
+    /**
+     * @brief Helper functions.
+     */
 
-    //! Connect ports
+    /**
+     * @brief Connect component ports for the test harness.
+     * @pre Test harness and component instances are constructed.
+     * @post Required input and output ports are connected.
+     */
     void connectPorts();
 
-    //! Initialize components
+    /**
+     * @brief Initialize components used by the test harness.
+     * @pre Port connections are complete.
+     * @post Components are initialized and ready for test execution.
+     */
     void initComponents();
 
   private:
-    // ----------------------------------------------------------------------
-    // Member variables
-    // ----------------------------------------------------------------------
+    /**
+     * @brief Member variables.
+     */
 
-    //! The component under test
+    /**
+     * @brief The component under test.
+     */
     EventScheduler component;
 };
 

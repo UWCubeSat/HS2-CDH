@@ -1,8 +1,8 @@
-// ======================================================================
-// \title  ImageDecompressor.cpp
-// \author mahiremran
-// \brief  cpp file for ImageDecompressor component implementation class
-// ======================================================================
+/**
+ * @file FlightComputer/Components/ImageProcessor/ImageDecompressor/ImageDecompressor.cpp
+ * @author mahiremran
+ * @brief cpp file for ImageDecompressor component implementation class
+ */
 
 #include "FlightComputer/Components/ImageProcessor/ImageDecompressor/ImageDecompressor.hpp"
 
@@ -49,26 +49,46 @@ std::string buildOutputFilePath(const char* input_path, const char* output_dir) 
 
 }  // namespace
 
-// ----------------------------------------------------------------------
-// Component construction and destruction
-// ----------------------------------------------------------------------
+/**
+ * @brief Component construction and destruction.
+ */
 
+/**
+ * @brief Construct an ImageDecompressor component instance.
+ * @param[in] compName Component instance name.
+ */
 ImageDecompressor::ImageDecompressor(const char* const compName) : ImageDecompressorComponentBase(compName) {}
 
+/**
+ * @brief Destroy the ImageDecompressor component instance.
+ */
 ImageDecompressor::~ImageDecompressor() {}
 
-// ----------------------------------------------------------------------
-// Handler implementations for ports
-// ----------------------------------------------------------------------
+/**
+ * @brief Handler implementations for ports.
+ */
 
+/**
+ * @brief Handle a request for the current time.
+ * @param[in] portNum Port index that invoked the handler.
+ * @param[out] time Time object to populate with the current value.
+ */
 void ImageDecompressor::timeGetPort_handler(FwIndexType portNum, Fw::Time& time) {
     // nothing to do
 }
 
-// ----------------------------------------------------------------------
-// Handler implementations for commands
-// ----------------------------------------------------------------------
+/**
+ * @brief Handler implementations for commands.
+ */
 
+/**
+ * @brief Decompress an image bitstream into raw image data.
+ * @param[in] opCode Opcode associated with this command invocation.
+ * @param[in] cmdSeq Command sequence number for this invocation.
+ * @param[in] input_file Path to the input .bin bitstream file.
+ * @param[in] output_dir Directory where the output .raw file is written.
+ * @param[in] image_sample_len Number of bytes available in the input buffer.
+ */
 void ImageDecompressor::DECOMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
                                                     U32 cmdSeq,
                                                     const Fw::CmdStringArg& input_file,

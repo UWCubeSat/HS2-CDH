@@ -22,10 +22,51 @@ The main branch must always represent a stable, buildable state.
 
 ## Static Analysis and Style
 
-C++ coding style is enforced using cpplint. All new and modified code must comply with the configured linting rules.
+C++ coding style is enforced using cpplint. All new and modified code must comply with the configured linting rules. We use C++ 14 for this codebase currently.
 
 Suppressing a warning is permitted only when the warning is not applicable or would reduce clarity. Any suppression must be documented directly in the code with a clear justification.
 
 ## Documentation
 
 Changes that affect behavior, usage, or public interfaces must be reflected in the appropriate documentation. Non-obvious design decisions should be explained through comments or documentation rather than left implicit in the implementation.
+
+Please use Doxygen-style comments for all modified and newly added C++ headers and source files.
+
+Documentation style requirements:
+
+- Use block-style Doxygen comments (`/** ... */`) only.
+- Do not use line-style Doxygen comments (`//!`) in `.hpp` or `.cpp` files.
+- Every `.hpp` and `.cpp` file should start with a Doxygen file block containing a non-empty `@file` entry that includes the repository-relative path, for example:
+	- `@file FlightComputer/Components/EventScheduler/EventScheduler.hpp`
+- Public interfaces and non-trivial functions should include:
+	- `@brief`
+	- `@param[in]` / `@param[out]` / `@param[in,out]` as applicable
+	- `@pre` and `@post` as applicable
+	- `@return` for non-`void` functions
+- Constructors and destructors should still include `@brief` and `@post` where appropriate.
+- Constants and member fields should be documented with Doxygen block comments, not `@def` (reserve `@def` for preprocessor macros).
+
+Example file header:
+
+```cpp
+/**
+ * @file FlightComputer/Components/ImageProcessor/ImageCompressor/ImageCompressor.cpp
+ * @author your-name
+ * @brief cpp file for ImageCompressor component implementation class
+ */
+```
+
+Example function documentation:
+
+```cpp
+/**
+ * @brief Compress a raw image into a bitstream.
+ * @param[in] opCode Opcode associated with this command invocation.
+ * @param[in] cmdSeq Command sequence number for this invocation.
+ * @param[in] input_file Path to the input .raw image file.
+ * @param[in] output_dir Directory where the output .bin file is written.
+ * @param[in] image_sample_len Number of samples available in the input buffer.
+ * @pre input_file and output_dir are valid command arguments.
+ * @post A command response is emitted indicating success or failure.
+ */
+```
