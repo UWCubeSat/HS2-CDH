@@ -126,7 +126,7 @@ void ImageDecompressor::DECOMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
         this->tlmWrite_DecompressionTimeMs(static_cast<U32>(end_ms - start_ms));
     }
 
-    if (result != 0) {
+    if (result) {
         this->log_WARNING_HI_DecompressionFailed(input_file, result);
         this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::EXECUTION_ERROR);
         return;
