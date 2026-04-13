@@ -14,7 +14,6 @@ namespace Tmtc {
 
 /**
  * @brief Construct a TmtcRadioManager component instance.
- * @param[in] compName Component instance name.
  */
 TmtcRadioManager ::TmtcRadioManager(const char* const compName) : TmtcRadioManagerComponentBase(compName) {}
 
@@ -29,8 +28,6 @@ TmtcRadioManager ::~TmtcRadioManager() {}
 
 /**
  * @brief Handle a request for the current time.
- * @param[in] portNum Port index that invoked the handler.
- * @param[out] time Time object to populate with the current value.
  */
 void TmtcRadioManager::timeGetPort_handler(FwIndexType portNum, Fw::Time &time) {
     // unused
@@ -42,8 +39,6 @@ void TmtcRadioManager::timeGetPort_handler(FwIndexType portNum, Fw::Time &time) 
 
 /**
  * @brief Handle the TODO command.
- * @param[in] opCode Opcode associated with this command invocation.
- * @param[in] cmdSeq Command sequence number for this invocation.
  */
 void TmtcRadioManager ::TODO_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
     // TODO

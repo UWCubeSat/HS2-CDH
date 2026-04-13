@@ -54,7 +54,6 @@ std::string buildOutputFilePath(const char* input_path, const char* output_dir) 
 
 /**
  * @brief Construct an ImageCompressor component instance.
- * @param[in] compName Component instance name.
  */
 ImageCompressor ::ImageCompressor(const char* const compName) : ImageCompressorComponentBase(compName) {}
 
@@ -69,8 +68,6 @@ ImageCompressor ::~ImageCompressor() {}
 
 /**
  * @brief Handle a request for the current time.
- * @param[in] portNum Port index that invoked the handler.
- * @param[out] time Time object to populate with the current value.
  */
 void ImageCompressor::timeGetPort_handler(FwIndexType portNum, Fw::Time &time) {
     // nothing to do
@@ -82,16 +79,6 @@ void ImageCompressor::timeGetPort_handler(FwIndexType portNum, Fw::Time &time) {
 
 /**
  * @brief Compress a raw image into a bitstream.
- * @param[in] opCode Opcode associated with this command invocation.
- * @param[in] cmdSeq Command sequence number for this invocation.
- * @param[in] input_file Path to the input .raw image file.
- * @param[in] output_dir Directory where the output .bin file is written.
- * @param[in] ael Absolute error limit used for compression.
- * @param[in] override_x Override image X dimension.
- * @param[in] override_y Override image Y dimension.
- * @param[in] override_z Override image Z dimension.
- * @param[in] override_dtype Override sample data type string.
- * @param[in] image_sample_len Number of image samples available in the input buffer.
  */
 void ImageCompressor ::COMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
                                                  U32 cmdSeq,

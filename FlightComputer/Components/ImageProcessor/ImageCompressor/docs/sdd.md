@@ -107,7 +107,7 @@ sequenceDiagram
 | CompressionTimeMs | Total compression runtime in milliseconds. |
 | InputImageSize | Input image size in bytes. |
 | OutputImageSize | Output image size in bytes. |
-| CompressionRatio | $\text{InputImageSize} / \text{OutputImageSize}$. |
+| CompressionRatio | $InputImageSize / OutputImageSize$. |
 
 ## Unit Tests
 | Name | Description | Output | Coverage |

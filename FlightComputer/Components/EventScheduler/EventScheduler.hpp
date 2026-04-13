@@ -11,6 +11,9 @@
 
 namespace FlightComputer {
 
+/**
+ * @brief Component responsible for scheduling and dispatching time-based events.
+ */
 class EventScheduler final : public EventSchedulerComponentBase {
   public:
     /**

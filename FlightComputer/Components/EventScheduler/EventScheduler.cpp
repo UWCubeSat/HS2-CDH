@@ -14,7 +14,6 @@ namespace FlightComputer {
 
 /**
  * @brief Construct an EventScheduler component instance.
- * @param[in] compName Component instance name.
  */
 EventScheduler ::EventScheduler(const char* const compName) : EventSchedulerComponentBase(compName) {}
 
@@ -29,8 +28,6 @@ EventScheduler ::~EventScheduler() {}
 
 /**
  * @brief Handle a request for the current time.
- * @param[in] portNum Port index that invoked the handler.
- * @param[out] time Time object to populate with the current value.
  */
 void EventScheduler::timeGetPort_handler(FwIndexType portNum, Fw::Time &time) {
     // not used; provided to satisfy abstract base class
@@ -42,8 +39,6 @@ void EventScheduler::timeGetPort_handler(FwIndexType portNum, Fw::Time &time) {
 
 /**
  * @brief Handle the TODO command.
- * @param[in] opCode Opcode associated with this command invocation.
- * @param[in] cmdSeq Command sequence number for this invocation.
  */
 void EventScheduler ::TODO_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
     // TODO

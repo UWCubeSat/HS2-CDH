@@ -55,7 +55,6 @@ std::string buildOutputFilePath(const char* input_path, const char* output_dir) 
 
 /**
  * @brief Construct an ImageDecompressor component instance.
- * @param[in] compName Component instance name.
  */
 ImageDecompressor::ImageDecompressor(const char* const compName) : ImageDecompressorComponentBase(compName) {}
 
@@ -70,8 +69,6 @@ ImageDecompressor::~ImageDecompressor() {}
 
 /**
  * @brief Handle a request for the current time.
- * @param[in] portNum Port index that invoked the handler.
- * @param[out] time Time object to populate with the current value.
  */
 void ImageDecompressor::timeGetPort_handler(FwIndexType portNum, Fw::Time& time) {
     // nothing to do
@@ -83,11 +80,6 @@ void ImageDecompressor::timeGetPort_handler(FwIndexType portNum, Fw::Time& time)
 
 /**
  * @brief Decompress an image bitstream into raw image data.
- * @param[in] opCode Opcode associated with this command invocation.
- * @param[in] cmdSeq Command sequence number for this invocation.
- * @param[in] input_file Path to the input .bin bitstream file.
- * @param[in] output_dir Directory where the output .raw file is written.
- * @param[in] image_sample_len Number of bytes available in the input buffer.
  */
 void ImageDecompressor::DECOMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
                                                     U32 cmdSeq,

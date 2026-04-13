@@ -14,6 +14,9 @@
 
 namespace ImageProcessor {
 
+/**
+ * @brief Component that decompresses CCSDS123 bitstreams into raw image data.
+ */
 class ImageDecompressor final : public ImageDecompressorComponentBase {
   public:
     /**
@@ -70,6 +73,9 @@ class ImageDecompressor final : public ImageDecompressorComponentBase {
                      U64 image_sample_len) override;
 
   private:
+    /**
+     * @brief Byte capacity of the shared compressed bitstream buffer.
+     */
     static constexpr std::size_t kBitstreamBufBytes = 2U * 1024U * 1024U;
     /**
      * @brief Number of milliseconds (ms) per second (s).
@@ -79,6 +85,9 @@ class ImageDecompressor final : public ImageDecompressorComponentBase {
      * @brief Number of microseconds (us) per millisecond (ms).
      */
     static constexpr U64 USEC_PER_MSEC = 1000U;
+    /**
+     * @brief Shared decompression input buffer used by CCSDS123 wrapper calls.
+     */
     static std::uint8_t s_bitstreamBuf[kBitstreamBufBytes];
 };
 

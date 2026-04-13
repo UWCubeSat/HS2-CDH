@@ -12,6 +12,9 @@
 
 namespace Tmtc {
 
+/**
+ * @brief Component responsible for TMTC radio command and telemetry management.
+ */
 class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
   public:
     /**
