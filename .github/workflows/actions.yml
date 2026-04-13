@@ -45,7 +45,15 @@ jobs:
             shell: bash
           - run: fprime-util build --ut # Build unit tests
             shell: bash
-          - run: fprime-util check --coverage --path FlightComputer/Components --recursive
+          - name: Run coverage
+            run: |
+              set -euo pipefail
+              LOG_FILE="$(mktemp)"
+              fprime-util check --coverage --path FlightComputer/Components --recursive 2>&1 | tee "$LOG_FILE"
+              if grep -q "(ERROR)" "$LOG_FILE"; then
+                echo "Coverage reported errors"
+                exit 1
+              fi
             shell: bash
     
     # TODO: Cross-compile step!
@@ -66,11 +74,17 @@ jobs:
 
           - name: Generate Documentation
             run: |
+              set -euo pipefail
               if [ ! -f Doxyfile ]; then
                 echo "Doxyfile not found at repository root"
                 exit 1
               fi
-              doxygen Doxyfile
+              LOG_FILE="$(mktemp)"
+              doxygen Doxyfile 2>&1 | tee "$LOG_FILE"
+              if grep -Eiq '(^|[[:space:]])(warning|error):' "$LOG_FILE"; then
+                echo "Doxygen reported warnings/errors"
+                exit 1
+              fi
             shell: bash
 
           - name: Set Target Folder in documentation
