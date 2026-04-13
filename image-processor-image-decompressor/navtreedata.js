@@ -127,7 +127,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"EventSchedulerTestMain_8cpp.html"
+"EventScheduler_8cpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

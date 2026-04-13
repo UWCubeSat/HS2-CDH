@@ -98,12 +98,17 @@ $(document).ready(function(){initNavTree('classImageProcessor_1_1ImageDecompress
   <div class="headertitle"><div class="title">ImageProcessor::ImageDecompressor Class Reference<span class="mlabels"><span class="mlabel">final</span></span></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Component that decompresses CCSDS123 bitstreams into raw image data.  
+ <a href="classImageProcessor_1_1ImageDecompressor.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ImageDecompressor_8hpp_source.html">ImageDecompressor.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ImageProcessor::ImageDecompressor:</div>
 <div class="dyncontent">
 <div class="center"><img src="classImageProcessor_1_1ImageDecompressor__inherit__graph.png" border="0" usemap="#aImageProcessor_1_1ImageDecompressor_inherit__map" alt="Inheritance graph"/></div>
 <map name="aImageProcessor_1_1ImageDecompressor_inherit__map" id="aImageProcessor_1_1ImageDecompressor_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,79,275,104"/>
+<area shape="rect" title="Component that decompresses CCSDS123 bitstreams into raw image data." alt="" coords="5,79,275,104"/>
 <area shape="rect" title=" " alt="" coords="8,5,272,31"/>
 <area shape="poly" title=" " alt="" coords="143,44,143,79,137,79,137,44"/>
 </map>
@@ -113,7 +118,7 @@ Collaboration diagram for ImageProcessor::ImageDecompressor:</div>
 <div class="dyncontent">
 <div class="center"><img src="classImageProcessor_1_1ImageDecompressor__coll__graph.png" border="0" usemap="#aImageProcessor_1_1ImageDecompressor_coll__map" alt="Collaboration graph"/></div>
 <map name="aImageProcessor_1_1ImageDecompressor_coll__map" id="aImageProcessor_1_1ImageDecompressor_coll__map">
-<area shape="rect" title=" " alt="" coords="5,79,275,104"/>
+<area shape="rect" title="Component that decompresses CCSDS123 bitstreams into raw image data." alt="" coords="5,79,275,104"/>
 <area shape="rect" title=" " alt="" coords="8,5,272,31"/>
 <area shape="poly" title=" " alt="" coords="143,44,143,79,137,79,137,44"/>
 </map>
@@ -125,7 +130,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ae3b832a1b3771e3eca72093c44e5bcc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component construction and destruction.  <br /></td></tr>
 <tr class="separator:ae3b832a1b3771e3eca72093c44e5bcc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3cd868aa15e38d102293f2593012adb" id="r_ae3cd868aa15e38d102293f2593012adb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageProcessor_1_1ImageDecompressor.html#ae3cd868aa15e38d102293f2593012adb">~ImageDecompressor</a> ()</td></tr>
-<tr class="memdesc:ae3cd868aa15e38d102293f2593012adb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classImageProcessor_1_1ImageDecompressor.html">ImageDecompressor</a> component instance.  <br /></td></tr>
+<tr class="memdesc:ae3cd868aa15e38d102293f2593012adb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classImageProcessor_1_1ImageDecompressor.html" title="Component that decompresses CCSDS123 bitstreams into raw image data.">ImageDecompressor</a> component instance.  <br /></td></tr>
 <tr class="separator:ae3cd868aa15e38d102293f2593012adb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
@@ -140,6 +145,7 @@ Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:a9b27f07958e0bb026a5f2d9809ee8d5c" id="r_a9b27f07958e0bb026a5f2d9809ee8d5c"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageProcessor_1_1ImageDecompressor.html#a9b27f07958e0bb026a5f2d9809ee8d5c">kBitstreamBufBytes</a> = 2U * 1024U * 1024U</td></tr>
+<tr class="memdesc:a9b27f07958e0bb026a5f2d9809ee8d5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte capacity of the shared compressed bitstream buffer.  <br /></td></tr>
 <tr class="separator:a9b27f07958e0bb026a5f2d9809ee8d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6df52feab5ce0568e6108e208d0cb19e" id="r_a6df52feab5ce0568e6108e208d0cb19e"><td class="memItemLeft" align="right" valign="top">static constexpr U64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageProcessor_1_1ImageDecompressor.html#a6df52feab5ce0568e6108e208d0cb19e">MSEC_PER_SEC</a> = 1000U</td></tr>
 <tr class="memdesc:a6df52feab5ce0568e6108e208d0cb19e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of milliseconds (ms) per second (s).  <br /></td></tr>
@@ -147,12 +153,14 @@ Static Private Attributes</h2></td></tr>
 <tr class="memitem:a17925fe700624f08274f45212ebf8fcb" id="r_a17925fe700624f08274f45212ebf8fcb"><td class="memItemLeft" align="right" valign="top">static constexpr U64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageProcessor_1_1ImageDecompressor.html#a17925fe700624f08274f45212ebf8fcb">USEC_PER_MSEC</a> = 1000U</td></tr>
 <tr class="memdesc:a17925fe700624f08274f45212ebf8fcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of microseconds (us) per millisecond (ms).  <br /></td></tr>
 <tr class="separator:a17925fe700624f08274f45212ebf8fcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e6505964a9743a27b2a7f3ca4882186" id="r_a5e6505964a9743a27b2a7f3ca4882186"><td class="memItemLeft" align="right" valign="top">static std::uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageProcessor_1_1ImageDecompressor.html#a5e6505964a9743a27b2a7f3ca4882186">s_bitstreamBuf</a> [kBitstreamBufBytes] = {}</td></tr>
+<tr class="memitem:a5e6505964a9743a27b2a7f3ca4882186" id="r_a5e6505964a9743a27b2a7f3ca4882186"><td class="memItemLeft" align="right" valign="top">static std::uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageProcessor_1_1ImageDecompressor.html#a5e6505964a9743a27b2a7f3ca4882186">s_bitstreamBuf</a> [<a class="el" href="classImageProcessor_1_1ImageDecompressor.html#a9b27f07958e0bb026a5f2d9809ee8d5c">kBitstreamBufBytes</a>] = {}</td></tr>
+<tr class="memdesc:a5e6505964a9743a27b2a7f3ca4882186"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shared decompression input buffer used by CCSDS123 wrapper calls.  <br /></td></tr>
 <tr class="separator:a5e6505964a9743a27b2a7f3ca4882186"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="ImageDecompressor_8hpp_source.html#l00017">17</a> of file <a class="el" href="ImageDecompressor_8hpp_source.html">ImageDecompressor.hpp</a>.</p>
+<div class="textblock"><p>Component that decompresses CCSDS123 bitstreams into raw image data. </p>
+
+<p class="definition">Definition at line <a class="el" href="ImageDecompressor_8hpp_source.html#l00020">20</a> of file <a class="el" href="ImageDecompressor_8hpp_source.html">ImageDecompressor.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae3b832a1b3771e3eca72093c44e5bcc3" name="ae3b832a1b3771e3eca72093c44e5bcc3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae3b832a1b3771e3eca72093c44e5bcc3">&#9670;&#160;</a></span>ImageDecompressor()</h2>
@@ -171,7 +179,7 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Component construction and destruction. </p>
-<p>Construct an <a class="el" href="classImageProcessor_1_1ImageDecompressor.html">ImageDecompressor</a> component instance. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Construct an <a class="el" href="classImageProcessor_1_1ImageDecompressor.html" title="Component that decompresses CCSDS123 bitstreams into raw image data.">ImageDecompressor</a> component instance. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">compName</td><td>Component instance name. </td></tr>
   </table>
@@ -179,14 +187,9 @@ Static Private Attributes</h2></td></tr>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>compName is not null. </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>Component instance is constructed and ready for initialization.</dd></dl>
-<p>Construct an <a class="el" href="classImageProcessor_1_1ImageDecompressor.html">ImageDecompressor</a> component instance. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">compName</td><td>Component instance name. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Construct an <a class="el" href="classImageProcessor_1_1ImageDecompressor.html" title="Component that decompresses CCSDS123 bitstreams into raw image data.">ImageDecompressor</a> component instance. </p>
 
-<p class="definition">Definition at line <a class="el" href="ImageDecompressor_8cpp_source.html#l00060">60</a> of file <a class="el" href="ImageDecompressor_8cpp_source.html">ImageDecompressor.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ImageDecompressor_8cpp_source.html#l00059">59</a> of file <a class="el" href="ImageDecompressor_8cpp_source.html">ImageDecompressor.cpp</a>.</p>
 
 </div>
 </div>
@@ -205,10 +208,10 @@ Static Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Destroy the <a class="el" href="classImageProcessor_1_1ImageDecompressor.html">ImageDecompressor</a> component instance. </p>
+<p>Destroy the <a class="el" href="classImageProcessor_1_1ImageDecompressor.html" title="Component that decompresses CCSDS123 bitstreams into raw image data.">ImageDecompressor</a> component instance. </p>
 <dl class="section post"><dt>Postcondition</dt><dd>Resources owned by this instance are released. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ImageDecompressor_8cpp_source.html#l00065">65</a> of file <a class="el" href="ImageDecompressor_8cpp_source.html">ImageDecompressor.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ImageDecompressor_8cpp_source.html#l00064">64</a> of file <a class="el" href="ImageDecompressor_8cpp_source.html">ImageDecompressor.cpp</a>.</p>
 
 </div>
 </div>
@@ -280,20 +283,11 @@ Static Private Attributes</h2></td></tr>
 <dd>
 image_sample_len is less than or equal to kBitstreamBufBytes. </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>A command response is emitted indicating success or failure.</dd></dl>
-<p>Decompress an image bitstream into raw image data. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">opCode</td><td>Opcode associated with this command invocation. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">cmdSeq</td><td>Command sequence number for this invocation. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">input_file</td><td>Path to the input .bin bitstream file. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">output_dir</td><td>Directory where the output .raw file is written. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">image_sample_len</td><td>Number of bytes available in the input buffer. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Decompress an image bitstream into raw image data. </p>
 
-<p class="definition">Definition at line <a class="el" href="ImageDecompressor_8cpp_source.html#l00092">92</a> of file <a class="el" href="ImageDecompressor_8cpp_source.html">ImageDecompressor.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ImageDecompressor_8cpp_source.html#l00084">84</a> of file <a class="el" href="ImageDecompressor_8cpp_source.html">ImageDecompressor.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="ImageDecompressor_8hpp_source.html#l00077">MSEC_PER_SEC</a>, and <a class="el" href="ImageDecompressor_8hpp_source.html#l00081">USEC_PER_MSEC</a>.</p>
+<p class="reference">References <a class="el" href="ImageDecompressor_8hpp_source.html#l00079">kBitstreamBufBytes</a>, <a class="el" href="ImageDecompressor_8hpp_source.html#l00083">MSEC_PER_SEC</a>, <a class="el" href="ImageDecompressor_8hpp_source.html#l00011">s_bitstreamBuf</a>, and <a class="el" href="ImageDecompressor_8hpp_source.html#l00087">USEC_PER_MSEC</a>.</p>
 
 </div>
 </div>
@@ -341,15 +335,9 @@ image_sample_len is less than or equal to kBitstreamBufBytes. </dd></dl>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>time references a valid object. </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>time contains the current time value from the configured source.</dd></dl>
-<p>Handle a request for the current time. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">portNum</td><td>Port index that invoked the handler. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">time</td><td>Time object to populate with the current value. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Handle a request for the current time. </p>
 
-<p class="definition">Definition at line <a class="el" href="ImageDecompressor_8cpp_source.html#l00076">76</a> of file <a class="el" href="ImageDecompressor_8cpp_source.html">ImageDecompressor.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ImageDecompressor_8cpp_source.html#l00073">73</a> of file <a class="el" href="ImageDecompressor_8cpp_source.html">ImageDecompressor.cpp</a>.</p>
 
 </div>
 </div>
@@ -374,7 +362,11 @@ image_sample_len is less than or equal to kBitstreamBufBytes. </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ImageDecompressor_8hpp_source.html#l00073">73</a> of file <a class="el" href="ImageDecompressor_8hpp_source.html">ImageDecompressor.hpp</a>.</p>
+<p>Byte capacity of the shared compressed bitstream buffer. </p>
+
+<p class="definition">Definition at line <a class="el" href="ImageDecompressor_8hpp_source.html#l00079">79</a> of file <a class="el" href="ImageDecompressor_8hpp_source.html">ImageDecompressor.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="ImageDecompressor_8cpp_source.html#l00084">DECOMPRESS_IMAGE_cmdHandler()</a>.</p>
 
 </div>
 </div>
@@ -400,9 +392,9 @@ image_sample_len is less than or equal to kBitstreamBufBytes. </dd></dl>
 
 <p>Number of milliseconds (ms) per second (s). </p>
 
-<p class="definition">Definition at line <a class="el" href="ImageDecompressor_8hpp_source.html#l00077">77</a> of file <a class="el" href="ImageDecompressor_8hpp_source.html">ImageDecompressor.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ImageDecompressor_8hpp_source.html#l00083">83</a> of file <a class="el" href="ImageDecompressor_8hpp_source.html">ImageDecompressor.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ImageDecompressor_8cpp_source.html#l00092">DECOMPRESS_IMAGE_cmdHandler()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ImageDecompressor_8cpp_source.html#l00084">DECOMPRESS_IMAGE_cmdHandler()</a>.</p>
 
 </div>
 </div>
@@ -426,7 +418,11 @@ image_sample_len is less than or equal to kBitstreamBufBytes. </dd></dl>
 </table>
 </div><div class="memdoc">
 
+<p>Shared decompression input buffer used by CCSDS123 wrapper calls. </p>
+
 <p class="definition">Definition at line <a class="el" href="ImageDecompressor_8hpp_source.html#l00011">11</a> of file <a class="el" href="ImageDecompressor_8hpp_source.html">ImageDecompressor.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="ImageDecompressor_8cpp_source.html#l00084">DECOMPRESS_IMAGE_cmdHandler()</a>.</p>
 
 </div>
 </div>
@@ -452,9 +448,9 @@ image_sample_len is less than or equal to kBitstreamBufBytes. </dd></dl>
 
 <p>Number of microseconds (us) per millisecond (ms). </p>
 
-<p class="definition">Definition at line <a class="el" href="ImageDecompressor_8hpp_source.html#l00081">81</a> of file <a class="el" href="ImageDecompressor_8hpp_source.html">ImageDecompressor.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ImageDecompressor_8hpp_source.html#l00087">87</a> of file <a class="el" href="ImageDecompressor_8hpp_source.html">ImageDecompressor.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ImageDecompressor_8cpp_source.html#l00092">DECOMPRESS_IMAGE_cmdHandler()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ImageDecompressor_8cpp_source.html#l00084">DECOMPRESS_IMAGE_cmdHandler()</a>.</p>
 
 </div>
 </div>

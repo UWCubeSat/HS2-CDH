@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" title=" " alt="" coords="5,13,215,38"/>
-<area shape="rect" id="Node000001" href="$classImageProcessor_1_1ImageCompressorTester.html" title=" " alt="" coords="263,5,516,45"/>
-<area shape="poly" id="edge4_Node000000_Node000001" title=" " alt="" coords="228,23,262,23,262,28,228,28"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,5,261,31"/>
+<area shape="rect" id="Node000001" href="$classTmtc_1_1TmtcRadioManager.html" title="Component responsible for TMTC radio command and telemetry management." alt="" coords="309,5,500,31"/>
+<area shape="poly" id="edge4_Node000000_Node000001" title=" " alt="" coords="275,15,309,15,309,21,275,21"/>
 </map>

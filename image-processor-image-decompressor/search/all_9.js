@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['log_0',['log',['../md_FlightComputer_2Components_2EventScheduler_2docs_2sdd.html#autotoc_md14',1,'Change Log'],['../md_FlightComputer_2Components_2ImageProcessor_2ImageCompressor_2docs_2sdd.html#autotoc_md29',1,'Change Log'],['../md_FlightComputer_2Components_2TmtcRadioManager_2docs_2sdd.html#autotoc_md58',1,'Change Log']]]
+  ['kbitstreambufbytes_0',['kBitstreamBufBytes',['../classImageProcessor_1_1ImageDecompressor.html#a9b27f07958e0bb026a5f2d9809ee8d5c',1,'ImageProcessor::ImageDecompressor']]],
+  ['kimagesamplebufbytes_1',['kImageSampleBufBytes',['../classImageProcessor_1_1ImageCompressor.html#a47154a48728011bfdd084e5bec3c4e0a',1,'ImageProcessor::ImageCompressor']]],
+  ['kimagesamplebufelems_2',['kImageSampleBufElems',['../classImageProcessor_1_1ImageCompressor.html#a581e8087e954050c273e197e4058c947',1,'ImageProcessor::ImageCompressor']]]
 ];

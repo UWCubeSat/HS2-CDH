@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" title=" " alt="" coords="5,5,253,31"/>
-<area shape="rect" id="Node000001" href="$classImageProcessor_1_1ImageCompressor.html" title=" " alt="" coords="301,5,555,31"/>
-<area shape="poly" id="edge3_Node000000_Node000001" title=" " alt="" coords="267,15,301,15,301,21,267,21"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,5,269,31"/>
+<area shape="rect" id="Node000001" href="$classImageProcessor_1_1ImageDecompressor.html" title="Component that decompresses CCSDS123 bitstreams into raw image data." alt="" coords="317,5,587,31"/>
+<area shape="poly" id="edge3_Node000000_Node000001" title=" " alt="" coords="283,15,317,15,317,21,283,21"/>
 </map>

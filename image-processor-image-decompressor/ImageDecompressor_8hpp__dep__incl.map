@@ -1,11 +1,5 @@
 <map id="FlightComputer/Components/ImageProcessor/ImageDecompressor/ImageDecompressor.hpp" name="FlightComputer/Components/ImageProcessor/ImageDecompressor/ImageDecompressor.hpp">
-<area shape="rect" id="Node000001" title="hpp file for ImageDecompressor component implementation class" alt="" coords="153,5,423,60"/>
+<area shape="rect" id="Node000001" title="hpp file for ImageDecompressor component implementation class" alt="" coords="5,5,275,60"/>
 <area shape="rect" id="Node000002" href="$ImageDecompressor_8cpp.html" title="cpp file for ImageDecompressor component implementation class" alt="" coords="5,108,275,163"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,70,180,110,177,106,237,65"/>
-<area shape="rect" id="Node000003" href="$ImageDecompressorTester_8hpp.html" title="hpp file for ImageDecompressor test harness implementation class" alt="" coords="299,108,573,163"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="339,65,399,106,396,110,336,70"/>
-<area shape="rect" id="Node000004" href="$ImageDecompressorTestMain_8cpp.html" title="Test main for ImageDecompressor unit tests." alt="" coords="137,211,429,265"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="386,172,324,213,321,208,383,168"/>
-<area shape="rect" id="Node000005" href="$ImageDecompressorTester_8cpp.html" title="cpp file for ImageDecompressor test harness implementation class" alt="" coords="453,211,725,265"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="489,168,551,208,548,213,486,172"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,74,143,108,137,108,137,74"/>
 </map>

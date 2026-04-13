@@ -1,9 +1,0 @@
-<map id="ImageProcessor::ImageDecompressorTester" name="ImageProcessor::ImageDecompressorTester">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,168,275,208"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="6,80,231,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,118,138,167,133,168,122,119"/>
-<area shape="rect" id="Node000003" href="$classImageProcessor_1_1ImageDecompressor.html" title=" " alt="" coords="256,80,525,105"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="348,113,191,170,190,165,346,108"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="259,5,523,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="393,45,393,80,388,80,388,45"/>
-</map>

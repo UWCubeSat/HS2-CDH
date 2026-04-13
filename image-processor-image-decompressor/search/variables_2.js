@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['test_5finstance_5fid_0',['TEST_INSTANCE_ID',['../classFlightComputer_1_1EventSchedulerTester.html#af345079bf6044422cdfb19d03406437e',1,'FlightComputer::EventSchedulerTester']]],
-  ['test_5finstance_5fqueue_5fdepth_1',['TEST_INSTANCE_QUEUE_DEPTH',['../classFlightComputer_1_1EventSchedulerTester.html#a6a11b6ae9a5d13258166198a0920e9a7',1,'FlightComputer::EventSchedulerTester']]]
+  ['s_5fbitstreambuf_0',['s_bitstreamBuf',['../classImageProcessor_1_1ImageDecompressor.html#a5e6505964a9743a27b2a7f3ca4882186',1,'ImageProcessor::ImageDecompressor']]],
+  ['s_5fimagesamplebuf_1',['s_imageSampleBuf',['../classImageProcessor_1_1ImageCompressor.html#a2285d20a3b77f3cd783093f392d1a856',1,'ImageProcessor::ImageCompressor']]]
 ];

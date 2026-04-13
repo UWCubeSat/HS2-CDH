@@ -1,7 +1,0 @@
-<map id="FlightComputer/Components/ImageProcessor/ImageCompressor/test/ut/ImageCompressorTester.hpp" name="FlightComputer/Components/ImageProcessor/ImageCompressor/test/ut/ImageCompressorTester.hpp">
-<area shape="rect" id="Node000001" title="hpp file for ImageCompressor test harness implementation class" alt="" coords="160,5,417,60"/>
-<area shape="rect" id="Node000002" href="$ImageCompressorTestMain_8cpp.html" title="Test main for ImageCompressor unit tests." alt="" coords="5,108,281,163"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="241,70,183,110,180,106,238,66"/>
-<area shape="rect" id="Node000003" href="$ImageCompressorTester_8cpp.html" title="cpp file for ImageCompressor test harness implementation class" alt="" coords="306,108,562,163"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="339,66,397,106,394,110,336,70"/>
-</map>
