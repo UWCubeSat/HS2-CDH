@@ -8,6 +8,7 @@
 #define Tmtc_TmtcRadioManager_HPP
 
 #include "FlightComputer/Components/TmtcRadioManager/TmtcRadioManagerComponentAc.hpp"
+#include "Utils/Hash/Hash.hpp"
 
 namespace Tmtc {
 
@@ -24,11 +25,22 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
     //! Destroy TmtcRadioManager object
     ~TmtcRadioManager();
 
-  private:
-    // ----------------------------------------------------------------------
-    // Handler implementations for typed input ports
-    // ----------------------------------------------------------------------
+  protected:
+    /**
+     * @brief Computes CRC32 hash of data
+     * @param data const void* of data to hash
+     * @param data_size Length of data, preferably through 'sizeof' operator
+     * @returns U32 CRC32 hash of data (little endian)
+     */
+    U32 computeHash(const void* data, size_t data_size);
 
+    /**
+     * @brief Icnrements command counter, should be used as part of every command to ensure command tracking
+     * @returns New command counter value
+     */
+    U32 incrementCommandCount();
+
+  private:
     //! Handler implementation for timeGetPort
     //!
     //! Port to retrieve time
@@ -47,15 +59,7 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
 
     U32 m_cmdCounter = 0;
 
-    // ------------------- 
-    // Helper methods
-    // -------------------
-
-    /**
-     * @brief Icnrements command counter, should be used as part of every command to ensure command tracking
-     * @returns New command counter value
-     */
-    U32 incrementCommandCount();
+    Utils::Hash m_hashBuilder;
 };
 
 }  // namespace Tmtc
