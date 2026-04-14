@@ -144,6 +144,11 @@ Adding Components</h1>
 Testing</h1>
 <p>Tests can be run with: </p><div class="fragment"><div class="line">fprime-util check</div>
 </div><!-- fragment --><p>Coverage for project components (recommended): </p><div class="fragment"><div class="line">fprime-util check --coverage --path FlightComputer/Components --recursive</div>
+</div><!-- fragment --><p>On macOS with Homebrew GCC, use this flow to avoid sanitizer link failures and gcov version mismatches: </p><div class="fragment"><div class="line">source fprime-venv/bin/activate</div>
+<div class="line">export CC=/opt/homebrew/bin/gcc-15</div>
+<div class="line">export CXX=/opt/homebrew/bin/g++-15</div>
+<div class="line">fprime-util generate --ut --disable-sanitizers -f</div>
+<div class="line">fprime-util check --coverage --path FlightComputer/Components --recursive --pass-through --gcov-executable /opt/homebrew/bin/gcov-15</div>
 </div><!-- fragment --><p>Coverage for a single component (example with ImageDecompressor component): </p><div class="fragment"><div class="line">fprime-util check --coverage --path FlightComputer/Components/ImageProcessor/ImageDecompressor</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md66"></a>
 Contributing</h1>

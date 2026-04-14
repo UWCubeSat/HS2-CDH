@@ -147,18 +147,15 @@ Static Private Attributes</h2></td></tr>
 <tr class="memitem:a47154a48728011bfdd084e5bec3c4e0a" id="r_a47154a48728011bfdd084e5bec3c4e0a"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageProcessor_1_1ImageCompressor.html#a47154a48728011bfdd084e5bec3c4e0a">kImageSampleBufBytes</a> = 2U * 1024U * 1024U</td></tr>
 <tr class="memdesc:a47154a48728011bfdd084e5bec3c4e0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte capacity of the shared image sample buffer.  <br /></td></tr>
 <tr class="separator:a47154a48728011bfdd084e5bec3c4e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a581e8087e954050c273e197e4058c947" id="r_a581e8087e954050c273e197e4058c947"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageProcessor_1_1ImageCompressor.html#a581e8087e954050c273e197e4058c947">kImageSampleBufElems</a> = <a class="el" href="classImageProcessor_1_1ImageCompressor.html#a47154a48728011bfdd084e5bec3c4e0a">kImageSampleBufBytes</a> / sizeof(std::int64_t)</td></tr>
-<tr class="memdesc:a581e8087e954050c273e197e4058c947"><td class="mdescLeft">&#160;</td><td class="mdescRight">Element capacity of the shared image sample buffer.  <br /></td></tr>
-<tr class="separator:a581e8087e954050c273e197e4058c947"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26e9a7fe2b034f2db2f62ad7caeed60a" id="r_a26e9a7fe2b034f2db2f62ad7caeed60a"><td class="memItemLeft" align="right" valign="top">static constexpr U64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageProcessor_1_1ImageCompressor.html#a26e9a7fe2b034f2db2f62ad7caeed60a">MSEC_PER_SEC</a> = 1000U</td></tr>
 <tr class="memdesc:a26e9a7fe2b034f2db2f62ad7caeed60a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of milliseconds (ms) per second (s).  <br /></td></tr>
 <tr class="separator:a26e9a7fe2b034f2db2f62ad7caeed60a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2574ff0c7eed1e1f0be2ca3ee6814fbc" id="r_a2574ff0c7eed1e1f0be2ca3ee6814fbc"><td class="memItemLeft" align="right" valign="top">static constexpr U64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageProcessor_1_1ImageCompressor.html#a2574ff0c7eed1e1f0be2ca3ee6814fbc">USEC_PER_MSEC</a> = 1000U</td></tr>
 <tr class="memdesc:a2574ff0c7eed1e1f0be2ca3ee6814fbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of microseconds (us) per millisecond (ms).  <br /></td></tr>
 <tr class="separator:a2574ff0c7eed1e1f0be2ca3ee6814fbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2285d20a3b77f3cd783093f392d1a856" id="r_a2285d20a3b77f3cd783093f392d1a856"><td class="memItemLeft" align="right" valign="top">static std::int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageProcessor_1_1ImageCompressor.html#a2285d20a3b77f3cd783093f392d1a856">s_imageSampleBuf</a> [<a class="el" href="classImageProcessor_1_1ImageCompressor.html#a581e8087e954050c273e197e4058c947">kImageSampleBufElems</a>] = {}</td></tr>
-<tr class="memdesc:a2285d20a3b77f3cd783093f392d1a856"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shared compression input buffer used by CCSDS123 wrapper calls.  <br /></td></tr>
-<tr class="separator:a2285d20a3b77f3cd783093f392d1a856"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa53a1073dfeb99d5143cd24337ddc9cf" id="r_aa53a1073dfeb99d5143cd24337ddc9cf"><td class="memItemLeft" align="right" valign="top">static std::uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageProcessor_1_1ImageCompressor.html#aa53a1073dfeb99d5143cd24337ddc9cf">s_imageSampleBuf</a> [<a class="el" href="classImageProcessor_1_1ImageCompressor.html#a47154a48728011bfdd084e5bec3c4e0a">kImageSampleBufBytes</a>] = {}</td></tr>
+<tr class="memdesc:aa53a1073dfeb99d5143cd24337ddc9cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shared compression workspace buffer (byte-addressable).  <br /></td></tr>
+<tr class="separator:aa53a1073dfeb99d5143cd24337ddc9cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Component that compresses raw image data into CCSDS123 bitstreams. </p>
@@ -192,7 +189,7 @@ Static Private Attributes</h2></td></tr>
 <dl class="section post"><dt>Postcondition</dt><dd>Component instance is constructed and ready for initialization.</dd></dl>
 <p>Construct an <a class="el" href="classImageProcessor_1_1ImageCompressor.html" title="Component that compresses raw image data into CCSDS123 bitstreams.">ImageCompressor</a> component instance. </p>
 
-<p class="definition">Definition at line <a class="el" href="ImageCompressor_8cpp_source.html#l00058">58</a> of file <a class="el" href="ImageCompressor_8cpp_source.html">ImageCompressor.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ImageCompressor_8cpp_source.html#l00057">57</a> of file <a class="el" href="ImageCompressor_8cpp_source.html">ImageCompressor.cpp</a>.</p>
 
 </div>
 </div>
@@ -214,7 +211,7 @@ Static Private Attributes</h2></td></tr>
 <p>Destroy the <a class="el" href="classImageProcessor_1_1ImageCompressor.html" title="Component that compresses raw image data into CCSDS123 bitstreams.">ImageCompressor</a> component instance. </p>
 <dl class="section post"><dt>Postcondition</dt><dd>Resources owned by this instance are released. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ImageCompressor_8cpp_source.html#l00063">63</a> of file <a class="el" href="ImageCompressor_8cpp_source.html">ImageCompressor.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ImageCompressor_8cpp_source.html#l00065">65</a> of file <a class="el" href="ImageCompressor_8cpp_source.html">ImageCompressor.cpp</a>.</p>
 
 </div>
 </div>
@@ -313,17 +310,17 @@ Static Private Attributes</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">override_y</td><td>Override image Y dimension, or implementation-defined default when unused. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">override_z</td><td>Override image Z dimension, or implementation-defined default when unused. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">override_dtype</td><td>Override sample data type string (for example, u16). </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">image_sample_len</td><td>Number of image samples available in the component input buffer. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">image_sample_len</td><td>Number of input bytes allowed for compression validation. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>input_file and output_dir are valid command arguments. </dd>
 <dd>
-image_sample_len is less than or equal to kImageSampleBufElems. </dd></dl>
+image_sample_len is less than or equal to kImageSampleBufBytes. </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>A command response is emitted indicating success or failure.</dd></dl>
 <p>Compress a raw image into a bitstream. </p>
 
-<p class="definition">Definition at line <a class="el" href="ImageCompressor_8cpp_source.html#l00083">83</a> of file <a class="el" href="ImageCompressor_8cpp_source.html">ImageCompressor.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ImageCompressor_8cpp_source.html#l00086">86</a> of file <a class="el" href="ImageCompressor_8cpp_source.html">ImageCompressor.cpp</a>.</p>
 
 </div>
 </div>
@@ -373,7 +370,7 @@ image_sample_len is less than or equal to kImageSampleBufElems. </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>time contains the current time value from the configured source.</dd></dl>
 <p>Handle a request for the current time. </p>
 
-<p class="definition">Definition at line <a class="el" href="ImageCompressor_8cpp_source.html#l00072">72</a> of file <a class="el" href="ImageCompressor_8cpp_source.html">ImageCompressor.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ImageCompressor_8cpp_source.html#l00075">75</a> of file <a class="el" href="ImageCompressor_8cpp_source.html">ImageCompressor.cpp</a>.</p>
 
 </div>
 </div>
@@ -404,32 +401,6 @@ image_sample_len is less than or equal to kImageSampleBufElems. </dd></dl>
 
 </div>
 </div>
-<a id="a581e8087e954050c273e197e4058c947" name="a581e8087e954050c273e197e4058c947"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a581e8087e954050c273e197e4058c947">&#9670;&#160;</a></span>kImageSampleBufElems</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr std::size_t ImageProcessor::ImageCompressor::kImageSampleBufElems = <a class="el" href="classImageProcessor_1_1ImageCompressor.html#a47154a48728011bfdd084e5bec3c4e0a">kImageSampleBufBytes</a> / sizeof(std::int64_t)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Element capacity of the shared image sample buffer. </p>
-
-<p class="definition">Definition at line <a class="el" href="ImageCompressor_8hpp_source.html#l00093">93</a> of file <a class="el" href="ImageCompressor_8hpp_source.html">ImageCompressor.hpp</a>.</p>
-
-</div>
-</div>
 <a id="a26e9a7fe2b034f2db2f62ad7caeed60a" name="a26e9a7fe2b034f2db2f62ad7caeed60a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a26e9a7fe2b034f2db2f62ad7caeed60a">&#9670;&#160;</a></span>MSEC_PER_SEC</h2>
 
@@ -452,12 +423,12 @@ image_sample_len is less than or equal to kImageSampleBufElems. </dd></dl>
 
 <p>Number of milliseconds (ms) per second (s). </p>
 
-<p class="definition">Definition at line <a class="el" href="ImageCompressor_8hpp_source.html#l00097">97</a> of file <a class="el" href="ImageCompressor_8hpp_source.html">ImageCompressor.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ImageCompressor_8hpp_source.html#l00093">93</a> of file <a class="el" href="ImageCompressor_8hpp_source.html">ImageCompressor.hpp</a>.</p>
 
 </div>
 </div>
-<a id="a2285d20a3b77f3cd783093f392d1a856" name="a2285d20a3b77f3cd783093f392d1a856"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2285d20a3b77f3cd783093f392d1a856">&#9670;&#160;</a></span>s_imageSampleBuf</h2>
+<a id="aa53a1073dfeb99d5143cd24337ddc9cf" name="aa53a1073dfeb99d5143cd24337ddc9cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa53a1073dfeb99d5143cd24337ddc9cf">&#9670;&#160;</a></span>s_imageSampleBuf</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -466,7 +437,7 @@ image_sample_len is less than or equal to kImageSampleBufElems. </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::int64_t ImageProcessor::ImageCompressor::s_imageSampleBuf = {}</td>
+          <td class="memname">std::uint8_t ImageProcessor::ImageCompressor::s_imageSampleBuf = {}</td>
         </tr>
       </table>
   </td>
@@ -476,7 +447,7 @@ image_sample_len is less than or equal to kImageSampleBufElems. </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p>Shared compression input buffer used by CCSDS123 wrapper calls. </p>
+<p>Shared compression workspace buffer (byte-addressable). </p>
 
 <p class="definition">Definition at line <a class="el" href="ImageCompressor_8hpp_source.html#l00011">11</a> of file <a class="el" href="ImageCompressor_8hpp_source.html">ImageCompressor.hpp</a>.</p>
 
@@ -504,7 +475,7 @@ image_sample_len is less than or equal to kImageSampleBufElems. </dd></dl>
 
 <p>Number of microseconds (us) per millisecond (ms). </p>
 
-<p class="definition">Definition at line <a class="el" href="ImageCompressor_8hpp_source.html#l00101">101</a> of file <a class="el" href="ImageCompressor_8hpp_source.html">ImageCompressor.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ImageCompressor_8hpp_source.html#l00097">97</a> of file <a class="el" href="ImageCompressor_8hpp_source.html">ImageCompressor.hpp</a>.</p>
 
 </div>
 </div>
