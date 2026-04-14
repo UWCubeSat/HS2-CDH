@@ -13,9 +13,7 @@ namespace Tmtc {
 // Component construction and destruction
 // ----------------------------------------------------------------------
 
-TmtcRadioManager ::TmtcRadioManager(const char* const compName) : TmtcRadioManagerComponentBase(compName) {
-    m_hashBuilder.init();
-}
+TmtcRadioManager ::TmtcRadioManager(const char* const compName) : TmtcRadioManagerComponentBase(compName) {}
 
 TmtcRadioManager ::~TmtcRadioManager() {}
 
