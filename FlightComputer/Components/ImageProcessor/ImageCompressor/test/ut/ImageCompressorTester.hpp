@@ -56,6 +56,46 @@ class ImageCompressorTester : public ImageCompressorGTestBase {
      */
     void testSampleLenTooLarge();
 
+    /**
+     * @brief Verify command handling when output path points to a file.
+     * @post Expected command rejection behavior is validated.
+     */
+    void testOutputDirIsFile();
+
+    /**
+     * @brief Verify failure path after validation with an existing input file.
+     * @post Start event and timing/size telemetry are validated before failure.
+     */
+    void testCompressionFailureAfterValidation();
+
+    /**
+     * @brief Verify successful compression using the bundled raw asset.
+     * @post Command success and success event behavior are validated.
+     */
+    void testCompressionSuccessWithAsset();
+
+    /**
+     * @brief Verify successful compression when derived output file size lookup fails.
+     * @post Success event is emitted with zero-valued ratio path.
+     */
+    void testCompressionSuccessWithoutOutputSizeTlm();
+
+    /**
+     * @brief Verify successful compression with no-slash/no-dot input name and trailing-slash output dir.
+     * @post Path-shape branches in output filename derivation are validated.
+     */
+    void testCompressionSuccessWithSimpleInputName();
+
+    /**
+     * @brief Verify time port handler can be invoked without side effects.
+     */
+    void testTimeGetPortNoOp();
+
+    /**
+     * @brief Verify command failure when output directory creation fails.
+     */
+    void testOutputDirCreateFailure();
+
   private:
     /**
      * @brief Connect component ports for the test harness.
@@ -76,11 +116,18 @@ class ImageCompressorTester : public ImageCompressorGTestBase {
      * @param[in] input_path Path to the input image file.
      * @param[in] output_dir Path to the output directory.
      * @param[in] ael Absolute error limit for compression.
-     * @param[in] sample_len Number of samples to provide to the command.
+    * @param[in] sample_len Number of bytes to provide to the command.
      * @pre input_path and output_dir point to valid C strings.
      * @post The command is dispatched to the component under test.
      */
-    void sendCompressCommand(const char* input_path, const char* output_dir, I32 ael, U64 sample_len);
+    void sendCompressCommand(const char* input_path,
+                 const char* output_dir,
+                 I32 ael,
+                 U64 sample_len,
+                 I32 override_x = 0,
+                 I32 override_y = 0,
+                 I32 override_z = 0,
+                 const char* dtype = "u16");
 
     /**
      * @brief Assert that the latest command response indicates failure.

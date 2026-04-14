@@ -66,9 +66,9 @@ class ImageCompressor final : public ImageCompressorComponentBase {
      * @param[in] override_y Override image Y dimension, or implementation-defined default when unused.
      * @param[in] override_z Override image Z dimension, or implementation-defined default when unused.
      * @param[in] override_dtype Override sample data type string (for example, u16).
-     * @param[in] image_sample_len Number of image samples available in the component input buffer.
+    * @param[in] image_sample_len Number of input bytes allowed for compression validation.
      * @pre input_file and output_dir are valid command arguments.
-     * @pre image_sample_len is less than or equal to kImageSampleBufElems.
+    * @pre image_sample_len is less than or equal to kImageSampleBufBytes.
      * @post A command response is emitted indicating success or failure.
      */
     void COMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
@@ -88,10 +88,6 @@ class ImageCompressor final : public ImageCompressorComponentBase {
      */
     static constexpr std::size_t kImageSampleBufBytes = 2U * 1024U * 1024U;
     /**
-     * @brief Element capacity of the shared image sample buffer.
-     */
-    static constexpr std::size_t kImageSampleBufElems = kImageSampleBufBytes / sizeof(std::int64_t);
-    /**
      * @brief Number of milliseconds (ms) per second (s).
      */
     static constexpr U64 MSEC_PER_SEC = 1000U;
@@ -100,9 +96,9 @@ class ImageCompressor final : public ImageCompressorComponentBase {
      */
     static constexpr U64 USEC_PER_MSEC = 1000U;
     /**
-     * @brief Shared compression input buffer used by CCSDS123 wrapper calls.
+     * @brief Shared compression workspace buffer (byte-addressable).
      */
-    static std::int64_t s_imageSampleBuf[kImageSampleBufElems];
+    static std::uint8_t s_imageSampleBuf[kImageSampleBufBytes];
 };
 
 }  // namespace ImageProcessor

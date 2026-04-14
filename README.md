@@ -83,6 +83,15 @@ Coverage for project components (recommended):
 fprime-util check --coverage --path FlightComputer/Components --recursive
 ```
 
+On macOS with Homebrew GCC, use this flow to avoid sanitizer link failures and gcov version mismatches:
+```bash
+source fprime-venv/bin/activate
+export CC=/opt/homebrew/bin/gcc-15
+export CXX=/opt/homebrew/bin/g++-15
+fprime-util generate --ut --disable-sanitizers -f
+fprime-util check --coverage --path FlightComputer/Components --recursive --pass-through --gcov-executable /opt/homebrew/bin/gcov-15
+```
+
 Coverage for a single component (example with ImageDecompressor component):
 ```bash
 fprime-util check --coverage --path FlightComputer/Components/ImageProcessor/ImageDecompressor
