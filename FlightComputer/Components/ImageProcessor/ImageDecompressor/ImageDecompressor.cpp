@@ -38,7 +38,7 @@ bool loadBitstreamIntoBuffer(const char* bitstream_path,
     const bool file_truncated = (bytes_read == buffer_capacity) && (std::fgetc(file) != EOF);
     std::fclose(file);
 
-    if (file_truncated || (bytes_read == 0U)) {
+    if (file_truncated || !bytes_read ) {
         return false;
     }
 
@@ -47,7 +47,7 @@ bool loadBitstreamIntoBuffer(const char* bitstream_path,
 }
 
 std::string buildOutputFilePath(const char* input_path, const char* output_dir) {
-    if ((input_path == nullptr) || (output_dir == nullptr)) {  // GCOVR_EXCL_LINE
+    if (!input_path || !output_dir ) {  // GCOVR_EXCL_LINE
         return std::string();                                   // GCOVR_EXCL_LINE
     }
 
