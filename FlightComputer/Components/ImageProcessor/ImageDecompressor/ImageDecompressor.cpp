@@ -9,7 +9,8 @@
 #include <cstdio>
 #include <string>
 
-std::uint8_t ImageProcessor::ImageDecompressor::s_bitstreamBuf[ImageProcessor::ImageDecompressor::kBitstreamBufBytes] = {};
+std::uint8_t ImageProcessor::ImageDecompressor::s_bitstreamBuf[
+    ImageProcessor::ImageDecompressor::kBitstreamBufBytes] = {};
 
 #include "Fw/Time/Time.hpp"
 #include "Os/FileSystem.hpp"
@@ -176,7 +177,8 @@ void ImageDecompressor::DECOMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
 
     U64 output_size = 0;
     const std::string output_file_path = buildOutputFilePath(input_path, output_path);
-    const Os::FileSystem::Status output_size_status = Os::FileSystem::getFileSize(output_file_path.c_str(), output_size);
+    const Os::FileSystem::Status output_size_status =
+        Os::FileSystem::getFileSize(output_file_path.c_str(), output_size);
     if (output_size_status == Os::FileSystem::OP_OK) {
         this->tlmWrite_OutputImageSize(output_size);
         F64 ratio = 0.0;

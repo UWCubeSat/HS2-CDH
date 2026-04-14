@@ -4,8 +4,8 @@
  * @brief hpp file for ImageCompressor component implementation class
  */
 
-#ifndef ImageProcessor_ImageCompressor_HPP
-#define ImageProcessor_ImageCompressor_HPP
+#ifndef FLIGHTCOMPUTER_COMPONENTS_IMAGEPROCESSOR_IMAGECOMPRESSOR_IMAGECOMPRESSOR_HPP_
+#define FLIGHTCOMPUTER_COMPONENTS_IMAGEPROCESSOR_IMAGECOMPRESSOR_IMAGECOMPRESSOR_HPP_
 
 #include <cstddef>
 #include <cstdint>
@@ -18,7 +18,7 @@ namespace ImageProcessor {
  * @brief Component that compresses raw image data into CCSDS123 bitstreams.
  */
 class ImageCompressor final : public ImageCompressorComponentBase {
-  public:
+ public:
     /**
      * @brief Component construction and destruction.
      */
@@ -37,7 +37,7 @@ class ImageCompressor final : public ImageCompressorComponentBase {
      */
     ~ImageCompressor();
 
-  private:
+ private:
     /**
      * @brief Handler implementations for ports.
      */
@@ -82,7 +82,7 @@ class ImageCompressor final : public ImageCompressorComponentBase {
                      const Fw::CmdStringArg& override_dtype,
                      U64 image_sample_len) override;
 
-  private:
+ private:
     /**
      * @brief Byte capacity of the shared image sample buffer.
      */
@@ -103,4 +103,4 @@ class ImageCompressor final : public ImageCompressorComponentBase {
 
 }  // namespace ImageProcessor
 
-#endif
+#endif  // FLIGHTCOMPUTER_COMPONENTS_IMAGEPROCESSOR_IMAGECOMPRESSOR_IMAGECOMPRESSOR_HPP_

@@ -4,16 +4,16 @@
  * @brief hpp file for ImageDecompressor test harness implementation class
  */
 
-#ifndef ImageProcessor_ImageDecompressor_Tester_HPP
-#define ImageProcessor_ImageDecompressor_Tester_HPP
+#ifndef FLIGHTCOMPUTER_COMPONENTS_IMAGEPROCESSOR_IMAGEDECOMPRESSOR_TEST_UT_IMAGEDECOMPRESSORTESTER_HPP_
+#define FLIGHTCOMPUTER_COMPONENTS_IMAGEPROCESSOR_IMAGEDECOMPRESSOR_TEST_UT_IMAGEDECOMPRESSORTESTER_HPP_
 
-#include "ImageDecompressorGTestBase.hpp"
+#include "FlightComputer/Components/ImageProcessor/ImageDecompressor/ImageDecompressorGTestBase.hpp"
 #include "FlightComputer/Components/ImageProcessor/ImageDecompressor/ImageDecompressor.hpp"
 
 namespace ImageProcessor {
 
 class ImageDecompressorTester : public ImageDecompressorGTestBase {
-  public:
+ public:
     static const U32 MAX_HISTORY_SIZE = 10;
     static const FwEnumStoreType TEST_INSTANCE_ID = 0;
     static const FwSizeType TEST_INSTANCE_QUEUE_DEPTH = 10;
@@ -31,7 +31,7 @@ class ImageDecompressorTester : public ImageDecompressorGTestBase {
      */
     ~ImageDecompressorTester();
 
-  public:
+ public:
     /**
      * @brief Verify command handling for an empty input path.
      * @post Expected command rejection behavior is validated.
@@ -114,7 +114,7 @@ class ImageDecompressorTester : public ImageDecompressorGTestBase {
      */
     void testOutputDirCreateFailure();
 
-  private:
+ private:
     /**
      * @brief Connect component ports for the test harness.
      * @pre Test harness and component instances are constructed.
@@ -149,10 +149,10 @@ class ImageDecompressorTester : public ImageDecompressorGTestBase {
      */
     void assertFailure(FwOpcodeType opcode, const Fw::CmdStringArg& input_path, I32 error_code);
 
-  private:
+ private:
     ImageDecompressor component;
 };
 
 }  // namespace ImageProcessor
 
-#endif
+#endif  // FLIGHTCOMPUTER_COMPONENTS_IMAGEPROCESSOR_IMAGEDECOMPRESSOR_TEST_UT_IMAGEDECOMPRESSORTESTER_HPP_

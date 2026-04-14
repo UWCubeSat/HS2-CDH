@@ -3,7 +3,7 @@
  * @brief Test main for ImageDecompressor unit tests.
  */
 
-#include "ImageDecompressorTester.hpp"
+#include "FlightComputer/Components/ImageProcessor/ImageDecompressor/test/ut/ImageDecompressorTester.hpp"
 
 TEST(Validation, EmptyInputPath) {
     ImageProcessor::ImageDecompressorTester tester;

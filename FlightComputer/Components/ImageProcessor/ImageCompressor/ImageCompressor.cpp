@@ -8,7 +8,8 @@
 
 #include <string>
 
-std::uint8_t ImageProcessor::ImageCompressor::s_imageSampleBuf[ImageProcessor::ImageCompressor::kImageSampleBufBytes] = {};
+std::uint8_t ImageProcessor::ImageCompressor::s_imageSampleBuf[
+    ImageProcessor::ImageCompressor::kImageSampleBufBytes] = {};
 
 #include "Fw/Time/Time.hpp"
 #include "Os/FileSystem.hpp"
@@ -158,7 +159,8 @@ void ImageCompressor ::COMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
 
     U64 output_size = 0;
     const std::string output_file_path = buildOutputFilePath(input_path, output_path);
-    const Os::FileSystem::Status output_size_status = Os::FileSystem::getFileSize(output_file_path.c_str(), output_size);
+    const Os::FileSystem::Status output_size_status =
+        Os::FileSystem::getFileSize(output_file_path.c_str(), output_size);
     if (output_size_status == Os::FileSystem::OP_OK) {
         this->tlmWrite_OutputImageSize(output_size);
         F64 ratio = 0.0;

@@ -4,16 +4,16 @@
  * @brief cpp file for ImageDecompressor test harness implementation class
  */
 
-#include "ImageDecompressorTester.hpp"
+#include "FlightComputer/Components/ImageProcessor/ImageDecompressor/test/ut/ImageDecompressorTester.hpp"
 
-#include <Fw/Test/UnitTest.hpp>
+#include <unistd.h>
 
 #include <cstdio>
 #include <cstdint>
 #include <string>
 #include <vector>
 
-#include <unistd.h>
+#include <Fw/Test/UnitTest.hpp>
 
 #include "Os/FileSystem.hpp"
 
@@ -87,7 +87,7 @@ std::size_t getFileSizeBytes(const std::string& path) {
         return 0U;
     }
 
-    const long size = std::ftell(file);
+    const auto size = std::ftell(file);
     std::fclose(file);
     return (size < 0) ? 0U : static_cast<std::size_t>(size);
 }
@@ -365,7 +365,7 @@ void ImageDecompressorTester::testDecompressionSuccessWithoutOutputSizeTlm() {
 
 void ImageDecompressorTester::testDecompressionSuccessWithSimpleInputName() {
     const std::string sourceBitstreamPath("test/ut/assets/test_image.bin");
-    const std::string simpleInputPath = "h2dinput" + std::to_string(static_cast<unsigned long>(::getpid()));
+    const std::string simpleInputPath = "h2dinput" + std::to_string(static_cast<U64>(::getpid()));
     ASSERT_TRUE(copyFile(sourceBitstreamPath, simpleInputPath));
 
     const std::size_t inputSize = getFileSizeBytes(simpleInputPath);

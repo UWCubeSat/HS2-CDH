@@ -4,16 +4,16 @@
  * @brief cpp file for ImageCompressor test harness implementation class
  */
 
-#include "ImageCompressorTester.hpp"
+#include "FlightComputer/Components/ImageProcessor/ImageCompressor/test/ut/ImageCompressorTester.hpp"
 
-#include <Fw/Test/UnitTest.hpp>
+#include <unistd.h>
 
 #include <cstdio>
 #include <cstdint>
 #include <string>
 #include <vector>
 
-#include <unistd.h>
+#include <Fw/Test/UnitTest.hpp>
 
 #include "Os/FileSystem.hpp"
 
@@ -52,7 +52,7 @@ std::vector<std::uint8_t> readBytes(const std::string& path) {
         return data;
     }
 
-    const long size = std::ftell(file);
+    const auto size = std::ftell(file);
     if (size <= 0) {
         std::fclose(file);
         return data;
@@ -84,7 +84,7 @@ std::size_t getFileSizeBytes(const std::string& path) {
         return 0U;
     }
 
-    const long size = std::ftell(file);
+    const auto size = std::ftell(file);
     std::fclose(file);
     return (size < 0) ? 0U : static_cast<std::size_t>(size);
 }
@@ -241,7 +241,7 @@ void ImageCompressorTester ::testCompressionSuccessWithSimpleInputName() {
     const std::vector<std::uint8_t> inputData = readBytes(inputAssetPath);
     ASSERT_FALSE(inputData.empty());
 
-    const std::string simpleInputPath = "h2cinput" + std::to_string(static_cast<unsigned long>(::getpid()));
+    const std::string simpleInputPath = "h2cinput" + std::to_string(static_cast<U64>(::getpid()));
     ASSERT_TRUE(writeBytes(simpleInputPath, inputData.data(), inputData.size()));
 
     const std::string tempDir = makeTempDir();
