@@ -100,29 +100,45 @@ $(document).ready(function(){initNavTree('TmtcRadioManager_8cpp_source.html','')
 <div class="contents">
 <a href="TmtcRadioManager_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="TmtcRadioManager_8hpp.html">FlightComputer/Components/TmtcRadioManager/TmtcRadioManager.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span>Tmtc {</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classTmtc_1_1TmtcRadioManager.html#a3c2766a2c8c077dc1343744297f04207">   18</a></span>TmtcRadioManager ::TmtcRadioManager(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> compName) : TmtcRadioManagerComponentBase(compName) {}</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classTmtc_1_1TmtcRadioManager.html#adcbae66bc601aeaca075f28043fcd004">   23</a></span>TmtcRadioManager ::~TmtcRadioManager() {}</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="foldopen" id="foldopen00032" data-start="{" data-end="}">
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classTmtc_1_1TmtcRadioManager.html#abae597cf930ab15cc8260845a3165365">   32</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classTmtc_1_1TmtcRadioManager.html#abae597cf930ab15cc8260845a3165365">TmtcRadioManager::timeGetPort_handler</a>(FwIndexType portNum, Fw::Time &amp;time) {</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">// unused</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;netinet/in.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span>Tmtc {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classTmtc_1_1TmtcRadioManager.html#a3c2766a2c8c077dc1343744297f04207">   19</a></span>TmtcRadioManager ::TmtcRadioManager(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> compName) : TmtcRadioManagerComponentBase(compName) {}</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classTmtc_1_1TmtcRadioManager.html#abae597cf930ab15cc8260845a3165365">   28</a></span><span class="keywordtype">void</span> TmtcRadioManager ::timeGetPort_handler(FwIndexType portNum, Fw::Time&amp; time) {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">// TODO</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
 </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classTmtc_1_1TmtcRadioManager.html#a0678936e60dbeb74ccadd290f8eeb247">   43</a></span><span class="keywordtype">void</span> TmtcRadioManager ::TODO_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">// TODO</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    this-&gt;cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classTmtc_1_1TmtcRadioManager.html#a22d9c1168c73eb5ed0672ee8b33d683a">   36</a></span><span class="keywordtype">void</span> TmtcRadioManager ::NO_OP_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    this-&gt;log_COMMAND_NoOpEvent();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    this-&gt;tlmWrite_CmdCounter(incrementCommandCount());</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    this-&gt;cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}</div>
 </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}  <span class="comment">// namespace Tmtc</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="foldopen" id="foldopen00042" data-start="{" data-end="}">
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classTmtc_1_1TmtcRadioManager.html#af1b9df60667a63fe7fd278808b1cd055">   42</a></span>U32 TmtcRadioManager ::incrementCommandCount() {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    this-&gt;m_cmdCounter += 1;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">return</span> this-&gt;m_cmdCounter;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
+</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="}">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classTmtc_1_1TmtcRadioManager.html#a55cf2e14c75ec15c7f6bb0c1948c07ac">   47</a></span>U32 TmtcRadioManager ::computeHash(<span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keywordtype">size_t</span> data_size) {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    Utils::HashBuffer hash_buffer;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    Utils::Hash::hash(data, data_size, hash_buffer);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// Convert to little-endian</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordflow">return</span> ntohl(hash_buffer.asBigEndianU32());</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
+</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}  <span class="comment">// namespace Tmtc</span></div>
 <div class="ttc" id="aTmtcRadioManager_8hpp_html"><div class="ttname"><a href="TmtcRadioManager_8hpp.html">TmtcRadioManager.hpp</a></div><div class="ttdoc">hpp file for TmtcRadioManager component implementation class</div></div>
-<div class="ttc" id="aclassTmtc_1_1TmtcRadioManager_html_abae597cf930ab15cc8260845a3165365"><div class="ttname"><a href="classTmtc_1_1TmtcRadioManager.html#abae597cf930ab15cc8260845a3165365">Tmtc::TmtcRadioManager::timeGetPort_handler</a></div><div class="ttdeci">void timeGetPort_handler(FwIndexType portNum, Fw::Time &amp;time) override</div><div class="ttdoc">Handler implementations for ports.</div><div class="ttdef"><b>Definition</b> <a href="TmtcRadioManager_8cpp_source.html#l00032">TmtcRadioManager.cpp:32</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

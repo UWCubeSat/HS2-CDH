@@ -92,7 +92,9 @@ $(document).ready(function(){initNavTree('classTmtc_1_1TmtcRadioManager.html',''
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classTmtc_1_1TmtcRadioManager-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Tmtc::TmtcRadioManager Class Reference<span class="mlabels"><span class="mlabel">final</span></span></div></div>
 </div><!--header-->
@@ -128,18 +130,37 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3c2766a2c8c077dc1343744297f04207" id="r_a3c2766a2c8c077dc1343744297f04207"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTmtc_1_1TmtcRadioManager.html#a3c2766a2c8c077dc1343744297f04207">TmtcRadioManager</a> (const char *const compName)</td></tr>
 <tr class="memdesc:a3c2766a2c8c077dc1343744297f04207"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component construction and destruction.  <br /></td></tr>
 <tr class="separator:a3c2766a2c8c077dc1343744297f04207"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adcbae66bc601aeaca075f28043fcd004" id="r_adcbae66bc601aeaca075f28043fcd004"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTmtc_1_1TmtcRadioManager.html#adcbae66bc601aeaca075f28043fcd004">~TmtcRadioManager</a> ()</td></tr>
-<tr class="memdesc:adcbae66bc601aeaca075f28043fcd004"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classTmtc_1_1TmtcRadioManager.html" title="Component responsible for TMTC radio command and telemetry management.">TmtcRadioManager</a> component instance.  <br /></td></tr>
-<tr class="separator:adcbae66bc601aeaca075f28043fcd004"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8221d8f1789c6315213b145d57d4cd39" id="r_a8221d8f1789c6315213b145d57d4cd39"><td class="memItemLeft" align="right" valign="top"><a id="a8221d8f1789c6315213b145d57d4cd39" name="a8221d8f1789c6315213b145d57d4cd39"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>~TmtcRadioManager</b> ()=default</td></tr>
+<tr class="memdesc:a8221d8f1789c6315213b145d57d4cd39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br /></td></tr>
+<tr class="separator:a8221d8f1789c6315213b145d57d4cd39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55cf2e14c75ec15c7f6bb0c1948c07ac" id="r_a55cf2e14c75ec15c7f6bb0c1948c07ac"><td class="memItemLeft" align="right" valign="top">U32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTmtc_1_1TmtcRadioManager.html#a55cf2e14c75ec15c7f6bb0c1948c07ac">computeHash</a> (const void *data, size_t data_size)</td></tr>
+<tr class="memdesc:a55cf2e14c75ec15c7f6bb0c1948c07ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes CRC32 hash of data.  <br /></td></tr>
+<tr class="separator:a55cf2e14c75ec15c7f6bb0c1948c07ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:af1b9df60667a63fe7fd278808b1cd055" id="r_af1b9df60667a63fe7fd278808b1cd055"><td class="memItemLeft" align="right" valign="top">U32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTmtc_1_1TmtcRadioManager.html#af1b9df60667a63fe7fd278808b1cd055">incrementCommandCount</a> ()</td></tr>
+<tr class="memdesc:af1b9df60667a63fe7fd278808b1cd055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments command counter, should be used as part of every command to ensure command tracking.  <br /></td></tr>
+<tr class="separator:af1b9df60667a63fe7fd278808b1cd055"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:abae597cf930ab15cc8260845a3165365" id="r_abae597cf930ab15cc8260845a3165365"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTmtc_1_1TmtcRadioManager.html#abae597cf930ab15cc8260845a3165365">timeGetPort_handler</a> (FwIndexType portNum, Fw::Time &amp;time) override</td></tr>
-<tr class="memdesc:abae597cf930ab15cc8260845a3165365"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handler implementations for ports.  <br /></td></tr>
+<tr class="memdesc:abae597cf930ab15cc8260845a3165365"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle a request for the current time.  <br /></td></tr>
 <tr class="separator:abae597cf930ab15cc8260845a3165365"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0678936e60dbeb74ccadd290f8eeb247" id="r_a0678936e60dbeb74ccadd290f8eeb247"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTmtc_1_1TmtcRadioManager.html#a0678936e60dbeb74ccadd290f8eeb247">TODO_cmdHandler</a> (FwOpcodeType opCode, U32 cmdSeq) override</td></tr>
-<tr class="memdesc:a0678936e60dbeb74ccadd290f8eeb247"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handler implementations for commands.  <br /></td></tr>
-<tr class="separator:a0678936e60dbeb74ccadd290f8eeb247"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22d9c1168c73eb5ed0672ee8b33d683a" id="r_a22d9c1168c73eb5ed0672ee8b33d683a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTmtc_1_1TmtcRadioManager.html#a22d9c1168c73eb5ed0672ee8b33d683a">NO_OP_cmdHandler</a> (FwOpcodeType opCode, U32 cmdSeq) override</td></tr>
+<tr class="memdesc:a22d9c1168c73eb5ed0672ee8b33d683a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handler implementations for commands.  <br /></td></tr>
+<tr class="separator:a22d9c1168c73eb5ed0672ee8b33d683a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a05ac77be3935090bcc5e0129ea7356d5" id="r_a05ac77be3935090bcc5e0129ea7356d5"><td class="memItemLeft" align="right" valign="top">U32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTmtc_1_1TmtcRadioManager.html#a05ac77be3935090bcc5e0129ea7356d5">m_cmdCounter</a> = 0</td></tr>
+<tr class="memdesc:a05ac77be3935090bcc5e0129ea7356d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Local command counter used to populate CmdCounter telemetry.  <br /></td></tr>
+<tr class="separator:a05ac77be3935090bcc5e0129ea7356d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a370bf2c10e9983420be75d69e0c7589d" id="r_a370bf2c10e9983420be75d69e0c7589d"><td class="memItemLeft" align="right" valign="top">Utils::Hash&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTmtc_1_1TmtcRadioManager.html#a370bf2c10e9983420be75d69e0c7589d">m_hashBuilder</a></td></tr>
+<tr class="memdesc:a370bf2c10e9983420be75d69e0c7589d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility hash helper used by <a class="el" href="classTmtc_1_1TmtcRadioManager.html#a55cf2e14c75ec15c7f6bb0c1948c07ac" title="Computes CRC32 hash of data.">computeHash()</a>.  <br /></td></tr>
+<tr class="separator:a370bf2c10e9983420be75d69e0c7589d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Component responsible for TMTC radio command and telemetry management. </p>
@@ -173,33 +194,128 @@ Private Member Functions</h2></td></tr>
 <dl class="section post"><dt>Postcondition</dt><dd>Component instance is constructed and ready for initialization.</dd></dl>
 <p>Construct a <a class="el" href="classTmtc_1_1TmtcRadioManager.html" title="Component responsible for TMTC radio command and telemetry management.">TmtcRadioManager</a> component instance. </p>
 
-<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00018">18</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00019">19</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
 
 </div>
 </div>
-<a id="adcbae66bc601aeaca075f28043fcd004" name="adcbae66bc601aeaca075f28043fcd004"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adcbae66bc601aeaca075f28043fcd004">&#9670;&#160;</a></span>~TmtcRadioManager()</h2>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a55cf2e14c75ec15c7f6bb0c1948c07ac" name="a55cf2e14c75ec15c7f6bb0c1948c07ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55cf2e14c75ec15c7f6bb0c1948c07ac">&#9670;&#160;</a></span>computeHash()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Tmtc::TmtcRadioManager::~TmtcRadioManager </td>
+          <td class="memname">U32 Tmtc::TmtcRadioManager::computeHash </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>data_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes CRC32 hash of data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>const void* of data to hash </td></tr>
+    <tr><td class="paramname">data_size</td><td>Length of data, preferably through 'sizeof' operator </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>U32 CRC32 hash of data (little endian) </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00047">47</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af1b9df60667a63fe7fd278808b1cd055" name="af1b9df60667a63fe7fd278808b1cd055"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1b9df60667a63fe7fd278808b1cd055">&#9670;&#160;</a></span>incrementCommandCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">U32 Tmtc::TmtcRadioManager::incrementCommandCount </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Destroy the <a class="el" href="classTmtc_1_1TmtcRadioManager.html" title="Component responsible for TMTC radio command and telemetry management.">TmtcRadioManager</a> component instance. </p>
-<dl class="section post"><dt>Postcondition</dt><dd>Resources owned by this instance are released. </dd></dl>
+<p>Increments command counter, should be used as part of every command to ensure command tracking. </p>
+<dl class="section return"><dt>Returns</dt><dd>New command counter value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00023">23</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00042">42</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
 
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a22d9c1168c73eb5ed0672ee8b33d683a" name="a22d9c1168c73eb5ed0672ee8b33d683a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22d9c1168c73eb5ed0672ee8b33d683a">&#9670;&#160;</a></span>NO_OP_cmdHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Tmtc::TmtcRadioManager::NO_OP_cmdHandler </td>
+          <td>(</td>
+          <td class="paramtype">FwOpcodeType&#160;</td>
+          <td class="paramname"><em>opCode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">U32&#160;</td>
+          <td class="paramname"><em>cmdSeq</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handler implementations for commands. </p>
+<p>Handle the NO_OP command. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">opCode</td><td>Opcode associated with this command invocation. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cmdSeq</td><td>Command sequence number for this invocation. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00036">36</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
+
+</div>
+</div>
 <a id="abae597cf930ab15cc8260845a3165365" name="abae597cf930ab15cc8260845a3165365"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abae597cf930ab15cc8260845a3165365">&#9670;&#160;</a></span>timeGetPort_handler()</h2>
 
@@ -234,24 +350,31 @@ Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Handler implementations for ports. </p>
-<p>Handle a request for the current time. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Handle a request for the current time. </p>
+<p>Handler implementations for ports.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">portNum</td><td>Port index that invoked the handler. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">time</td><td>Time object to populate with the current value. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">time</td><td>Time object to populate with the current value.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>time references a valid object. </dd></dl>
-<dl class="section post"><dt>Postcondition</dt><dd>time contains the current time value from the configured source.</dd></dl>
 <p>Handle a request for the current time. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">portNum</td><td>The port number  </td></tr>
+    <tr><td class="paramname">time</td><td>Reference to Time object </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00032">32</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00028">28</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a0678936e60dbeb74ccadd290f8eeb247" name="a0678936e60dbeb74ccadd290f8eeb247"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0678936e60dbeb74ccadd290f8eeb247">&#9670;&#160;</a></span>TODO_cmdHandler()</h2>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a05ac77be3935090bcc5e0129ea7356d5" name="a05ac77be3935090bcc5e0129ea7356d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05ac77be3935090bcc5e0129ea7356d5">&#9670;&#160;</a></span>m_cmdCounter</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -260,43 +383,45 @@ Private Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Tmtc::TmtcRadioManager::TODO_cmdHandler </td>
-          <td>(</td>
-          <td class="paramtype">FwOpcodeType&#160;</td>
-          <td class="paramname"><em>opCode</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">U32&#160;</td>
-          <td class="paramname"><em>cmdSeq</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
+          <td class="memname">U32 Tmtc::TmtcRadioManager::m_cmdCounter = 0</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Handler implementations for commands. </p>
-<p>Handle the TODO command. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">opCode</td><td>Opcode associated with this command invocation. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">cmdSeq</td><td>Command sequence number for this invocation. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section pre"><dt>Precondition</dt><dd>The command dispatcher provides a valid opcode and sequence number. </dd></dl>
-<dl class="section post"><dt>Postcondition</dt><dd>A command response is emitted by the implementation.</dd></dl>
-<p>Handle the TODO command. </p>
+<p>Local command counter used to populate CmdCounter telemetry. </p>
 
-<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00043">43</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8hpp_source.html#l00078">78</a> of file <a class="el" href="TmtcRadioManager_8hpp_source.html">TmtcRadioManager.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a370bf2c10e9983420be75d69e0c7589d" name="a370bf2c10e9983420be75d69e0c7589d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a370bf2c10e9983420be75d69e0c7589d">&#9670;&#160;</a></span>m_hashBuilder</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Utils::Hash Tmtc::TmtcRadioManager::m_hashBuilder</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Utility hash helper used by <a class="el" href="classTmtc_1_1TmtcRadioManager.html#a55cf2e14c75ec15c7f6bb0c1948c07ac" title="Computes CRC32 hash of data.">computeHash()</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8hpp_source.html#l00083">83</a> of file <a class="el" href="TmtcRadioManager_8hpp_source.html">TmtcRadioManager.hpp</a>.</p>
 
 </div>
 </div>

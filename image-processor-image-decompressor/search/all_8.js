@@ -7,5 +7,6 @@ var searchData=
   ['imagedecompressor_2ecpp_4',['ImageDecompressor.cpp',['../ImageDecompressor_8cpp.html',1,'']]],
   ['imagedecompressor_2ehpp_5',['ImageDecompressor.hpp',['../ImageDecompressor_8hpp.html',1,'']]],
   ['imageprocessor_3a_3aimagecompressor_6',['ImageProcessor::ImageCompressor',['../md_FlightComputer_2Components_2ImageProcessor_2ImageCompressor_2docs_2sdd.html',1,'']]],
-  ['imageprocessor_3a_3aimagedecompressor_7',['ImageProcessor::ImageDecompressor',['../md_FlightComputer_2Components_2ImageProcessor_2ImageDecompressor_2docs_2sdd.html',1,'']]]
+  ['imageprocessor_3a_3aimagedecompressor_7',['ImageProcessor::ImageDecompressor',['../md_FlightComputer_2Components_2ImageProcessor_2ImageDecompressor_2docs_2sdd.html',1,'']]],
+  ['incrementcommandcount_8',['incrementCommandCount',['../classTmtc_1_1TmtcRadioManager.html#af1b9df60667a63fe7fd278808b1cd055',1,'Tmtc::TmtcRadioManager']]]
 ];
