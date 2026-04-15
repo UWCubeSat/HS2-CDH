@@ -12,6 +12,15 @@ jobs:
           - uses: actions/checkout@v5
           - run: git submodule update --init --recursive
             shell: bash
+
+          - name: Install GCC 14
+            run: |
+              sudo apt-get update
+              sudo apt-get install -y gcc-14 g++-14
+              echo "CC=gcc-14" >> $GITHUB_ENV
+              echo "CXX=g++-14" >> $GITHUB_ENV
+            shell: bash
+
           - run: pip install fprime-tools fprime-gds
             shell: bash
           - run: python3 -m venv fprime-venv
@@ -33,6 +42,17 @@ jobs:
           - uses: actions/checkout@v5
           - run: git submodule update --init --recursive
             shell: bash
+
+          - name: Install GCC 14 and gcovr 15
+            run: |
+              sudo apt-get update
+              sudo apt-get install -y gcc-14 g++-14
+              pip install gcovr==15.0
+              echo "CC=gcc-14" >> $GITHUB_ENV
+              echo "CXX=g++-14" >> $GITHUB_ENV
+              echo "GCOV=gcov-14" >> $GITHUB_ENV
+            shell: bash
+
           - run: pip install fprime-tools fprime-gds
             shell: bash
           - run: python3 -m venv fprime-venv
@@ -41,15 +61,20 @@ jobs:
             shell: bash
           - run: pip install -r lib/fprime/requirements.txt
             shell: bash
+
           - run: fprime-util generate --ut
             shell: bash
           - run: fprime-util build --ut # Build unit tests
             shell: bash
+
           - name: Run coverage
             run: |
               set -euo pipefail
               LOG_FILE="$(mktemp)"
-              fprime-util check --coverage --path FlightComputer/Components --recursive 2>&1 | tee "$LOG_FILE"
+              fprime-util check --coverage \
+                --path FlightComputer/Components \
+                --recursive \
+                --gcov-executable gcov-14 2>&1 | tee "$LOG_FILE"
               if grep -q "(ERROR)" "$LOG_FILE"; then
                 echo "Coverage reported errors"
                 exit 1
