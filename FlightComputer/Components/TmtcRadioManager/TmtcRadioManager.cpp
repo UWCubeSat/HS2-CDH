@@ -14,9 +14,7 @@ namespace Tmtc {
 // ----------------------------------------------------------------------
 
 TmtcRadioManager ::TmtcRadioManager(const char* const compName) : TmtcRadioManagerComponentBase(compName) {}
-
 TmtcRadioManager ::~TmtcRadioManager() {}
-
 // ----------------------------------------------------------------------
 // Handler implementations for typed input ports
 // ----------------------------------------------------------------------
@@ -41,10 +39,8 @@ U32 TmtcRadioManager ::incrementCommandCount() {
 }
 
 U32 TmtcRadioManager ::computeHash(const void* data, size_t data_size) {
-    m_hashBuilder.init();
-
     Utils::HashBuffer hash_buffer;
-    m_hashBuilder.hash(data, data_size, hash_buffer);
+    Utils::Hash::hash(data, data_size, hash_buffer);
 
     // Convert to little-endian
     return ntohl(hash_buffer.asBigEndianU32());

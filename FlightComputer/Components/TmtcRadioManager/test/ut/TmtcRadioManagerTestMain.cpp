@@ -11,6 +11,11 @@ TEST(Nominal, TestNoOpCommandSuccess) {
     tester.testNoOp();
 }
 
+TEST(Nominal, TestBasicHashCompute) {
+    Tmtc::TmtcRadioManagerTester tester;
+    tester.testComputeHash();
+}
+
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

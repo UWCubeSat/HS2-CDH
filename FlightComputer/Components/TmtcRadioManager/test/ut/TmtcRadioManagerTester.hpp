@@ -43,8 +43,16 @@ class TmtcRadioManagerTester final : public TmtcRadioManagerGTestBase {
     // Tests
     // ----------------------------------------------------------------------
 
-    //! To do
+    /**
+     * @brief Test NoOp Command Success
+     */
     void testNoOp();
+
+    /**
+     * @brief ::computeHash test
+     */
+
+     void testComputeHash();
 
   private:
     // ----------------------------------------------------------------------

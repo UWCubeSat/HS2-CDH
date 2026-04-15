@@ -22,10 +22,11 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
     TmtcRadioManager(const char* const compName  //!< The component name
     );
 
-    //! Destroy TmtcRadioManager object
+    /**
+     * @breif Destructor
+     */
     ~TmtcRadioManager();
 
-  protected:
     /**
      * @brief Computes CRC32 hash of data
      * @param data const void* of data to hash
@@ -33,6 +34,9 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
      * @returns U32 CRC32 hash of data (little endian)
      */
     U32 computeHash(const void* data, size_t data_size);
+
+
+  protected:
 
     /**
      * @brief Icnrements command counter, should be used as part of every command to ensure command tracking

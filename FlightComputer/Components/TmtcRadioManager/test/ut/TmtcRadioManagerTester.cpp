@@ -48,4 +48,13 @@ void TmtcRadioManagerTester ::testNoOp() {
     ASSERT_TLM_CmdCounter_SIZE(1);
 }
 
+void TmtcRadioManagerTester ::testComputeHash() {
+    const U8 TEST_VALUE = 0xCC;
+    const U32 hash_value = this->component.computeHash(static_cast<const void*>(&TEST_VALUE), sizeof(TEST_VALUE));
+    const U32 EXPECTED_VALUE = this->component.computeHash(static_cast<const void*>(&TEST_VALUE), sizeof(TEST_VALUE));
+
+    ASSERT_EQ(hash_value, EXPECTED_VALUE);
+}
+
+
 }  // namespace Tmtc
