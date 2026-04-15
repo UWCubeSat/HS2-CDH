@@ -34,7 +34,6 @@ void EventSchedulerTester ::toDo() {
 
     ASSERT_CMD_RESPONSE_SIZE(1);
     ASSERT_CMD_RESPONSE(0, 0, 0, Fw::CmdResponse::OK);
-
 }
 
 }  // namespace FlightComputer
