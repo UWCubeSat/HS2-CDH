@@ -26,12 +26,12 @@ namespace {
 std::string makeTempDir() {
     char pathTemplate[] = "/tmp/hs2-imgcomp-ut-XXXXXX";
     char* dirPath = mkdtemp(pathTemplate);
-    return (dirPath == nullptr) ? std::string() : std::string(dirPath);
+    return (!dirPath) ? std::string() : std::string(dirPath);
 }
 
 bool writeBytes(const std::string& path, const std::uint8_t* data, const std::size_t size) {
     FILE* file = std::fopen(path.c_str(), "wb");
-    if (file == nullptr) {
+    if (!file) {
         return false;
     }
 
@@ -43,7 +43,7 @@ bool writeBytes(const std::string& path, const std::uint8_t* data, const std::si
 std::vector<std::uint8_t> readBytes(const std::string& path) {
     std::vector<std::uint8_t> data;
     FILE* file = std::fopen(path.c_str(), "rb");
-    if (file == nullptr) {
+    if (!file) {
         return data;
     }
 
@@ -75,7 +75,7 @@ std::vector<std::uint8_t> readBytes(const std::string& path) {
 
 std::size_t getFileSizeBytes(const std::string& path) {
     FILE* file = std::fopen(path.c_str(), "rb");
-    if (file == nullptr) {
+    if (!file) {
         return 0U;
     }
 
@@ -112,7 +112,8 @@ ImageCompressorTester ::~ImageCompressorTester() {
  */
 void ImageCompressorTester ::testEmptyInputPath() {
     Fw::CmdStringArg input("");
-    this->sendCompressCommand(input.toChar(), "output", 0, 1);
+    Fw::CmdStringArg output("output");
+    this->sendCompressCommand(input, output, 0, 1);
     this->assertFailure(ImageCompressor::OPCODE_COMPRESS_IMAGE, input, -1);
 }
 
@@ -121,7 +122,8 @@ void ImageCompressorTester ::testEmptyInputPath() {
  */
 void ImageCompressorTester ::testEmptyOutputDir() {
     Fw::CmdStringArg input("input.raw");
-    this->sendCompressCommand(input.toChar(), "", 0, 1);
+    Fw::CmdStringArg output("");
+    this->sendCompressCommand(input, output, 0, 1);
     this->assertFailure(ImageCompressor::OPCODE_COMPRESS_IMAGE, input, -1);
 }
 
@@ -130,7 +132,8 @@ void ImageCompressorTester ::testEmptyOutputDir() {
  */
 void ImageCompressorTester ::testInvalidAel() {
     Fw::CmdStringArg input("input.raw");
-    this->sendCompressCommand(input.toChar(), "output", -1, 1);
+    Fw::CmdStringArg output("output");
+    this->sendCompressCommand(input, output, -1, 1);
     this->assertFailure(ImageCompressor::OPCODE_COMPRESS_IMAGE, input, -1);
 }
 
@@ -139,7 +142,8 @@ void ImageCompressorTester ::testInvalidAel() {
  */
 void ImageCompressorTester ::testSampleLenTooLarge() {
     Fw::CmdStringArg input("input.raw");
-    this->sendCompressCommand(input.toChar(), "output", 0, 2097153U);
+    Fw::CmdStringArg output("output");
+    this->sendCompressCommand(input, output, 0, 2097153U);
     this->assertFailure(ImageCompressor::OPCODE_COMPRESS_IMAGE, input, -1);
 }
 
@@ -153,7 +157,8 @@ void ImageCompressorTester ::testOutputDirIsFile() {
     ASSERT_TRUE(writeBytes(outputAsFile, &byte, 1U));
 
     Fw::CmdStringArg input("input.raw");
-    this->sendCompressCommand(input.toChar(), invalidOutputDir.c_str(), 0, 1U);
+    Fw::CmdStringArg output(invalidOutputDir.c_str());
+    this->sendCompressCommand(input, output, 0, 1U);
 
     ASSERT_CMD_RESPONSE_SIZE(1);
     ASSERT_CMD_RESPONSE(0, ImageCompressor::OPCODE_COMPRESS_IMAGE, CMD_SEQ, Fw::CmdResponse::EXECUTION_ERROR);
@@ -169,7 +174,9 @@ void ImageCompressorTester ::testCompressionFailureAfterValidation() {
     ASSERT_TRUE(writeBytes(inputPath, payload, sizeof(payload)));
 
     const std::string outputDir = tempDir + "/out";
-    this->sendCompressCommand(inputPath.c_str(), outputDir.c_str(), 0, sizeof(payload));
+    Fw::CmdStringArg input(inputPath.c_str());
+    Fw::CmdStringArg output(outputDir.c_str());
+    this->sendCompressCommand(input, output, 0, sizeof(payload));
 
     ASSERT_CMD_RESPONSE_SIZE(1);
     ASSERT_CMD_RESPONSE(0, ImageCompressor::OPCODE_COMPRESS_IMAGE, CMD_SEQ, Fw::CmdResponse::EXECUTION_ERROR);
@@ -193,7 +200,9 @@ void ImageCompressorTester ::testCompressionSuccessWithAsset() {
     ASSERT_FALSE(tempDir.empty());
     const std::string outputDir = tempDir + "/out";
 
-    this->sendCompressCommand(inputAssetPath.c_str(), outputDir.c_str(), 0, inputSize, 1024, 1024, 1, "u8be");
+    Fw::CmdStringArg input(inputAssetPath.c_str());
+    Fw::CmdStringArg output(outputDir.c_str());
+    this->sendCompressCommand(input, output, 0, inputSize, 1024, 1024, 1, "u8be");
 
     ASSERT_CMD_RESPONSE_SIZE(1);
     ASSERT_CMD_RESPONSE(0, ImageCompressor::OPCODE_COMPRESS_IMAGE, CMD_SEQ, Fw::CmdResponse::OK);
@@ -214,14 +223,16 @@ void ImageCompressorTester ::testCompressionSuccessWithoutOutputSizeTlm() {
 
     char shortTemplate[] = "/tmp/h2c-XXXXXX";
     char* shortDirPath = mkdtemp(shortTemplate);
-    const std::string tempDir = (shortDirPath == nullptr) ? std::string() : std::string(shortDirPath);
+    const std::string tempDir = (!shortDirPath) ? std::string() : std::string(shortDirPath);
     ASSERT_FALSE(tempDir.empty());
 
     const std::string oddInputPath = tempDir + "/a.raw.bak";
     ASSERT_TRUE(writeBytes(oddInputPath, inputData.data(), inputData.size()));
 
     const std::string outputDir = tempDir + "/o";
-    this->sendCompressCommand(oddInputPath.c_str(), outputDir.c_str(), 0, inputData.size(), 1024, 1024, 1, "u8be");
+    Fw::CmdStringArg input(oddInputPath.c_str());
+    Fw::CmdStringArg output(outputDir.c_str());
+    this->sendCompressCommand(input, output, 0, inputData.size(), 1024, 1024, 1, "u8be");
 
     ASSERT_CMD_RESPONSE_SIZE(1);
     ASSERT_CMD_RESPONSE(0, ImageCompressor::OPCODE_COMPRESS_IMAGE, CMD_SEQ, Fw::CmdResponse::OK);
@@ -250,7 +261,9 @@ void ImageCompressorTester ::testCompressionSuccessWithSimpleInputName() {
     const Os::FileSystem::Status mkdirStatus = Os::FileSystem::createDirectory(outputDir.c_str(), true);
     ASSERT_TRUE((mkdirStatus == Os::FileSystem::OP_OK) || (mkdirStatus == Os::FileSystem::ALREADY_EXISTS));
 
-    this->sendCompressCommand(simpleInputPath.c_str(), outputDir.c_str(), 0, inputData.size(), 1024, 1024, 1, "u8be");
+    Fw::CmdStringArg input(simpleInputPath.c_str());
+    Fw::CmdStringArg output(outputDir.c_str());
+    this->sendCompressCommand(input, output, 0, inputData.size(), 1024, 1024, 1, "u8be");
     (void)std::remove(simpleInputPath.c_str());
 
     ASSERT_CMD_RESPONSE_SIZE(1);
@@ -277,7 +290,8 @@ void ImageCompressorTester ::testTimeGetPortNoOp() {
 
 void ImageCompressorTester ::testOutputDirCreateFailure() {
     Fw::CmdStringArg input("input.raw");
-    this->sendCompressCommand(input.toChar(), "/dev/null/hs2-cdh-compress", 0, 1U);
+    Fw::CmdStringArg output("/dev/null/hs2-cdh-compress");
+    this->sendCompressCommand(input, output, 0, 1U);
 
     ASSERT_CMD_RESPONSE_SIZE(1);
     ASSERT_CMD_RESPONSE(0, ImageCompressor::OPCODE_COMPRESS_IMAGE, CMD_SEQ, Fw::CmdResponse::EXECUTION_ERROR);
@@ -292,22 +306,20 @@ void ImageCompressorTester ::testOutputDirCreateFailure() {
  * @param[in] ael Absolute error limit for compression.
  * @param[in] sample_len Number of bytes to provide to the command.
  */
-void ImageCompressorTester ::sendCompressCommand(const char* input_path,
-                                                 const char* output_dir,
+void ImageCompressorTester ::sendCompressCommand(const Fw::CmdStringArg& input_path,
+                                                 const Fw::CmdStringArg& output_dir,
                                                  I32 ael,
                                                  U64 sample_len,
                                                  I32 override_x,
                                                  I32 override_y,
                                                  I32 override_z,
                                                  const char* dtype) {
-    Fw::CmdStringArg cmdInput(input_path);
-    Fw::CmdStringArg cmdOutput(output_dir);
     Fw::CmdStringArg cmdDtype(dtype);
 
     this->sendCmd_COMPRESS_IMAGE(INSTANCE,
                                  CMD_SEQ,
-                                 cmdInput,
-                                 cmdOutput,
+                                 input_path,
+                                 output_dir,
                                  ael,
                                  override_x,
                                  override_y,

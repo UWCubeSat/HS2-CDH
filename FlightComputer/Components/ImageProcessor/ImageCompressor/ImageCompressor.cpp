@@ -23,17 +23,17 @@ namespace ImageProcessor {
 
 namespace {
 
-std::string buildOutputFilePath(const char* input_path, const char* output_dir) {
-    if ((input_path == nullptr) || (output_dir == nullptr)) {  // GCOVR_EXCL_LINE
-        return std::string();                                   // GCOVR_EXCL_LINE
+std::string buildOutputFilePath(const Fw::CmdStringArg& input_file, const Fw::CmdStringArg& output_dir) {
+    if (!input_file.toChar() || !output_dir.toChar()) {
+        return std::string();
     }
 
-    std::string dir(output_dir);
-    if (!dir.empty() && dir.back() != '/') {  // GCOVR_EXCL_BR_LINE
+    std::string dir(output_dir.toChar());
+    if (!dir.empty() && dir.back() != '/') {
         dir.push_back('/');
     }
 
-    std::string file(input_path);
+    std::string file(input_file.toChar());
     const std::size_t slash = file.find_last_of('/');
     if (slash != std::string::npos) {
         file = file.substr(slash + 1U);
@@ -54,17 +54,8 @@ std::string buildOutputFilePath(const char* input_path, const char* output_dir) 
 /**
  * @brief Construct an ImageCompressor component instance.
  */
-// GCOVR_EXCL_START
 ImageCompressor ::ImageCompressor(const char* const compName)
     : ImageCompressorComponentBase(compName) {}
-// GCOVR_EXCL_STOP
-
-/**
- * @brief Destroy the ImageCompressor component instance.
- */
-// GCOVR_EXCL_START
-ImageCompressor ::~ImageCompressor() {}
-// GCOVR_EXCL_STOP
 
 /**
  * @brief Handler implementations for ports.
@@ -94,11 +85,7 @@ void ImageCompressor ::COMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
                                                  I32 override_z,
                                                  const Fw::CmdStringArg& override_dtype,
                                                  U64 image_sample_len) {
-    const char* input_path = input_file.toChar();
-    const char* output_path = output_dir.toChar();
-    const char* dtype = override_dtype.toChar();
-
-    if ((input_path[0] == '\0') || (output_path[0] == '\0')) {
+    if ((input_file.toChar()[0] == '\0') || (output_dir.toChar()[0] == '\0')) {
         this->log_WARNING_HI_CompressionFailed(input_file, -1);
         this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::EXECUTION_ERROR);
         return;
@@ -116,7 +103,7 @@ void ImageCompressor ::COMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
         return;
     }
 
-    const Os::FileSystem::Status mkdir_status = Os::FileSystem::createDirectory(output_path, true);
+    const Os::FileSystem::Status mkdir_status = Os::FileSystem::createDirectory(output_dir.toChar(), true);
     if ((mkdir_status != Os::FileSystem::OP_OK) && (mkdir_status != Os::FileSystem::ALREADY_EXISTS)) {
         this->log_WARNING_HI_CompressionFailed(input_file, -1);
         this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::EXECUTION_ERROR);
@@ -124,7 +111,7 @@ void ImageCompressor ::COMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
     }
 
     U64 input_size = 0;
-    const Os::FileSystem::Status input_size_status = Os::FileSystem::getFileSize(input_path, input_size);
+    const Os::FileSystem::Status input_size_status = Os::FileSystem::getFileSize(input_file.toChar(), input_size);
     if (input_size_status == Os::FileSystem::OP_OK) {
         this->tlmWrite_InputImageSize(input_size);
     }
@@ -135,19 +122,19 @@ void ImageCompressor ::COMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
     const U64 start_ms =
         static_cast<U64>(start_time.getSeconds() * MSEC_PER_SEC + start_time.getUSeconds() / USEC_PER_MSEC);
 
-    const int result = ccsds123_compress_one_image(input_path,
-                                                   output_path,
+    const int result = ccsds123_compress_one_image(input_file.toChar(),
+                                                   output_dir.toChar(),
                                                    ael,
                                                    override_x,
                                                    override_y,
                                                    override_z,
-                                                   dtype);
+                                                   override_dtype.toChar());
 
     const Fw::Time end_time = this->getTime();
     const U64 end_ms =
         static_cast<U64>(end_time.getSeconds() * MSEC_PER_SEC + end_time.getUSeconds() / USEC_PER_MSEC);
 
-    if (end_ms >= start_ms) {  // GCOVR_EXCL_BR_LINE
+    if (end_ms >= start_ms) {
         this->tlmWrite_CompressionTimeMs(static_cast<U32>(end_ms - start_ms));
     }
 
@@ -158,13 +145,13 @@ void ImageCompressor ::COMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
     }
 
     U64 output_size = 0;
-    const std::string output_file_path = buildOutputFilePath(input_path, output_path);
+    const std::string output_file_path = buildOutputFilePath(input_file, output_dir);
     const Os::FileSystem::Status output_size_status =
         Os::FileSystem::getFileSize(output_file_path.c_str(), output_size);
     if (output_size_status == Os::FileSystem::OP_OK) {
         this->tlmWrite_OutputImageSize(output_size);
         F64 ratio = 0.0;
-        if (output_size > 0U) {  // GCOVR_EXCL_BR_LINE
+        if (output_size > 0U) {
             ratio = static_cast<F64>(input_size) / static_cast<F64>(output_size);
             this->tlmWrite_CompressionRatio(ratio);
         }

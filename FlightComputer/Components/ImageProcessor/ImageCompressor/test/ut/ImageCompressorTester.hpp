@@ -116,18 +116,18 @@ class ImageCompressorTester : public ImageCompressorGTestBase {
      * @param[in] input_path Path to the input image file.
      * @param[in] output_dir Path to the output directory.
      * @param[in] ael Absolute error limit for compression.
-    * @param[in] sample_len Number of bytes to provide to the command.
-     * @pre input_path and output_dir point to valid C strings.
+       * @param[in] sample_len Number of bytes to provide to the command.
+       * @pre input_path and output_dir contain valid command string arguments.
      * @post The command is dispatched to the component under test.
      */
-    void sendCompressCommand(const char* input_path,
-                 const char* output_dir,
-                 I32 ael,
-                 U64 sample_len,
-                 I32 override_x = 0,
-                 I32 override_y = 0,
-                 I32 override_z = 0,
-                 const char* dtype = "u16");
+    void sendCompressCommand(const Fw::CmdStringArg& input_path,
+                                           const Fw::CmdStringArg& output_dir,
+                                           I32 ael,
+                                           U64 sample_len,
+                                           I32 override_x = 0,
+                                           I32 override_y = 0,
+                                           I32 override_z = 0,
+                                           const char* dtype = "u16");
 
     /**
      * @brief Assert that the latest command response indicates failure.

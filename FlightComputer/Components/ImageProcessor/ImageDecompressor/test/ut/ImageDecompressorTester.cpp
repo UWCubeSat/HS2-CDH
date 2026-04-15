@@ -31,12 +31,12 @@ namespace {
 std::string makeTempDir() {
     char pathTemplate[] = "/tmp/hs2-imgdecomp-ut-XXXXXX";
     char* dirPath = mkdtemp(pathTemplate);
-    return (dirPath == nullptr) ? std::string() : std::string(dirPath);
+    return (!dirPath) ? std::string() : std::string(dirPath);
 }
 
 bool writeBytes(const std::string& path, const std::uint8_t* data, const std::size_t size) {
     FILE* file = std::fopen(path.c_str(), "wb");
-    if (file == nullptr) {
+    if (!file) {
         return false;
     }
 
@@ -51,12 +51,12 @@ bool renamePath(const std::string& sourcePath, const std::string& destPath) {
 
 bool copyFile(const std::string& sourcePath, const std::string& destPath) {
     FILE* source = std::fopen(sourcePath.c_str(), "rb");
-    if (source == nullptr) {
+    if (!source) {
         return false;
     }
 
     FILE* dest = std::fopen(destPath.c_str(), "wb");
-    if (dest == nullptr) {
+    if (!dest) {
         std::fclose(source);
         return false;
     }
@@ -78,7 +78,7 @@ bool copyFile(const std::string& sourcePath, const std::string& destPath) {
 
 std::size_t getFileSizeBytes(const std::string& path) {
     FILE* file = std::fopen(path.c_str(), "rb");
-    if (file == nullptr) {
+    if (!file) {
         return 0U;
     }
 
@@ -115,7 +115,8 @@ ImageDecompressorTester::~ImageDecompressorTester() {
  */
 void ImageDecompressorTester::testEmptyInputPath() {
     Fw::CmdStringArg input("");
-    this->sendDecompressCommand(input.toChar(), "output", 1);
+    Fw::CmdStringArg output("output");
+    this->sendDecompressCommand(input, output, 1);
     this->assertFailure(ImageDecompressor::OPCODE_DECOMPRESS_IMAGE, input, -1);
 }
 
@@ -124,7 +125,8 @@ void ImageDecompressorTester::testEmptyInputPath() {
  */
 void ImageDecompressorTester::testEmptyOutputDir() {
     Fw::CmdStringArg input("input.bin");
-    this->sendDecompressCommand(input.toChar(), "", 1);
+    Fw::CmdStringArg output("");
+    this->sendDecompressCommand(input, output, 1);
     this->assertFailure(ImageDecompressor::OPCODE_DECOMPRESS_IMAGE, input, -1);
 }
 
@@ -133,7 +135,8 @@ void ImageDecompressorTester::testEmptyOutputDir() {
  */
 void ImageDecompressorTester::testImageSampleLenTooLarge() {
     Fw::CmdStringArg input("input.bin");
-    this->sendDecompressCommand(input.toChar(), "output", 2097153U);
+    Fw::CmdStringArg output("output");
+    this->sendDecompressCommand(input, output, 2097153U);
     this->assertFailure(ImageDecompressor::OPCODE_DECOMPRESS_IMAGE, input, -1);
 }
 
@@ -146,7 +149,9 @@ void ImageDecompressorTester::testImageSampleLenZero() {
     ASSERT_FALSE(tempDir.empty());
     const std::string outputDir = tempDir + "/out";
 
-    this->sendDecompressCommand(inputPath.c_str(), outputDir.c_str(), 0U);
+    Fw::CmdStringArg input(inputPath.c_str());
+    Fw::CmdStringArg output(outputDir.c_str());
+    this->sendDecompressCommand(input, output, 0U);
 
     ASSERT_CMD_RESPONSE_SIZE(1);
     ASSERT_CMD_RESPONSE(0, ImageDecompressor::OPCODE_DECOMPRESS_IMAGE, CMD_SEQ, Fw::CmdResponse::EXECUTION_ERROR);
@@ -168,7 +173,9 @@ void ImageDecompressorTester::testImageSampleLenTooSmall() {
     ASSERT_FALSE(tempDir.empty());
     const std::string outputDir = tempDir + "/out";
 
-    this->sendDecompressCommand(inputPath.c_str(), outputDir.c_str(), 1U);
+    Fw::CmdStringArg input(inputPath.c_str());
+    Fw::CmdStringArg output(outputDir.c_str());
+    this->sendDecompressCommand(input, output, 1U);
 
     ASSERT_CMD_RESPONSE_SIZE(1);
     ASSERT_CMD_RESPONSE(0, ImageDecompressor::OPCODE_DECOMPRESS_IMAGE, CMD_SEQ, Fw::CmdResponse::EXECUTION_ERROR);
@@ -187,7 +194,9 @@ void ImageDecompressorTester::testMissingInputFileAfterValidation() {
 
     const std::string missingInputPath = tempDir + "/missing.bin";
     const std::string outputDir = tempDir + "/out";
-    this->sendDecompressCommand(missingInputPath.c_str(), outputDir.c_str(), 1U);
+    Fw::CmdStringArg input(missingInputPath.c_str());
+    Fw::CmdStringArg output(outputDir.c_str());
+    this->sendDecompressCommand(input, output, 1U);
 
     ASSERT_CMD_RESPONSE_SIZE(1);
     ASSERT_CMD_RESPONSE(0, ImageDecompressor::OPCODE_DECOMPRESS_IMAGE, CMD_SEQ, Fw::CmdResponse::EXECUTION_ERROR);
@@ -209,7 +218,9 @@ void ImageDecompressorTester::testEmptyInputFileAfterValidation() {
     ASSERT_EQ(std::fclose(file), 0);
 
     const std::string outputDir = tempDir + "/out";
-    this->sendDecompressCommand(emptyInputPath.c_str(), outputDir.c_str(), 1U);
+    Fw::CmdStringArg input(emptyInputPath.c_str());
+    Fw::CmdStringArg output(outputDir.c_str());
+    this->sendDecompressCommand(input, output, 1U);
 
     ASSERT_CMD_RESPONSE_SIZE(1);
     ASSERT_CMD_RESPONSE(0, ImageDecompressor::OPCODE_DECOMPRESS_IMAGE, CMD_SEQ, Fw::CmdResponse::EXECUTION_ERROR);
@@ -231,7 +242,9 @@ void ImageDecompressorTester::testDecompressionFailureAfterValidation() {
     ASSERT_TRUE(writeBytes(inputPath, payload, sizeof(payload)));
 
     const std::string outputDir = tempDir + "/out";
-    this->sendDecompressCommand(inputPath.c_str(), outputDir.c_str(), sizeof(payload));
+    Fw::CmdStringArg input(inputPath.c_str());
+    Fw::CmdStringArg output(outputDir.c_str());
+    this->sendDecompressCommand(input, output, sizeof(payload));
 
     ASSERT_CMD_RESPONSE_SIZE(1);
     ASSERT_CMD_RESPONSE(0, ImageDecompressor::OPCODE_DECOMPRESS_IMAGE, CMD_SEQ, Fw::CmdResponse::EXECUTION_ERROR);
@@ -255,7 +268,9 @@ void ImageDecompressorTester::testDecompressionAssetSuccess() {
     ASSERT_FALSE(tempDir.empty());
     const std::string outputDir = tempDir + "/out";
 
-    this->sendDecompressCommand(inputPath.c_str(), outputDir.c_str(), inputSize);
+    Fw::CmdStringArg input(inputPath.c_str());
+    Fw::CmdStringArg output(outputDir.c_str());
+    this->sendDecompressCommand(input, output, inputSize);
 
     ASSERT_CMD_RESPONSE_SIZE(1);
     ASSERT_CMD_RESPONSE(0, ImageDecompressor::OPCODE_DECOMPRESS_IMAGE, CMD_SEQ, Fw::CmdResponse::OK);
@@ -272,7 +287,7 @@ void ImageDecompressorTester::testDecompressionAssetSuccess() {
 void ImageDecompressorTester::testDecompressionSuccessWithGeneratedBitstream() {
     char shortTemplate[] = "/tmp/h2d-XXXXXX";
     char* shortDirPath = mkdtemp(shortTemplate);
-    const std::string tempDir = (shortDirPath == nullptr) ? std::string() : std::string(shortDirPath);
+    const std::string tempDir = (!shortDirPath) ? std::string() : std::string(shortDirPath);
     ASSERT_FALSE(tempDir.empty());
 
     const std::string rawInputPath = tempDir + "/a.raw";
@@ -302,7 +317,9 @@ void ImageDecompressorTester::testDecompressionSuccessWithGeneratedBitstream() {
     const std::uint8_t expectedOut[4] = {0x11, 0x22, 0x33, 0x44};
     ASSERT_TRUE(writeBytes(expectedOutputPath, expectedOut, sizeof(expectedOut)));
 
-    this->sendDecompressCommand(compressedInputPath.c_str(), outputDir.c_str(), inputSize);
+    Fw::CmdStringArg input(compressedInputPath.c_str());
+    Fw::CmdStringArg output(outputDir.c_str());
+    this->sendDecompressCommand(input, output, inputSize);
 
     ASSERT_CMD_RESPONSE_SIZE(1);
     ASSERT_CMD_RESPONSE(0, ImageDecompressor::OPCODE_DECOMPRESS_IMAGE, CMD_SEQ, Fw::CmdResponse::OK);
@@ -325,7 +342,7 @@ void ImageDecompressorTester::testDecompressionSuccessWithGeneratedBitstream() {
 void ImageDecompressorTester::testDecompressionSuccessWithoutOutputSizeTlm() {
     char shortTemplate[] = "/tmp/h2d-XXXXXX";
     char* shortDirPath = mkdtemp(shortTemplate);
-    const std::string tempDir = (shortDirPath == nullptr) ? std::string() : std::string(shortDirPath);
+    const std::string tempDir = (!shortDirPath) ? std::string() : std::string(shortDirPath);
     ASSERT_FALSE(tempDir.empty());
 
     const std::string rawInputPath = tempDir + "/a.raw";
@@ -348,7 +365,9 @@ void ImageDecompressorTester::testDecompressionSuccessWithoutOutputSizeTlm() {
     ASSERT_GT(inputSize, 0U);
 
     const std::string outputDir = tempDir + "/d";
-    this->sendDecompressCommand(compressedInputPath.c_str(), outputDir.c_str(), inputSize);
+    Fw::CmdStringArg input(compressedInputPath.c_str());
+    Fw::CmdStringArg output(outputDir.c_str());
+    this->sendDecompressCommand(input, output, inputSize);
 
     ASSERT_CMD_RESPONSE_SIZE(1);
     ASSERT_CMD_RESPONSE(0, ImageDecompressor::OPCODE_DECOMPRESS_IMAGE, CMD_SEQ, Fw::CmdResponse::OK);
@@ -377,7 +396,9 @@ void ImageDecompressorTester::testDecompressionSuccessWithSimpleInputName() {
     const Os::FileSystem::Status mkdirStatus = Os::FileSystem::createDirectory(outputDir.c_str(), true);
     ASSERT_TRUE((mkdirStatus == Os::FileSystem::OP_OK) || (mkdirStatus == Os::FileSystem::ALREADY_EXISTS));
 
-    this->sendDecompressCommand(simpleInputPath.c_str(), outputDir.c_str(), inputSize + 1U);
+    Fw::CmdStringArg input(simpleInputPath.c_str());
+    Fw::CmdStringArg output(outputDir.c_str());
+    this->sendDecompressCommand(input, output, inputSize + 1U);
     (void)std::remove(simpleInputPath.c_str());
 
     ASSERT_CMD_RESPONSE_SIZE(1);
@@ -404,7 +425,8 @@ void ImageDecompressorTester::testTimeGetPortNoOp() {
 
 void ImageDecompressorTester::testOutputDirCreateFailure() {
     Fw::CmdStringArg input("input.bin");
-    this->sendDecompressCommand(input.toChar(), "/dev/null/hs2-cdh-decompress", 1U);
+    Fw::CmdStringArg output("/dev/null/hs2-cdh-decompress");
+    this->sendDecompressCommand(input, output, 1U);
 
     ASSERT_CMD_RESPONSE_SIZE(1);
     ASSERT_CMD_RESPONSE(0, ImageDecompressor::OPCODE_DECOMPRESS_IMAGE, CMD_SEQ, Fw::CmdResponse::EXECUTION_ERROR);
@@ -418,13 +440,10 @@ void ImageDecompressorTester::testOutputDirCreateFailure() {
  * @param[in] output_dir Path to the output directory.
  * @param[in] image_sample_len Number of bytes to provide to the command.
  */
-void ImageDecompressorTester::sendDecompressCommand(const char* input_path,
-                                                    const char* output_dir,
+void ImageDecompressorTester::sendDecompressCommand(const Fw::CmdStringArg& input_path,
+                                                    const Fw::CmdStringArg& output_dir,
                                                     U64 image_sample_len) {
-    Fw::CmdStringArg cmdInput(input_path);
-    Fw::CmdStringArg cmdOutput(output_dir);
-
-    this->sendCmd_DECOMPRESS_IMAGE(INSTANCE, CMD_SEQ, cmdInput, cmdOutput, image_sample_len);
+    this->sendCmd_DECOMPRESS_IMAGE(INSTANCE, CMD_SEQ, input_path, output_dir, image_sample_len);
     this->component.doDispatch();
 }
 

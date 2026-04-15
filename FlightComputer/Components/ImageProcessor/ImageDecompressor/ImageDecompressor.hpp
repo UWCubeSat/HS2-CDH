@@ -35,7 +35,7 @@ class ImageDecompressor final : public ImageDecompressorComponentBase {
      * @brief Destroy the ImageDecompressor component instance.
      * @post Resources owned by this instance are released.
      */
-    ~ImageDecompressor();
+    ~ImageDecompressor() = default;
 
  private:
     /**

@@ -24,6 +24,8 @@ The main branch must always represent a stable, buildable state.
 
 C++ coding style is enforced using cpplint. All new and modified code must comply with the configured linting rules. We use C++ 14 for this codebase currently.
 
+With the virtual environment. you can do `pip install cpplint==2.0.0`. From there, you can run `cpplint --recursive FlightComputer/Components --counting=detailed` in the root directory to check for any linter issues. You should have 0 linter issues 
+
 Suppressing a warning is permitted only when the warning is not applicable or would reduce clarity. Any suppression must be documented directly in the code with a clear justification.
 
 ## Documentation

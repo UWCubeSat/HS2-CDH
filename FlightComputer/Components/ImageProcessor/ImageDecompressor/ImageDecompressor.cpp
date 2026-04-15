@@ -30,7 +30,7 @@ bool loadBitstreamIntoBuffer(const char* bitstream_path,
                              std::size_t& bytes_loaded) {
     bytes_loaded = 0U;
     FILE* file = std::fopen(bitstream_path, "rb");
-    if (file == nullptr) {
+    if (!file) {
         return false;
     }
 
@@ -46,17 +46,17 @@ bool loadBitstreamIntoBuffer(const char* bitstream_path,
     return true;
 }
 
-std::string buildOutputFilePath(const char* input_path, const char* output_dir) {
-    if (!input_path || !output_dir ) {  // GCOVR_EXCL_LINE
-        return std::string();                                   // GCOVR_EXCL_LINE
+std::string buildOutputFilePath(const Fw::CmdStringArg& input_file, const Fw::CmdStringArg& output_dir) {
+    if (!input_file.toChar() || !output_dir.toChar() ) {
+        return std::string();
     }
 
-    std::string dir(output_dir);
-    if (!dir.empty() && dir.back() != '/') {  // GCOVR_EXCL_BR_LINE
+    std::string dir(output_dir.toChar());
+    if (!dir.empty() && dir.back() != '/') {
         dir.push_back('/');
     }
 
-    std::string file(input_path);
+    std::string file(input_file.toChar());
     const std::size_t slash = file.find_last_of('/');
     if (slash != std::string::npos) {
         file = file.substr(slash + 1U);
@@ -80,17 +80,8 @@ std::string buildOutputFilePath(const char* input_path, const char* output_dir) 
 /**
  * @brief Construct an ImageDecompressor component instance.
  */
-// GCOVR_EXCL_START
 ImageDecompressor::ImageDecompressor(const char* const compName)
     : ImageDecompressorComponentBase(compName) {}
-// GCOVR_EXCL_STOP
-
-/**
- * @brief Destroy the ImageDecompressor component instance.
- */
-// GCOVR_EXCL_START
-ImageDecompressor::~ImageDecompressor() {}
-// GCOVR_EXCL_STOP
 
 /**
  * @brief Handler implementations for ports.
@@ -115,10 +106,7 @@ void ImageDecompressor::DECOMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
                                                     const Fw::CmdStringArg& input_file,
                                                     const Fw::CmdStringArg& output_dir,
                                                     U64 image_sample_len) {
-    const char* input_path = input_file.toChar();
-    const char* output_path = output_dir.toChar();
-
-    if ((input_path[0] == '\0') || (output_path[0] == '\0')) {
+    if ((input_file.toChar()[0] == '\0') || (output_dir.toChar()[0] == '\0')) {
         this->log_WARNING_HI_DecompressionFailed(input_file, -1);
         this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::EXECUTION_ERROR);
         return;
@@ -130,7 +118,7 @@ void ImageDecompressor::DECOMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
         return;
     }
 
-    const Os::FileSystem::Status mkdir_status = Os::FileSystem::createDirectory(output_path, true);
+    const Os::FileSystem::Status mkdir_status = Os::FileSystem::createDirectory(output_dir.toChar(), true);
     if ((mkdir_status != Os::FileSystem::OP_OK) && (mkdir_status != Os::FileSystem::ALREADY_EXISTS)) {
         this->log_WARNING_HI_DecompressionFailed(input_file, -1);
         this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::EXECUTION_ERROR);
@@ -138,7 +126,7 @@ void ImageDecompressor::DECOMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
     }
 
     U64 input_size = 0;
-    const Os::FileSystem::Status input_size_status = Os::FileSystem::getFileSize(input_path, input_size);
+    const Os::FileSystem::Status input_size_status = Os::FileSystem::getFileSize(input_file.toChar(), input_size);
     if (input_size_status == Os::FileSystem::OP_OK) {
         this->tlmWrite_InputBitstreamSize(input_size);
     }
@@ -150,7 +138,7 @@ void ImageDecompressor::DECOMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
         static_cast<U64>(start_time.getSeconds() * MSEC_PER_SEC + start_time.getUSeconds() / USEC_PER_MSEC);
 
     std::size_t bitstream_len = 0U;
-    const bool loaded = loadBitstreamIntoBuffer(input_path,
+    const bool loaded = loadBitstreamIntoBuffer(input_file.toChar(),
                                                 s_bitstreamBuf,
                                                 static_cast<std::size_t>(image_sample_len),
                                                 bitstream_len);
@@ -160,12 +148,13 @@ void ImageDecompressor::DECOMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
         return;
     }
 
-    const int result = ccsds123_decompress_with_buffer(input_path, output_path, s_bitstreamBuf, bitstream_len);
+    const int result =
+        ccsds123_decompress_with_buffer(input_file.toChar(), output_dir.toChar(), s_bitstreamBuf, bitstream_len);
 
     const Fw::Time end_time = this->getTime();
     const U64 end_ms = static_cast<U64>(end_time.getSeconds() * MSEC_PER_SEC + end_time.getUSeconds() / USEC_PER_MSEC);
 
-    if (end_ms >= start_ms) {  // GCOVR_EXCL_BR_LINE
+    if (end_ms >= start_ms) {
         this->tlmWrite_DecompressionTimeMs(static_cast<U32>(end_ms - start_ms));
     }
 
@@ -176,13 +165,13 @@ void ImageDecompressor::DECOMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
     }
 
     U64 output_size = 0;
-    const std::string output_file_path = buildOutputFilePath(input_path, output_path);
+    const std::string output_file_path = buildOutputFilePath(input_file, output_dir);
     const Os::FileSystem::Status output_size_status =
         Os::FileSystem::getFileSize(output_file_path.c_str(), output_size);
     if (output_size_status == Os::FileSystem::OP_OK) {
         this->tlmWrite_OutputImageSize(output_size);
         F64 ratio = 0.0;
-        if (input_size > 0) {  // GCOVR_EXCL_BR_LINE
+        if (input_size > 0) {
             ratio = static_cast<F64>(output_size) / static_cast<F64>(input_size);
             this->tlmWrite_ExpansionRatio(ratio);
         }

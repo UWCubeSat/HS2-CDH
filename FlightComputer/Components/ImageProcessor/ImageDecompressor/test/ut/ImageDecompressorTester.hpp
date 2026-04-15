@@ -134,10 +134,12 @@ class ImageDecompressorTester : public ImageDecompressorGTestBase {
      * @param[in] input_path Path to the input bitstream file.
      * @param[in] output_dir Path to the output directory.
      * @param[in] image_sample_len Number of bytes to provide to the command.
-     * @pre input_path and output_dir point to valid C strings.
+       * @pre input_path and output_dir contain valid command string arguments.
      * @post The command is dispatched to the component under test.
      */
-    void sendDecompressCommand(const char* input_path, const char* output_dir, U64 image_sample_len);
+    void sendDecompressCommand(const Fw::CmdStringArg& input_path,
+                                              const Fw::CmdStringArg& output_dir,
+                                              U64 image_sample_len);
 
     /**
      * @brief Assert that the latest command response indicates failure.
