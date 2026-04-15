@@ -8,4 +8,5 @@ register_fprime_deployment(
         FlightComputer_Components_ImageProcessor_ImageCompressor
         FlightComputer_Components_EventScheduler
         FlightComputer_Components_TmtcRadioManager
+	FlightComputer_Components_ImageProcessor_ImageProcessor
 )

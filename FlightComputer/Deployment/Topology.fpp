@@ -17,10 +17,17 @@ module FlightComputer {
     instance radioMgr: Tmtc.TmtcRadioManager base id 0x10002000 \
         queue size 10
 
+    @ Image Processor Component
+    instance imageProcessor: ImageProcessor.ImageProcessor base id 0x0F00 \
+        queue size 10 \
+        stack size 65536 \
+        priority 100
+
     topology FlightComputer {
         instance imgComp
         instance evtSched
         instance radioMgr
+        instance imageProcessor
     }
 
 }
