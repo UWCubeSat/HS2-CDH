@@ -37,7 +37,12 @@ EventSchedulerTester ::~EventSchedulerTester() {
  * @brief Placeholder test entry point.
  */
 void EventSchedulerTester ::toDo() {
-    // TODO
+    this->sendCmd_TODO(0, 0);
+
+    this->component.doDispatch();
+
+    ASSERT_CMD_RESPONSE_SIZE(1);
+    ASSERT_CMD_RESPONSE(0, 0, 0, Fw::CmdResponse::OK);
 }
 
 }  // namespace FlightComputer

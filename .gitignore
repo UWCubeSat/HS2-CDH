@@ -14,10 +14,5 @@ build-fprime-*
 /.vscode/
 .DS_Store
 *.gcov
-
-# Doxygen docs
 docs/
-
-# Code coverage artifacts
 coverage/
-

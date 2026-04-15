@@ -8,7 +8,7 @@
 #define Tmtc_TmtcRadioManager_HPP
 
 #include "FlightComputer/Components/TmtcRadioManager/TmtcRadioManagerComponentAc.hpp"
-#include "FlightComputer/Types/TmtcRadioTypes/TmtcRadioPacketSerializableAc.hpp"
+#include "Utils/Hash/Hash.hpp"
 
 namespace Tmtc {
 
@@ -30,37 +30,57 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
     TmtcRadioManager(const char* const compName);
 
     /**
-     * @brief Destroy the TmtcRadioManager component instance.
-     * @post Resources owned by this instance are released.
+     * @brief Destructor
      */
-    ~TmtcRadioManager();
+    ~TmtcRadioManager() = default;
+
+    /**
+     * @brief Computes CRC32 hash of data
+     * @param data const void* of data to hash
+     * @param data_size Length of data, preferably through 'sizeof' operator
+     * @returns U32 CRC32 hash of data (little endian)
+     */
+    U32 computeHash(const void* data, size_t data_size);
+
+
+  protected:
+
+    /**
+     * @brief Increments command counter, should be used as part of every command to ensure command tracking
+     * @returns New command counter value
+     */
+    U32 incrementCommandCount();
 
   private:
-    /**
-     * @brief Handler implementations for ports.
-     */
-
     /**
      * @brief Handle a request for the current time.
      * @param[in] portNum Port index that invoked the handler.
      * @param[out] time Time object to populate with the current value.
-     * @pre time references a valid object.
-     * @post time contains the current time value from the configured source.
      */
-    void timeGetPort_handler(FwIndexType portNum, Fw::Time& time) override;
+    void timeGetPort_handler(FwIndexType portNum,  //!< The port number
+                             Fw::Time& time        //!< Reference to Time object
+                             ) override;
 
     /**
      * @brief Handler implementations for commands.
      */
 
     /**
-     * @brief Handle the TODO command.
+     * @brief Handle the NO_OP command.
      * @param[in] opCode Opcode associated with this command invocation.
      * @param[in] cmdSeq Command sequence number for this invocation.
-     * @pre The command dispatcher provides a valid opcode and sequence number.
-     * @post A command response is emitted by the implementation.
      */
-    void TODO_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) override;
+    void NO_OP_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) override;
+
+    /**
+     * @brief Local command counter used to populate CmdCounter telemetry.
+     */
+    U32 m_cmdCounter = 0;
+
+    /**
+     * @brief Utility hash helper used by computeHash().
+     */
+    Utils::Hash m_hashBuilder;
 };
 
 }  // namespace Tmtc
