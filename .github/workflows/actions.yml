@@ -74,7 +74,7 @@ jobs:
               fprime-util check --coverage \
                 --path FlightComputer/Components \
                 --recursive \
-                --gcov-executable gcov-14 2>&1 | tee "$LOG_FILE"
+                --gcov-executable gcov-8.6 2>&1 | tee "$LOG_FILE"
               if grep -q "(ERROR)" "$LOG_FILE"; then
                 echo "Coverage reported errors"
                 exit 1
