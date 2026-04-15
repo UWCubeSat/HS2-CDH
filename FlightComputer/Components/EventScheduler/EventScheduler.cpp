@@ -15,12 +15,7 @@ namespace FlightComputer {
 /**
  * @brief Construct an EventScheduler component instance.
  */
-EventScheduler ::EventScheduler(const char* const compName) : EventSchedulerComponentBase(compName) {}
-
-/**
- * @brief Destroy the EventScheduler component instance.
- */
-EventScheduler ::~EventScheduler() {}
+EventScheduler::EventScheduler(const char* const compName) : EventSchedulerComponentBase(compName) {}
 
 /**
  * @brief Handler implementations for ports.
@@ -40,7 +35,7 @@ void EventScheduler::timeGetPort_handler(FwIndexType portNum, Fw::Time &time) {
 /**
  * @brief Handle the TODO command.
  */
-void EventScheduler ::TODO_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
+void EventScheduler::TODO_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
     // TODO
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
 }

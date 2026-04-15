@@ -56,5 +56,14 @@ void TmtcRadioManagerTester ::testComputeHash() {
     ASSERT_EQ(hash_value, EXPECTED_VALUE);
 }
 
+void TmtcRadioManagerTester ::testTimeGetPortNoOp() {
+    Fw::Time time;
+    this->invoke_to_timeGetPort(0, time);
+
+    ASSERT_CMD_RESPONSE_SIZE(0);
+    ASSERT_EVENTS_SIZE(0);
+    ASSERT_TLM_SIZE(0);
+}
+
 
 }  // namespace Tmtc

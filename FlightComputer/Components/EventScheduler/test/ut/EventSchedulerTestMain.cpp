@@ -11,6 +11,16 @@ TEST(Nominal, toDo) {
     tester.toDo();
 }
 
+TEST(Validation, TimeGetPortNoOp) {
+    FlightComputer::EventSchedulerTester tester;
+    tester.testTimeGetPortNoOp();
+}
+
+TEST(Nominal, DummyCall) {
+    FlightComputer::EventSchedulerTester tester;
+    tester.toDo();
+}
+
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

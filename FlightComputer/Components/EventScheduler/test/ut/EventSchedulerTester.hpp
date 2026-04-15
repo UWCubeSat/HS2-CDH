@@ -61,6 +61,11 @@ class EventSchedulerTester final : public EventSchedulerGTestBase {
      */
     void toDo();
 
+    /**
+     * @brief Invoke the time get port (coverage helper).
+     */
+    void testTimeGetPortNoOp();
+
   private:
     /**
      * @brief Helper functions.

@@ -44,7 +44,6 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
 
 
   protected:
-
     /**
      * @brief Increments command counter, should be used as part of every command to ensure command tracking
      * @returns New command counter value
@@ -57,9 +56,7 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
      * @param[in] portNum Port index that invoked the handler.
      * @param[out] time Time object to populate with the current value.
      */
-    void timeGetPort_handler(FwIndexType portNum,  //!< The port number
-                             Fw::Time& time        //!< Reference to Time object
-                             ) override;
+    void timeGetPort_handler(FwIndexType portNum, Fw::Time& time) override;
 
     /**
      * @brief Handler implementations for commands.

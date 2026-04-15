@@ -32,7 +32,7 @@ class EventScheduler final : public EventSchedulerComponentBase {
      * @brief Destroy the EventScheduler component instance.
      * @post Resources owned by this instance are released.
      */
-    ~EventScheduler();
+    ~EventScheduler() = default;
 
   private:
     /**

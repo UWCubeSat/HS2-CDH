@@ -54,6 +54,11 @@ class TmtcRadioManagerTester final : public TmtcRadioManagerGTestBase {
 
      void testComputeHash();
 
+    /**
+     * @brief Invoke the time get port (coverage helper).
+     */
+    void testTimeGetPortNoOp();
+
   private:
     // ----------------------------------------------------------------------
     // Helper functions

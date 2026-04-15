@@ -45,4 +45,12 @@ void EventSchedulerTester ::toDo() {
     ASSERT_CMD_RESPONSE(0, 0, 0, Fw::CmdResponse::OK);
 }
 
+void EventSchedulerTester ::testTimeGetPortNoOp() {
+    Fw::Time time;
+    this->invoke_to_timeGetPort(0, time);
+
+    ASSERT_CMD_RESPONSE_SIZE(0);
+    ASSERT_TLM_SIZE(0);
+}
+
 }  // namespace FlightComputer
