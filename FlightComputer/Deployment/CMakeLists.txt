@@ -6,6 +6,7 @@ register_fprime_deployment(
         main.cpp
     DEPENDS
         FlightComputer_Components_ImageProcessor_ImageCompressor
+        FlightComputer_Components_ImageProcessor_ImageDecompressor
         FlightComputer_Components_EventScheduler
         FlightComputer_Components_TmtcRadioManager
 )

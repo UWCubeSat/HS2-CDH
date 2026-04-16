@@ -1,14 +1,15 @@
-// ======================================================================
-// \title  ImageCompressor.cpp
-// \author mahiremran
-// \brief  cpp file for ImageCompressor component implementation class
-// ======================================================================
+/**
+ * @file FlightComputer/Components/ImageProcessor/ImageCompressor/ImageCompressor.cpp
+ * @author mahiremran
+ * @brief cpp file for ImageCompressor component implementation class
+ */
 
 #include "FlightComputer/Components/ImageProcessor/ImageCompressor/ImageCompressor.hpp"
 
 #include <string>
 
-std::int64_t ImageProcessor::ImageCompressor::s_imageSampleBuf[ImageProcessor::ImageCompressor::kImageSampleBufElems] = {};
+std::uint8_t ImageProcessor::ImageCompressor::s_imageSampleBuf[
+    ImageProcessor::ImageCompressor::kImageSampleBufBytes] = {};
 
 #include "Fw/Time/Time.hpp"
 #include "Os/FileSystem.hpp"
@@ -22,17 +23,17 @@ namespace ImageProcessor {
 
 namespace {
 
-std::string buildOutputFilePath(const char* input_path, const char* output_dir) {
-    if ((input_path == nullptr) || (output_dir == nullptr)) {
+std::string buildOutputFilePath(const Fw::CmdStringArg& input_file, const Fw::CmdStringArg& output_dir) {
+    if (!input_file.toChar() || !output_dir.toChar()) {
         return std::string();
     }
 
-    std::string dir(output_dir);
+    std::string dir(output_dir.toChar());
     if (!dir.empty() && dir.back() != '/') {
         dir.push_back('/');
     }
 
-    std::string file(input_path);
+    std::string file(input_file.toChar());
     const std::size_t slash = file.find_last_of('/');
     if (slash != std::string::npos) {
         file = file.substr(slash + 1U);
@@ -42,32 +43,38 @@ std::string buildOutputFilePath(const char* input_path, const char* output_dir) 
     if (dot != std::string::npos) {
         file = file.substr(0U, dot);
     }
-
-    file += ".bin";
     return dir + file;
 }
 }  // namespace
 
-// ----------------------------------------------------------------------
-// Component construction and destruction
-// ----------------------------------------------------------------------
+/**
+ * @brief Component construction and destruction.
+ */
 
-ImageCompressor ::ImageCompressor(const char* const compName) : ImageCompressorComponentBase(compName) {}
+/**
+ * @brief Construct an ImageCompressor component instance.
+ */
+ImageCompressor ::ImageCompressor(const char* const compName)
+    : ImageCompressorComponentBase(compName) {}
 
-ImageCompressor ::~ImageCompressor() {}
+/**
+ * @brief Handler implementations for ports.
+ */
 
-// ----------------------------------------------------------------------
-// Handler implementations for ports
-// ----------------------------------------------------------------------
-
+/**
+ * @brief Handle a request for the current time.
+ */
 void ImageCompressor::timeGetPort_handler(FwIndexType portNum, Fw::Time &time) {
     // nothing to do
 }
 
-// ----------------------------------------------------------------------
-// Handler implementations for commands
-// ----------------------------------------------------------------------
+/**
+ * @brief Handler implementations for commands.
+ */
 
+/**
+ * @brief Compress a raw image into a bitstream.
+ */
 void ImageCompressor ::COMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
                                                  U32 cmdSeq,
                                                  const Fw::CmdStringArg& input_file,
@@ -78,17 +85,7 @@ void ImageCompressor ::COMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
                                                  I32 override_z,
                                                  const Fw::CmdStringArg& override_dtype,
                                                  U64 image_sample_len) {
-    const char* input_path = input_file.toChar();
-    const char* output_path = output_dir.toChar();
-    const char* dtype = override_dtype.toChar();
-
-    if ((input_path == nullptr) || (output_path == nullptr)) {
-        this->log_WARNING_HI_CompressionFailed(input_file, -1);
-        this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::EXECUTION_ERROR);
-        return;
-    }
-
-    if ((input_path[0] == '\0') || (output_path[0] == '\0')) {
+    if ((input_file.toChar()[0] == '\0') || (output_dir.toChar()[0] == '\0')) {
         this->log_WARNING_HI_CompressionFailed(input_file, -1);
         this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::EXECUTION_ERROR);
         return;
@@ -100,13 +97,13 @@ void ImageCompressor ::COMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
         return;
     }
 
-    if (image_sample_len > kImageSampleBufElems) {
+    if (image_sample_len > kImageSampleBufBytes) {
         this->log_WARNING_HI_CompressionFailed(input_file, -1);
         this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::EXECUTION_ERROR);
         return;
     }
 
-    const Os::FileSystem::Status mkdir_status = Os::FileSystem::createDirectory(output_path, true);
+    const Os::FileSystem::Status mkdir_status = Os::FileSystem::createDirectory(output_dir.toChar(), true);
     if ((mkdir_status != Os::FileSystem::OP_OK) && (mkdir_status != Os::FileSystem::ALREADY_EXISTS)) {
         this->log_WARNING_HI_CompressionFailed(input_file, -1);
         this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::EXECUTION_ERROR);
@@ -114,7 +111,7 @@ void ImageCompressor ::COMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
     }
 
     U64 input_size = 0;
-    const Os::FileSystem::Status input_size_status = Os::FileSystem::getFileSize(input_path, input_size);
+    const Os::FileSystem::Status input_size_status = Os::FileSystem::getFileSize(input_file.toChar(), input_size);
     if (input_size_status == Os::FileSystem::OP_OK) {
         this->tlmWrite_InputImageSize(input_size);
     }
@@ -125,15 +122,13 @@ void ImageCompressor ::COMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
     const U64 start_ms =
         static_cast<U64>(start_time.getSeconds() * MSEC_PER_SEC + start_time.getUSeconds() / USEC_PER_MSEC);
 
-    const int result = ccsds123_compress_with_buffer(input_path,
-                                                     output_path,
-                                                     ael,
-                                                     override_x,
-                                                     override_y,
-                                                     override_z,
-                                                     dtype,
-                                                     s_imageSampleBuf,
-                                                     static_cast<size_t>(image_sample_len));
+    const int result = ccsds123_compress_one_image(input_file.toChar(),
+                                                   output_dir.toChar(),
+                                                   ael,
+                                                   override_x,
+                                                   override_y,
+                                                   override_z,
+                                                   override_dtype.toChar());
 
     const Fw::Time end_time = this->getTime();
     const U64 end_ms =
@@ -150,19 +145,17 @@ void ImageCompressor ::COMPRESS_IMAGE_cmdHandler(FwOpcodeType opCode,
     }
 
     U64 output_size = 0;
-    const std::string output_file_path = buildOutputFilePath(input_path, output_path);
-    const Os::FileSystem::Status output_size_status = output_file_path.empty()
-                                                        ? Os::FileSystem::OTHER_ERROR
-                                                        : Os::FileSystem::getFileSize(output_file_path.c_str(), output_size);
+    const std::string output_file_path = buildOutputFilePath(input_file, output_dir);
+    const Os::FileSystem::Status output_size_status =
+        Os::FileSystem::getFileSize(output_file_path.c_str(), output_size);
     if (output_size_status == Os::FileSystem::OP_OK) {
         this->tlmWrite_OutputImageSize(output_size);
-        if (output_size > 0) {
-            const F64 ratio = static_cast<F64>(input_size) / static_cast<F64>(output_size);
+        F64 ratio = 0.0;
+        if (output_size > 0U) {
+            ratio = static_cast<F64>(input_size) / static_cast<F64>(output_size);
             this->tlmWrite_CompressionRatio(ratio);
-            this->log_ACTIVITY_HI_CompressionSucceeded(input_file, output_size, ratio);
-        } else {
-            this->log_ACTIVITY_HI_CompressionSucceeded(input_file, output_size, 0.0);
         }
+        this->log_ACTIVITY_HI_CompressionSucceeded(input_file, output_size, ratio);
     } else {
         this->log_ACTIVITY_HI_CompressionSucceeded(input_file, output_size, 0.0);
     }

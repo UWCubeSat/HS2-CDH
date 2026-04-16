@@ -2,6 +2,9 @@
 
 on: [push, pull_request]
 
+permissions:
+  contents: write
+
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -9,6 +12,7 @@ jobs:
           - uses: actions/checkout@v5
           - run: git submodule update --init --recursive
             shell: bash
+
           - run: pip install fprime-tools fprime-gds
             shell: bash
           - run: python3 -m venv fprime-venv
@@ -23,7 +27,7 @@ jobs:
             shell: bash
           - run: fprime-util build
             shell: bash
-    
+
     test:
         runs-on: ubuntu-latest
         steps:
@@ -42,7 +46,62 @@ jobs:
             shell: bash
           - run: fprime-util build --ut # Build unit tests
             shell: bash
-          - run: fprime-util check --coverage # Run unit tests and generate HTML files in coverage/ folder
+
+          - name: Run coverage
+            run: |
+              set -euo pipefail
+              LOG_FILE="$(mktemp)"
+              fprime-util check --coverage --path FlightComputer/Components --recursive 2>&1 | tee "$LOG_FILE"
+              if grep -q "(ERROR)" "$LOG_FILE"; then
+                echo "Coverage reported errors"
+                exit 1
+              fi
             shell: bash
-    
+
     # TODO: Cross-compile step!
+
+    documentation:
+        if: github.event_name == 'push'
+        runs-on: ubuntu-latest
+        container: huskysat/found:latest
+
+        steps:
+          - uses: actions/checkout@v5
+
+          - name: Install Doxygen and rsync
+            run: |
+              apt-get update
+              apt-get install -y doxygen rsync
+            shell: bash
+
+          - name: Generate Documentation
+            run: |
+              set -euo pipefail
+              if [ ! -f Doxyfile ]; then
+                echo "Doxyfile not found at repository root"
+                exit 1
+              fi
+              LOG_FILE="$(mktemp)"
+              doxygen Doxyfile 2>&1 | tee "$LOG_FILE"
+              if grep -Eiq '(^|[[:space:]])(warning|error):' "$LOG_FILE"; then
+                echo "Doxygen reported warnings/errors"
+                exit 1
+              fi
+            shell: bash
+
+          - name: Set Target Folder in documentation
+            id: set-folder
+            run: |
+              if [ "${{ github.ref_name }}" = "main" ]; then
+                echo "target_folder=." >> "$GITHUB_OUTPUT"
+              else
+                echo "target_folder=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+              fi
+            shell: bash
+
+          - name: Upload Pages Artifact
+            uses: JamesIves/github-pages-deploy-action@v4
+            with:
+              branch: documentation
+              folder: docs/documentation/
+              target-folder: ${{ steps.set-folder.outputs.target_folder }}

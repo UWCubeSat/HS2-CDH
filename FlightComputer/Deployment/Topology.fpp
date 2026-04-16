@@ -11,6 +11,9 @@ module FlightComputer {
     instance imgComp: ImageProcessor.ImageCompressor base id 0x10000000 \
         queue size 10
 
+    instance imgDecomp: ImageProcessor.ImageDecompressor base id 0x10003000 \
+        queue size 10
+
     instance evtSched: FlightComputer.EventScheduler base id 0x10001000 \
         queue size 10
 
@@ -19,6 +22,7 @@ module FlightComputer {
 
     topology FlightComputer {
         instance imgComp
+        instance imgDecomp
         instance evtSched
         instance radioMgr
     }

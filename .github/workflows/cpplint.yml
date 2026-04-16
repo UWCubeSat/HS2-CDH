@@ -1,0 +1,72 @@
+name: "Code Scan: Cpplint"
+
+on:
+  push:
+  pull_request:
+    branches: [ main ]
+
+# Cancel in-progress runs if a newer run is started on a given PR
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ !contains(github.ref, 'main') && !contains(github.ref, 'develop')}}
+
+jobs:
+  cpplint:
+    name: Cpplint Style Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install cpplint
+        run: pip install cpplint==2.0.0
+
+      - name: Run cpplint
+        shell: bash
+        run: |
+          default_branch="${{ github.event.repository.default_branch }}"
+          diff_head="${{ github.sha }}"
+          diff_base=""
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            diff_head="${{ github.event.pull_request.head.sha }}"
+            # PRs should lint only changes introduced against the base branch.
+            diff_base="$(git merge-base "origin/$default_branch" "$diff_head" || true)"
+          elif [ "${{ github.ref_name }}" = "$default_branch" ]; then
+            # On default-branch pushes, lint only what this push introduced.
+            diff_base="${{ github.event.before }}"
+          else
+            # On feature-branch pushes, ignore merge-from-main noise and lint
+            # only changes unique to the branch when compared to default branch.
+            diff_base="$(git merge-base "origin/$default_branch" "$diff_head" || true)"
+          fi
+
+          if [ -z "$diff_base" ] || [ "$diff_base" = "0000000000000000000000000000000000000000" ]; then
+            diff_base="$(git hash-object -t tree /dev/null)"
+          fi
+
+          mapfile -t changed_files < <(
+            git diff --name-only --diff-filter=ACMR "$diff_base" "$diff_head" -- '*.c' '*.cc' '*.cpp' '*.h' '*.hh' '*.hpp' |
+            { grep -Ev '^(build-artifacts/|build-fprime-[^/]+/|lib/)' || true; }
+          )
+
+          if [ "${#changed_files[@]}" -eq 0 ]; then
+            echo "No changed C/C++ files to lint."
+            exit 0
+          fi
+
+          # Keep checks that catch common hygiene issues, but suppress
+          # high-noise style rules that currently block contributor PRs.
+          CPPLINT_FILTERS="-legal/copyright,-build/header_guard,-readability/todo,-build/include_subdir,-whitespace/indent,-whitespace/indent_namespace,-whitespace/parens,-whitespace/comments,-whitespace/line_length"
+
+          printf 'Linting files:\n%s\n' "${changed_files[@]}"
+          cpplint --counting=detailed --linelength=120 --filter="$CPPLINT_FILTERS" "${changed_files[@]}"
+          echo "Cpplint scan completed. Review output above for style issues."

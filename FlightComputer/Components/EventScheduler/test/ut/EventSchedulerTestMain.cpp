@@ -1,12 +1,22 @@
-// ======================================================================
-// \title  EventSchedulerTestMain.cpp
-// \author ojeet
-// \brief  cpp file for EventScheduler component test main function
-// ======================================================================
+/**
+ * @file FlightComputer/Components/EventScheduler/test/ut/EventSchedulerTestMain.cpp
+ * @author ojeet
+ * @brief cpp file for EventScheduler component test main function
+ */
 
 #include "EventSchedulerTester.hpp"
 
 TEST(Nominal, toDo) {
+    FlightComputer::EventSchedulerTester tester;
+    tester.toDo();
+}
+
+TEST(Validation, TimeGetPortNoOp) {
+    FlightComputer::EventSchedulerTester tester;
+    tester.testTimeGetPortNoOp();
+}
+
+TEST(Nominal, DummyCall) {
     FlightComputer::EventSchedulerTester tester;
     tester.toDo();
 }

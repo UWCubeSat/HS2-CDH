@@ -19,7 +19,7 @@ Supported platforms:
 Required tools:
 
 - CMake 3.16 or newer
-- GCC or Clang with C++11 support
+- GCC or Clang with C++14 support
 - Python 3.9 or newer
 
 F Prime tools:
@@ -77,6 +77,26 @@ Tests can be run with:
 ```bash
 fprime-util check
 ```
+
+Coverage for project components (recommended):
+```bash
+fprime-util check --coverage --path FlightComputer/Components --recursive
+```
+
+On macOS with Homebrew GCC, use this flow to avoid sanitizer link failures and gcov version mismatches:
+```bash
+source fprime-venv/bin/activate
+export CC=/opt/homebrew/bin/gcc-15
+export CXX=/opt/homebrew/bin/g++-15
+fprime-util generate --ut --disable-sanitizers -f
+fprime-util check --coverage --path FlightComputer/Components --recursive --pass-through --gcov-executable /opt/homebrew/bin/gcov-15
+```
+
+Coverage for a single component (example with ImageDecompressor component):
+```bash
+fprime-util check --coverage --path FlightComputer/Components/ImageProcessor/ImageDecompressor
+```
+
 
 ## Contributing
 
