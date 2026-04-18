@@ -2,9 +2,11 @@ module Tmtc {
     @ Manages Endurosat radio communications
     active component TmtcRadioManager {
 
-        ##############################################################################
-        #### Uncomment the following examples to start customizing your component ####
-        ##############################################################################
+        output port uartBusSend: Drv.ByteStreamSend
+
+        guarded input port uartBusRecv: Drv.ByteStreamData
+
+        guarded input port uartBusReady: Drv.ByteStreamReady
 
         # @ Command NO_OP (TODO: Hook or drop??)
         async command NO_OP opcode 0x0
@@ -12,17 +14,10 @@ module Tmtc {
         # @ Telemetry CmdCounter
         telemetry CmdCounter: U32
 
-        # @ Example event
-        # event ExampleStateEvent(example_state: Fw.On) severity activity high id 0 format "State set to {}"
-
         # @ NO_OP command receive event
         event NoOpEvent severity command format "NO_OP command received"
 
-        # @ Example port: receiving calls from the rate group
-        # sync input port run: Svc.Sched
-
-        # @ Example parameter
-        # param PARAMETER_NAME: U32
+        event RecvFailEvent severity warning high format "UART recv error"
 
         ###############################################################################
         # Standard AC Ports: Required for Channels, Events, Commands, and Parameters  #
@@ -47,6 +42,5 @@ module Tmtc {
 
         @Port to set the value of a parameter
         param set port prmSetOut
-
     }
 }

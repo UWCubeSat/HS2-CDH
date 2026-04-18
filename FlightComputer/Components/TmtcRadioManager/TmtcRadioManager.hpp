@@ -70,6 +70,17 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
     void NO_OP_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) override;
 
     /**
+     * @brief Handles an invocation on the uartBusReady port
+     */
+    void uartBusReady_handler(FwIndexType portNum) override;
+
+    /**
+     * @brief Handles an invocation on the uartBusRecv port
+     */
+    void uartBusRecv_handler(FwIndexType portNum, Fw::Buffer& buffer,
+                             const Drv::ByteStreamStatus& status) override;
+
+    /**
      * @brief Local command counter used to populate CmdCounter telemetry.
      */
     U32 m_cmdCounter = 0;
