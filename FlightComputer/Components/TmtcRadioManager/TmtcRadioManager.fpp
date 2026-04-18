@@ -19,6 +19,10 @@ module Tmtc {
 
         event RecvFailEvent severity warning high format "UART recv error"
 
+        event RecvZeroEvent severity warning low format "UART received zero bytes"
+
+        event RecvNonZeroBytes(byteCount: U32) severity diagnostic format "UART received {} bytes"
+
         ###############################################################################
         # Standard AC Ports: Required for Channels, Events, Commands, and Parameters  #
         ###############################################################################

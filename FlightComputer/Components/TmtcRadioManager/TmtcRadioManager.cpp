@@ -45,7 +45,25 @@ void TmtcRadioManager::uartBusRecv_handler(FwIndexType portNum,
     if (status == Drv::ByteStreamStatus::OTHER_ERROR) {
         this->log_WARNING_HI_RecvFailEvent();
     }
+    
+    else if (status == Drv::ByteStreamStatus::RECV_NO_DATA) {
+        this->log_WARNING_LO_RecvZeroEvent();
+    }
 
+    else {
+        /* TODO: write handlers for bytes transmitted by s-band
+        transceiver
+        
+        Need:
+            - Verify headers
+            - Verify length
+            - log data received
+        */
+        U32 recv_size = buffer.getSize();
+        this->log_DIAGNOSTIC_RecvNonZeroBytes(recv_size);
+        
+
+    }
 
 }
 
