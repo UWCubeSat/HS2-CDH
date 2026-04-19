@@ -50,6 +50,15 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
      */
     U32 incrementCommandCount();
 
+    /**
+     * @brief Write to UART helper method
+     * @param portNum Port number
+     * @param buffer Buffer of bytes to send
+     * 
+     * @returns Drv::ByteStreamStatus
+     */
+     Drv::ByteStreamStatus write(FwIndexType portNum, Fw::Buffer& buffer);
+
   private:
     /**
      * @brief Handle a request for the current time.
@@ -71,11 +80,15 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
 
     /**
      * @brief Handles an invocation on the uartBusReady port
+     * @param portNum Port number
      */
     void uartBusReady_handler(FwIndexType portNum) override;
 
     /**
      * @brief Handles an invocation on the uartBusRecv port
+     * @param portNum Port number
+     * @param buffer Buffer of data received
+     * @param status Current status of most recent recv() call
      */
     void uartBusRecv_handler(FwIndexType portNum, Fw::Buffer& buffer,
                              const Drv::ByteStreamStatus& status) override;
@@ -89,6 +102,8 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
      * @brief Utility hash helper used by computeHash().
      */
     Utils::Hash m_hashBuilder;
+
+    bool m_uartReady = false;
 };
 
 }  // namespace Tmtc

@@ -17,14 +17,14 @@ void TmtcRadioManager::timeGetPort_handler(FwIndexType portNum, Fw::Time& time) 
 
 
 void TmtcRadioManager::NO_OP_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
-    this->log_COMMAND_NoOpEvent();
-    this->tlmWrite_CmdCounter(incrementCommandCount());
-    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+    log_COMMAND_NoOpEvent();
+    tlmWrite_CmdCounter(incrementCommandCount());
+    cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
 }
 
 U32 TmtcRadioManager::incrementCommandCount() {
-    this->m_cmdCounter += 1;
-    return this->m_cmdCounter;
+    m_cmdCounter += 1;
+    return m_cmdCounter;
 }
 
 U32 TmtcRadioManager::computeHash(const void* data, size_t data_size) {
@@ -35,19 +35,30 @@ U32 TmtcRadioManager::computeHash(const void* data, size_t data_size) {
     return ntohl(hash_buffer.asBigEndianU32());
 }
 
-void TmtcRadioManager::uartBusReady_handler(FwIndexType portnum) {
+void TmtcRadioManager::uartBusReady_handler(FwIndexType portNum) {
+    log_DIAGNOSTIC_UartBusReady();
+    m_uartReady = true;
+}
 
+Drv::ByteStreamStatus TmtcRadioManager::write(FwIndexType portNum, Fw::Buffer& buffer) {
+    if (m_uartReady) {
+        log_WARNING_LO_AttemptWriteUartNotReady();
+        return Drv::ByteStreamStatus::OTHER_ERROR;
+    }
+
+    log_DIAGNOSTIC_AttemptUartSend(buffer.getSize());
+    return uartBusSend_out(portNum, buffer);
 }
 
 void TmtcRadioManager::uartBusRecv_handler(FwIndexType portNum,
                                             Fw::Buffer& buffer,
                                             const Drv::ByteStreamStatus& status) {
     if (status == Drv::ByteStreamStatus::OTHER_ERROR) {
-        this->log_WARNING_HI_RecvFailEvent();
+        log_WARNING_HI_RecvFailEvent();
     }
-    
+
     else if (status == Drv::ByteStreamStatus::RECV_NO_DATA) {
-        this->log_WARNING_LO_RecvZeroEvent();
+        log_WARNING_LO_RecvZeroEvent();
     }
 
     else {
@@ -60,11 +71,8 @@ void TmtcRadioManager::uartBusRecv_handler(FwIndexType portNum,
             - log data received
         */
         U32 recv_size = buffer.getSize();
-        this->log_DIAGNOSTIC_RecvNonZeroBytes(recv_size);
-        
-
+        log_DIAGNOSTIC_RecvNonZeroBytes(recv_size);
     }
-
 }
 
 }  // namespace Tmtc

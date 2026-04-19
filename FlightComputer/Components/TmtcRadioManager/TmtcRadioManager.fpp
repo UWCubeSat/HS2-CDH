@@ -23,6 +23,12 @@ module Tmtc {
 
         event RecvNonZeroBytes(byteCount: U32) severity diagnostic format "UART received {} bytes"
 
+        event UartBusReady severity diagnostic format "UART bus ready"
+
+        event AttemptWriteUartNotReady severity warning low format "Cannot send data when UART bus is not ready"
+
+        event AttemptUartSend(byteCount: U32) severity diagnostic format "Attempting UART transmit of size {} "
+
         ###############################################################################
         # Standard AC Ports: Required for Channels, Events, Commands, and Parameters  #
         ###############################################################################
