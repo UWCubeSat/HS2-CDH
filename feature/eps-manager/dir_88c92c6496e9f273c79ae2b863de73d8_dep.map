@@ -1,0 +1,7 @@
+<map id="FlightComputer/Components" name="FlightComputer/Components">
+<area shape="rect" id="node2" href="dir_e468440beb25d6d9d18534d00ea756eb.html" title="EventScheduler" alt="" coords="363,63,485,88"/>
+<area shape="rect" id="node3" href="dir_45b8a92156cbb6d0a9a8976458a13d64.html" title="ImageProcessor" alt="" coords="211,63,338,88"/>
+<area shape="rect" id="node4" href="dir_7a9ccb9b20b89037d351c57c45e5a029.html" title="TmtcRadioManager" alt="" coords="37,63,187,88"/>
+<area shape="rect" id="clust2" href="dir_88c92c6496e9f273c79ae2b863de73d8.html" alt="" coords="27,52,624,99"/>
+<area shape="rect" id="clust1" href="dir_453f6cf47ce7865d6120394bfa99c53e.html" title="FlightComputer" alt="" coords="16,16,635,109"/>
+</map>
