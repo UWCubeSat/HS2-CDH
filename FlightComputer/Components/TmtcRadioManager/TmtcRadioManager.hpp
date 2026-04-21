@@ -9,6 +9,9 @@
 
 #include "FlightComputer/Components/TmtcRadioManager/TmtcRadioManagerComponentAc.hpp"
 #include "Utils/Hash/Hash.hpp"
+#include "EndurosatConstants.hpp"
+#include "FlightComputer/Types/TmtcRadioTypes/TmtcRadioPacketSerializableAc.hpp"
+
 
 namespace Tmtc {
 
