@@ -9,6 +9,11 @@
 
 #include "FlightComputer/Components/TmtcRadioManager/TmtcRadioManagerComponentAc.hpp"
 #include "Utils/Hash/Hash.hpp"
+#include "EndurosatConstants.hpp"
+#include "FlightComputer/Types/TmtcRadioTypes/TmtcRadioPacketSerializableAc.hpp"
+
+#include <atomic>
+
 
 namespace Tmtc {
 
@@ -45,10 +50,13 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
 
   protected:
     /**
-     * @brief Increments command counter, should be used as part of every command to ensure command tracking
-     * @returns New command counter value
+     * @brief Write to UART helper method
+     * @param portNum Port number
+     * @param buffer Buffer of bytes to send
+     * 
+     * @returns Drv::ByteStreamStatus
      */
-    U32 incrementCommandCount();
+     Drv::ByteStreamStatus write(FwIndexType portNum, Fw::Buffer& buffer);
 
   private:
     /**
@@ -70,6 +78,21 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
     void NO_OP_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) override;
 
     /**
+     * @brief Handles an invocation on the uartBusReady port
+     * @param portNum Port number
+     */
+    void uartBusReady_handler(FwIndexType portNum) override;
+
+    /**
+     * @brief Handles an invocation on the uartBusRecv port
+     * @param portNum Port number
+     * @param buffer Buffer of data received
+     * @param status Current status of most recent recv() call
+     */
+    void uartBusRecv_handler(FwIndexType portNum, Fw::Buffer& buffer,
+                             const Drv::ByteStreamStatus& status) override;
+
+    /**
      * @brief Local command counter used to populate CmdCounter telemetry.
      */
     U32 m_cmdCounter = 0;
@@ -78,6 +101,11 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
      * @brief Utility hash helper used by computeHash().
      */
     Utils::Hash m_hashBuilder;
+    
+    /**
+     * @brief Boolean flag to mark UART as ready
+     */
+    bool m_uartReady = false;
 };
 
 }  // namespace Tmtc
