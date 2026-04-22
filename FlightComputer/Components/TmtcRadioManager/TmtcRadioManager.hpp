@@ -12,6 +12,8 @@
 #include "EndurosatConstants.hpp"
 #include "FlightComputer/Types/TmtcRadioTypes/TmtcRadioPacketSerializableAc.hpp"
 
+#include <atomic>
+
 
 namespace Tmtc {
 
@@ -99,7 +101,10 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
      * @brief Utility hash helper used by computeHash().
      */
     Utils::Hash m_hashBuilder;
-
+    
+    /**
+     * @brief Boolean flag to mark UART as ready
+     */
     bool m_uartReady = false;
 };
 
