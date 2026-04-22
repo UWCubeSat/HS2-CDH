@@ -1,11 +1,19 @@
 <map id="FlightComputer/Components/TmtcRadioManager/TmtcRadioManager.cpp" name="FlightComputer/Components/TmtcRadioManager/TmtcRadioManager.cpp">
-<area shape="rect" id="Node000001" title="cpp file for TmtcRadioManager component implementation class" alt="" coords="227,5,537,45"/>
-<area shape="rect" id="Node000002" href="$TmtcRadioManager_8hpp.html" title="hpp file for TmtcRadioManager component implementation class" alt="" coords="113,93,424,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="358,48,306,87,303,83,355,43"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="449,101,545,126"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="409,43,472,90,468,94,406,48"/>
+<area shape="rect" id="Node000001" title="cpp file for TmtcRadioManager component implementation class" alt="" coords="540,5,851,45"/>
+<area shape="rect" id="Node000002" href="$TmtcRadioManager_8hpp.html" title="hpp file for TmtcRadioManager component implementation class" alt="" coords="427,93,737,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="672,48,619,87,616,83,669,43"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="762,101,858,126"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="722,43,785,90,782,94,719,48"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="5,181,289,236"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="246,136,194,175,191,171,242,131"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="495,136,283,181,282,176,493,131"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="313,196,467,221"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="295,131,366,186,363,190,292,136"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="544,136,427,192,425,188,542,131"/>
+<area shape="rect" id="Node000005" href="$EndurosatConstants_8hpp_source.html" title=" " alt="" coords="492,196,672,221"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="585,133,585,182,579,182,579,133"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="696,181,945,236"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="631,131,742,174,740,179,629,136"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="970,196,1037,221"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="716,131,854,154,959,179,976,187,974,191,957,184,853,159,715,136"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="497,284,667,309"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="585,222,585,270,579,270,579,222"/>
 </map>

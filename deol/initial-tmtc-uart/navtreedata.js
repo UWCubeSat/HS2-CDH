@@ -127,7 +127,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"EventScheduler_8cpp.html"
+"EndurosatConstants_8hpp_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

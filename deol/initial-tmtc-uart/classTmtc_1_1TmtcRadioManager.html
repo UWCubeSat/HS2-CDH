@@ -140,9 +140,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:af1b9df60667a63fe7fd278808b1cd055" id="r_af1b9df60667a63fe7fd278808b1cd055"><td class="memItemLeft" align="right" valign="top">U32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTmtc_1_1TmtcRadioManager.html#af1b9df60667a63fe7fd278808b1cd055">incrementCommandCount</a> ()</td></tr>
-<tr class="memdesc:af1b9df60667a63fe7fd278808b1cd055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments command counter, should be used as part of every command to ensure command tracking.  <br /></td></tr>
-<tr class="separator:af1b9df60667a63fe7fd278808b1cd055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3053ca36a1079729add8ffa847d0cb2" id="r_af3053ca36a1079729add8ffa847d0cb2"><td class="memItemLeft" align="right" valign="top">Drv::ByteStreamStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTmtc_1_1TmtcRadioManager.html#af3053ca36a1079729add8ffa847d0cb2">write</a> (FwIndexType portNum, Fw::Buffer &amp;buffer)</td></tr>
+<tr class="memdesc:af3053ca36a1079729add8ffa847d0cb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write to UART helper method.  <br /></td></tr>
+<tr class="separator:af3053ca36a1079729add8ffa847d0cb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -152,6 +152,12 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a22d9c1168c73eb5ed0672ee8b33d683a" id="r_a22d9c1168c73eb5ed0672ee8b33d683a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTmtc_1_1TmtcRadioManager.html#a22d9c1168c73eb5ed0672ee8b33d683a">NO_OP_cmdHandler</a> (FwOpcodeType opCode, U32 cmdSeq) override</td></tr>
 <tr class="memdesc:a22d9c1168c73eb5ed0672ee8b33d683a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handler implementations for commands.  <br /></td></tr>
 <tr class="separator:a22d9c1168c73eb5ed0672ee8b33d683a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa51156be49e5ab3f71e96978bc84923" id="r_afa51156be49e5ab3f71e96978bc84923"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTmtc_1_1TmtcRadioManager.html#afa51156be49e5ab3f71e96978bc84923">uartBusReady_handler</a> (FwIndexType portNum) override</td></tr>
+<tr class="memdesc:afa51156be49e5ab3f71e96978bc84923"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles an invocation on the uartBusReady port.  <br /></td></tr>
+<tr class="separator:afa51156be49e5ab3f71e96978bc84923"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac1dcf1ae937f2ce792511c9ad5b6f6e" id="r_aac1dcf1ae937f2ce792511c9ad5b6f6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTmtc_1_1TmtcRadioManager.html#aac1dcf1ae937f2ce792511c9ad5b6f6e">uartBusRecv_handler</a> (FwIndexType portNum, Fw::Buffer &amp;buffer, const Drv::ByteStreamStatus &amp;status) override</td></tr>
+<tr class="memdesc:aac1dcf1ae937f2ce792511c9ad5b6f6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles an invocation on the uartBusRecv port.  <br /></td></tr>
+<tr class="separator:aac1dcf1ae937f2ce792511c9ad5b6f6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -161,11 +167,14 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a370bf2c10e9983420be75d69e0c7589d" id="r_a370bf2c10e9983420be75d69e0c7589d"><td class="memItemLeft" align="right" valign="top">Utils::Hash&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTmtc_1_1TmtcRadioManager.html#a370bf2c10e9983420be75d69e0c7589d">m_hashBuilder</a></td></tr>
 <tr class="memdesc:a370bf2c10e9983420be75d69e0c7589d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility hash helper used by <a class="el" href="classTmtc_1_1TmtcRadioManager.html#a55cf2e14c75ec15c7f6bb0c1948c07ac" title="Computes CRC32 hash of data.">computeHash()</a>.  <br /></td></tr>
 <tr class="separator:a370bf2c10e9983420be75d69e0c7589d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3b26b6379c8b39cd66f9e232e2b05fb" id="r_aa3b26b6379c8b39cd66f9e232e2b05fb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTmtc_1_1TmtcRadioManager.html#aa3b26b6379c8b39cd66f9e232e2b05fb">m_uartReady</a> = false</td></tr>
+<tr class="memdesc:aa3b26b6379c8b39cd66f9e232e2b05fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean flag to mark UART as ready.  <br /></td></tr>
+<tr class="separator:aa3b26b6379c8b39cd66f9e232e2b05fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Component responsible for TMTC radio command and telemetry management. </p>
 
-<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8hpp_source.html#l00018">18</a> of file <a class="el" href="TmtcRadioManager_8hpp_source.html">TmtcRadioManager.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8hpp_source.html#l00023">23</a> of file <a class="el" href="TmtcRadioManager_8hpp_source.html">TmtcRadioManager.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3c2766a2c8c077dc1343744297f04207" name="a3c2766a2c8c077dc1343744297f04207"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3c2766a2c8c077dc1343744297f04207">&#9670;&#160;</a></span>TmtcRadioManager()</h2>
@@ -191,10 +200,9 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>compName is not null. </dd></dl>
-<dl class="section post"><dt>Postcondition</dt><dd>Component instance is constructed and ready for initialization.</dd></dl>
-<p>Construct a <a class="el" href="classTmtc_1_1TmtcRadioManager.html" title="Component responsible for TMTC radio command and telemetry management.">TmtcRadioManager</a> component instance. </p>
+<dl class="section post"><dt>Postcondition</dt><dd>Component instance is constructed and ready for initialization. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00019">19</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00012">12</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -235,37 +243,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>U32 CRC32 hash of data (little endian) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00047">47</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
-
-</div>
-</div>
-<a id="af1b9df60667a63fe7fd278808b1cd055" name="af1b9df60667a63fe7fd278808b1cd055"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1b9df60667a63fe7fd278808b1cd055">&#9670;&#160;</a></span>incrementCommandCount()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">U32 Tmtc::TmtcRadioManager::incrementCommandCount </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Increments command counter, should be used as part of every command to ensure command tracking. </p>
-<dl class="section return"><dt>Returns</dt><dd>New command counter value </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00042">42</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00024">24</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -312,7 +290,9 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00036">36</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00018">18</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="TmtcRadioManager_8hpp_source.html#l00098">m_cmdCounter</a>.</p>
 
 </div>
 </div>
@@ -351,17 +331,157 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Handle a request for the current time. </p>
-<p>Handler implementations for ports.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">portNum</td><td>Port index that invoked the handler. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">time</td><td>Time object to populate with the current value.</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">time</td><td>Time object to populate with the current value. </td></tr>
   </table>
   </dd>
 </dl>
-<p>Handle a request for the current time. </p>
 
-<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00028">28</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00014">14</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
+
+</div>
+</div>
+<a id="afa51156be49e5ab3f71e96978bc84923" name="afa51156be49e5ab3f71e96978bc84923"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa51156be49e5ab3f71e96978bc84923">&#9670;&#160;</a></span>uartBusReady_handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Tmtc::TmtcRadioManager::uartBusReady_handler </td>
+          <td>(</td>
+          <td class="paramtype">FwIndexType&#160;</td>
+          <td class="paramname"><em>portNum</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handles an invocation on the uartBusReady port. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">portNum</td><td>Port number </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00032">32</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="TmtcRadioManager_8hpp_source.html#l00108">m_uartReady</a>.</p>
+
+</div>
+</div>
+<a id="aac1dcf1ae937f2ce792511c9ad5b6f6e" name="aac1dcf1ae937f2ce792511c9ad5b6f6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac1dcf1ae937f2ce792511c9ad5b6f6e">&#9670;&#160;</a></span>uartBusRecv_handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Tmtc::TmtcRadioManager::uartBusRecv_handler </td>
+          <td>(</td>
+          <td class="paramtype">FwIndexType&#160;</td>
+          <td class="paramname"><em>portNum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Fw::Buffer &amp;&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Drv::ByteStreamStatus &amp;&#160;</td>
+          <td class="paramname"><em>status</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handles an invocation on the uartBusRecv port. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">portNum</td><td>Port number </td></tr>
+    <tr><td class="paramname">buffer</td><td>Buffer of data received </td></tr>
+    <tr><td class="paramname">status</td><td>Current status of most recent recv() call </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00047">47</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af3053ca36a1079729add8ffa847d0cb2" name="af3053ca36a1079729add8ffa847d0cb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3053ca36a1079729add8ffa847d0cb2">&#9670;&#160;</a></span>write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Drv::ByteStreamStatus Tmtc::TmtcRadioManager::write </td>
+          <td>(</td>
+          <td class="paramtype">FwIndexType&#160;</td>
+          <td class="paramname"><em>portNum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Fw::Buffer &amp;&#160;</td>
+          <td class="paramname"><em>buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write to UART helper method. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">portNum</td><td>Port number </td></tr>
+    <tr><td class="paramname">buffer</td><td>Buffer of bytes to send</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Drv::ByteStreamStatus </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8cpp_source.html#l00037">37</a> of file <a class="el" href="TmtcRadioManager_8cpp_source.html">TmtcRadioManager.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="TmtcRadioManager_8hpp_source.html#l00108">m_uartReady</a>.</p>
 
 </div>
 </div>
@@ -388,7 +508,9 @@ Private Attributes</h2></td></tr>
 
 <p>Local command counter used to populate CmdCounter telemetry. </p>
 
-<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8hpp_source.html#l00075">75</a> of file <a class="el" href="TmtcRadioManager_8hpp_source.html">TmtcRadioManager.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8hpp_source.html#l00098">98</a> of file <a class="el" href="TmtcRadioManager_8hpp_source.html">TmtcRadioManager.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="TmtcRadioManager_8cpp_source.html#l00018">NO_OP_cmdHandler()</a>.</p>
 
 </div>
 </div>
@@ -414,7 +536,35 @@ Private Attributes</h2></td></tr>
 
 <p>Utility hash helper used by <a class="el" href="classTmtc_1_1TmtcRadioManager.html#a55cf2e14c75ec15c7f6bb0c1948c07ac" title="Computes CRC32 hash of data.">computeHash()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8hpp_source.html#l00080">80</a> of file <a class="el" href="TmtcRadioManager_8hpp_source.html">TmtcRadioManager.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8hpp_source.html#l00103">103</a> of file <a class="el" href="TmtcRadioManager_8hpp_source.html">TmtcRadioManager.hpp</a>.</p>
+
+</div>
+</div>
+<a id="aa3b26b6379c8b39cd66f9e232e2b05fb" name="aa3b26b6379c8b39cd66f9e232e2b05fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3b26b6379c8b39cd66f9e232e2b05fb">&#9670;&#160;</a></span>m_uartReady</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tmtc::TmtcRadioManager::m_uartReady = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Boolean flag to mark UART as ready. </p>
+
+<p class="definition">Definition at line <a class="el" href="TmtcRadioManager_8hpp_source.html#l00108">108</a> of file <a class="el" href="TmtcRadioManager_8hpp_source.html">TmtcRadioManager.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="TmtcRadioManager_8cpp_source.html#l00032">uartBusReady_handler()</a>, and <a class="el" href="TmtcRadioManager_8cpp_source.html#l00037">write()</a>.</p>
 
 </div>
 </div>
