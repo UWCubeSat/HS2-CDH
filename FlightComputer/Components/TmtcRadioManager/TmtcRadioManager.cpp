@@ -17,12 +17,8 @@ void TmtcRadioManager::timeGetPort_handler(FwIndexType portNum, Fw::Time& time) 
 
 void TmtcRadioManager::NO_OP_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
     log_COMMAND_NoOpEvent();
-    tlmWrite_CmdCounter(incrementCommandCount());
+    tlmWrite_CmdCounter(++m_cmdCounter);
     cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
-}
-
-U32 TmtcRadioManager::incrementCommandCount() {
-    return ++m_cmdCounter;
 }
 
 U32 TmtcRadioManager::computeHash(const void* data, size_t data_size) {

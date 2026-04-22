@@ -48,12 +48,6 @@ class TmtcRadioManager final : public TmtcRadioManagerComponentBase {
 
   protected:
     /**
-     * @brief Increments command counter, should be used as part of every command to ensure command tracking
-     * @returns New command counter value
-     */
-    U32 incrementCommandCount();
-
-    /**
      * @brief Write to UART helper method
      * @param portNum Port number
      * @param buffer Buffer of bytes to send
