@@ -9,4 +9,7 @@ register_fprime_deployment(
         FlightComputer_Components_ImageProcessor_ImageDecompressor
         FlightComputer_Components_EventScheduler
         FlightComputer_Components_TmtcRadioManager
+        FlightComputer_Components_Thermal_ThermalManager
+        FlightComputer_Components_Thermal_ThermalControlLoop
+        FlightComputer_Components_Thermal_ThermalIO
 )
